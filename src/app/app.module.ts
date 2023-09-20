@@ -4,10 +4,13 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
+import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import {CallApi} from "./services/CallApi";
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NavBarComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +22,9 @@ import { ServiceWorkerModule } from '@angular/service-worker';
       registrationStrategy: 'registerWhenStable:30000'
     })
   ],
-  providers: [],
+  providers: [
+    CallApi
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
