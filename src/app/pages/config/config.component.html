@@ -1,0 +1,22 @@
+<h2>Configuration de l'application!</h2>
+
+<div class="container mt-5">
+  <form action="votre_script_de_traitement.php" method="post">
+    <div class="form-group">
+      <label for="login">Login :</label>
+      <input type="text" class="form-control" id="login" name="login" [value]="userLogin" required>
+    </div>
+
+    <div class="form-group">
+      <label for="password">Mot de passe :</label>
+      <input type="password" class="form-control" id="password" name="password" [value]="userPassword" required>
+    </div>
+
+    <div class="form-group">
+      <label for="url">Adresse du serveur :</label>
+      <input type="url" class="form-control" id="url" name="url" [value]="serverUrl" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+  </form>
+</div>

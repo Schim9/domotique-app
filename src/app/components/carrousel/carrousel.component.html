@@ -1,0 +1,21 @@
+<div class="container mt-5">
+  <ngb-carousel
+    [showNavigationArrows]="true"
+    [showNavigationIndicators]="true"
+    [keyboard]="true"
+    [pauseOnHover]="true"
+    [wrap]="true"
+    [activeId]="'secondSlide'"
+    [interval]="interval"
+  >
+    <ng-template *ngFor="let elt of element" ngbSlide [id]="elt.id.toString()">
+      <div class="picsum-img-wrapper">
+        <img [src]="elt.src" alt="Angular Carousel 1" />
+      </div>
+      <div class="carousel-caption">
+        <h3>{{elt.title}}</h3>
+        <p>{{elt.caption}}</p>
+      </div>
+    </ng-template>
+  </ngb-carousel>
+</div>

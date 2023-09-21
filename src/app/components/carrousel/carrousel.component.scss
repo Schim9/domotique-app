@@ -1,0 +1,19 @@
+.carousel-control-next-icon,
+.carousel-control-next,
+.carousel-control-prev,
+.carousel-indicators  {
+  filter: invert(100%);
+}
+
+.carousel-control-prev {
+  filter: invert(100%);
+  color: black;
+  background: black;
+}
+
+.carousel-control-next {
+  filter: invert(100%);
+}
+.carousel-indicators{
+  filter: invert(100%);
+}

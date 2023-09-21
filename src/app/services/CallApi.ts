@@ -5,7 +5,7 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class CallApi {
-   serverAddress: String = 'https://solar-back.kaminski.lu/api';
+   serverAddress: string = 'https://domotique.kaminski.lu';
   constructor(private newHttp: HttpClient) {
   }
 
@@ -21,15 +21,15 @@ export class CallApi {
       return this.newHttp.get(this.serverAddress + endpoint + (param ? param : ''),
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.POST) {
-      return this.newHttp.post(this.serverAddress + endpoint,
+      return this.newHttp.post(this.serverAddress + '/api/' + endpoint,
         param,
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.PUT) {
-      return this.newHttp.put(this.serverAddress + endpoint,
+      return this.newHttp.put(this.serverAddress + '/api/' + endpoint,
         param,
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.DELETE) {
-      return this.newHttp.delete(this.serverAddress + endpoint,
+      return this.newHttp.delete(this.serverAddress + '/api/' + endpoint,
         {headers: authenticatedHeader});
 
     } else {
