@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import {interval} from "rxjs";
+import {Component} from '@angular/core';
+import {DomoticzItem} from "../../models/domoticz-item.model";
 
 @Component({
   selector: 'app-carrousel',
@@ -7,27 +7,26 @@ import {interval} from "rxjs";
   styleUrls: ['./carrousel.component.scss']
 })
 export class CarrouselComponent {
-  images: string[] = ['./assets/icons/icon-72x72.png', './assets/icons/icon-72x72.png', './assets/icons/icon-72x72.png'];
 
-  element= [
+  element: DomoticzItem[]= [
     {
       id: 1,
-      src: './assets/icons/icon-72x72.png',
       title: 'title1',
-      caption: 'caption1'
+      caption: 'caption1',
+      type: 'blind'
 
     },
     {
       id: 2,
-      src: './assets/icons/icon-72x72.png',
       title: 'title2',
-      caption: 'caption2'
+      caption: 'caption2',
+      type: 'action'
     },
     {
       id: 3,
-      src: './assets/icons/icon-72x72.png',
       title: 'title3',
-      caption: 'caption3'
+      caption: 'caption3',
+      type: 'temp'
     }
 
   ]

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'nav-bar',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent {
-
+  constructor(public route: ActivatedRoute) {}
 }

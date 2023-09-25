@@ -1,35 +1,38 @@
-import { Injectable } from '@angular/core';
-import { Observable, EMPTY } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {EMPTY, Observable} from 'rxjs';
 
-import {HttpClient, HttpErrorResponse, HttpHeaders} from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class CallApi {
-   serverAddress: string = 'https://domotique.kaminski.lu';
-  constructor(private newHttp: HttpClient) {
+  serverAddress: string = 'https://domotique.kaminski.lu';
+  // serverAddress: string = 'http://192.168.0.97:8084';
+  constructor(
+    private newHttp: HttpClient
+  ) {
   }
 
-  call = (command: HTTP_COMMAND, endpoint: string, param?: any): Observable<any> => {
+  call = (command: HTTP_COMMAND, param?: any): Observable<any> => {
 
-    // Contains the JWT for authentication
+    // Only for test purpose
+    let credential = sessionStorage.getItem('credentials')
     const authenticatedHeader: HttpHeaders = new HttpHeaders()
-      // .append('Authorization', 'Basic RWxpdFNvbGFyOg==')
-      .append('Access-Control-Max-Age', '1')
-      .append('Content-Type', 'application/json');
+      .append('Authorization', `${credential}`)
+      .append('Content-Type', 'application/json')
 
     if (command === HTTP_COMMAND.GET) {
-      return this.newHttp.get(this.serverAddress + endpoint + (param ? param : ''),
+      return this.newHttp.get(this.serverAddress + '/json.htm' + (param ? param : ''),
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.POST) {
-      return this.newHttp.post(this.serverAddress + '/api/' + endpoint,
+      return this.newHttp.post(this.serverAddress + '/json.htm',
         param,
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.PUT) {
-      return this.newHttp.put(this.serverAddress + '/api/' + endpoint,
+      return this.newHttp.put(this.serverAddress + '/json.htm',
         param,
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.DELETE) {
-      return this.newHttp.delete(this.serverAddress + '/api/' + endpoint,
+      return this.newHttp.delete(this.serverAddress + '/json.htm',
         {headers: authenticatedHeader});
 
     } else {

@@ -9,13 +9,7 @@
     [interval]="interval"
   >
     <ng-template *ngFor="let elt of element" ngbSlide [id]="elt.id.toString()">
-      <div class="picsum-img-wrapper">
-        <img [src]="elt.src" alt="Angular Carousel 1" />
-      </div>
-      <div class="carousel-caption">
-        <h3>{{elt.title}}</h3>
-        <p>{{elt.caption}}</p>
-      </div>
+      <app-carrousel-item [element]="elt"/>
     </ng-template>
   </ngb-carousel>
 </div>

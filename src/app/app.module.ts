@@ -13,6 +13,10 @@ import {ConfigComponent} from './pages/config/config.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CarrouselComponent} from './components/carrousel/carrousel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
+import { BlindButtonComponent } from './components/blind-button/blind-button.component';
+import { TempButtonComponent } from './components/temp-button/temp-button.component';
+import { ActionButtonComponent } from './components/action-button/action-button.component';
+import { CarrouselItemComponent } from './components/carrousel-item/carrousel-item.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,11 @@ import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
     BlindsComponent,
     TemperaturesComponent,
     ConfigComponent,
-    CarrouselComponent
+    CarrouselComponent,
+    BlindButtonComponent,
+    TempButtonComponent,
+    ActionButtonComponent,
+    CarrouselItemComponent
   ],
   imports: [
     BrowserModule,
