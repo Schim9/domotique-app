@@ -15,11 +15,15 @@ import {Unknown} from "../models/unknown.model";
 })
 export class ToolboxService {
 
-  constructor(private callApi: CallApi) {
-  }
+  constructor(private callApi: CallApi) {}
+
+  blinds: DomoticzItem[] = []
+  tempSensors: DomoticzItem[] = []
+  others: DomoticzItem[] = []
 
   fetchAllElements = (): Observable<any> => {
     let param = '?type=command&param=getdevices&used=true&type=devices'
+
     return this.callApi.call(
       HTTP_COMMAND.GET,
       param
@@ -30,7 +34,27 @@ export class ToolboxService {
       console.log('mapped result', result);
       return result
     }),
+      map(result => this.dispatchItems(result))
     )
+  }
+
+  getBlinds = (): DomoticzItem[] => {
+    return this.blinds;
+  }
+
+  dispatchItems = (elements: DomoticzItem[]) => {
+    elements.forEach(element => {
+      switch (element.type) {
+        case "BLIND":
+          this.blinds.push(element);
+          break;
+        case "TEMP":
+          this.tempSensors.push(element);
+          break;
+        default:
+          this.others.push(element)
+      }
+    })
   }
 
   mapItem = (json : any): DomoticzItem[] => {

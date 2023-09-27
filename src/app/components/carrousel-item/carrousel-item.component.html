@@ -1,7 +1,7 @@
 <div class="picsum-img-wrapper" [ngSwitch]="element.type">
-  <app-blind-button *ngSwitchCase="'blind'" [element]="element"/>
-  <app-action-button *ngSwitchCase="'action'" [element]="element"/>
-  <app-temp-button *ngSwitchCase="'temp'" [element]="element"/>
+  <app-blind-button *ngSwitchCase="'BLIND'" [element]="element"/>
+  <app-action-button *ngSwitchCase="'PUSH_BUTTON'" [element]="element"/>
+  <app-temp-button *ngSwitchCase="'TEMP'" [element]="element"/>
 </div>
 <div class="carousel-caption">
   <h3>{{element.title}}</h3>

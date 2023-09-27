@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 
 @Component({
@@ -8,7 +8,7 @@ import {DomoticzItem} from "../../models/domoticz-item.model";
 })
 export class CarrouselComponent {
 
-  element: DomoticzItem[]= [
-  ]
+  @Input() element: DomoticzItem[]
+
   protected readonly interval = 0;
 }
