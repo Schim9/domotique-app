@@ -8,9 +8,9 @@ import {CallApi} from "../../services/CallApi";
 })
 export class ConfigComponent {
 
-  userLogin: string = '';
-  userPassword: string = '';
-  serverUrl: string = '';
+  userLogin: string;
+  userPassword: string;
+  serverUrl: string;
 
 
   constructor(private callApi: CallApi){

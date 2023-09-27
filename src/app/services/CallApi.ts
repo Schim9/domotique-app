@@ -17,7 +17,7 @@ export class CallApi {
     // Only for test purpose
     let credential = sessionStorage.getItem('credentials')
     const authenticatedHeader: HttpHeaders = new HttpHeaders()
-      .append('Authorization', `${credential}`)
+      .append('Authorization', `Basic ${credential}`)
       .append('Content-Type', 'application/json')
 
     if (command === HTTP_COMMAND.GET) {

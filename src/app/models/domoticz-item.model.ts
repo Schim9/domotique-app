@@ -1,26 +1,25 @@
 export class DomoticzItem {
-    id: number = 0  // idx
-    title: string = '' // Name
-    caption: string = ''
-    type: string = ''  // SwitchType ou Type
-    plan?: string = ''  // PlanID
+  id: number = 0
+  domoticzType?: string
+  title: string
+  caption: string
+  type: string
+  plan?: string
+  lastUpdate?: string
+
+  constructor(
+    id: number,
+    title: string,
+    caption: string,
+    plan: string,
+    lastUpdate: string,
+    domoticzType: string,
+  ) {
+    this.id = id;
+    this.title = title;
+    this.caption = caption;
+    this.plan = plan;
+    this.lastUpdate = lastUpdate;
+    this.domoticzType = domoticzType;
+  }
 }
-
-
-
-/**
- *  VMC / Déco
- *  "SwitchType": "On/Off",
- *  "Type": "Light/Switch",
- *
- *  Volet
- *  "SwitchType": "Blinds",
- *  "Type": "RFY",
- *
- *  Température
- *  "Type": "Temp + Humidity",
- *
- *  Etat Porte Garage
- *  "Type": "Light/Switch",
- *  "SwitchType": "Motion Sensor",
-**/
