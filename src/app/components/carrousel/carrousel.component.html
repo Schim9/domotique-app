@@ -1,15 +1,5 @@
-<div class="container mt-5">
-  <ngb-carousel
-    [showNavigationArrows]="true"
-    [showNavigationIndicators]="true"
-    [keyboard]="true"
-    [pauseOnHover]="true"
-    [wrap]="true"
-    [activeId]="'secondSlide'"
-    [interval]="interval"
-  >
-    <ng-template *ngFor="let elt of element" ngbSlide [id]="elt.id.toString()">
-      <app-carrousel-item [element]="elt"/>
-    </ng-template>
-  </ngb-carousel>
+<div class="keen-slider" #sliderRef >
+  <app-carrousel-item
+    *ngFor="let elt of element" class="keen-slider__slide number-slide1"
+    [element]="elt"/>
 </div>
