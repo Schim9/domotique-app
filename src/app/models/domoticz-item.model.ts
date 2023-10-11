@@ -6,6 +6,7 @@ export class DomoticzItem {
   type: string
   plan?: string
   lastUpdate?: string
+  Favorite?: number
 
   constructor(
     id: number,
@@ -14,6 +15,7 @@ export class DomoticzItem {
     plan: string,
     lastUpdate: string,
     domoticzType: string,
+    Favorite: number
   ) {
     this.id = id;
     this.title = title;
@@ -21,5 +23,6 @@ export class DomoticzItem {
     this.plan = plan;
     this.lastUpdate = lastUpdate;
     this.domoticzType = domoticzType;
+    this.Favorite = Favorite;
   }
 }

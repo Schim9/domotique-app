@@ -1,0 +1,53 @@
+// don't forget to add the global styles that are in styles.css
+
+.sidenav {
+  width: 150px;
+}
+.section {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav {
+  .active-link {
+    background-color: #fafafa;
+    border-left: solid 3px #1976d2;
+  }
+
+  .hover {
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: transform, border, background-color;
+  }
+
+  mat-list-item,
+  a {
+    border: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    &:hover {
+      cursor: pointer;
+      background-color: #fafafa;
+      border-left: solid 3px #1976d2;
+    }
+  }
+  mat-icon {
+    color: #1976d2;
+  }
+}
+
+.toggle {
+  z-index: 9999;
+  width: 100%;
+  justify-content: space-around;
+  padding-top: 25px;
+  padding-left: 25px;
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+mat-sidenav {
+  background: white;
+}

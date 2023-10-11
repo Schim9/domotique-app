@@ -1,10 +1,34 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {DomoticzItem} from "../../models/domoticz-item.model";
+import {ToolboxService} from "../../services/toolbox.service";
 
 @Component({
   selector: 'app-blinds',
   templateUrl: './blinds.component.html',
   styleUrls: ['./blinds.component.scss']
 })
-export class BlindsComponent {
+export class BlindsComponent implements OnInit {
+
+  blindsRdC: DomoticzItem[] = []
+  blindsEtage: DomoticzItem[] = []
+  blindesUnknownPlan: DomoticzItem[] = []
+
+  constructor(private toolboxService: ToolboxService) {}
+
+  ngOnInit(): void {
+    this.initElement();
+    this.toolboxService.getRefreshTrigger()
+      .subscribe(() => this.initElement())
+  }
+
+  initElement = () : void => {
+    this.toolboxService.getBlinds().forEach(element => {
+      switch (element.plan) {
+        case '3': this.blindsRdC.push(element); break;
+        case '4': this.blindsEtage.push(element); break;
+        default: this.blindesUnknownPlan.push(element);
+      }
+    })
+  }
 
 }

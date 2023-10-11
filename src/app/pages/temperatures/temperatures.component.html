@@ -1,1 +1,12 @@
-<p>temperatures works!</p>
+<div *ngIf="tempEtage.length>0">
+  <p>Etage</p>
+  <app-carrousel [elements]="tempEtage"/>
+</div>
+<div *ngIf="tempRdC.length>0">
+  <p>Rez de chaussée</p>
+  <app-carrousel [elements]="tempRdC"/>
+</div>
+<div *ngIf="tempUnknownPlan.length>0">
+  <p>Autre plan</p>
+  <app-carrousel [elements]="tempUnknownPlan"/>
+</div>

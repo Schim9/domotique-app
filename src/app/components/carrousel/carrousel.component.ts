@@ -9,7 +9,7 @@ import {DomoticzItem} from "../../models/domoticz-item.model";
 })
 export class CarrouselComponent implements AfterViewInit, OnDestroy{
 
-  @Input() element: DomoticzItem[]
+  @Input() elements: DomoticzItem[]
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>
 
@@ -19,8 +19,8 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy{
     this.slider = new KeenSlider(this.sliderRef?.nativeElement, {
       initial: 0,
       slides: {
-        perView: 3,
-        spacing: 24,
+        perView: 2,
+        spacing: 19,
       },
     })
   }

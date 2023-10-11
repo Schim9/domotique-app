@@ -1,14 +1,40 @@
-<ul ngbNav [activeId]="route.fragment | async" class="nav-tabs">
-  <li ngbNavItem="#/dashboard">
-    <a ngbNavLink routerLink="dashboard">Accueil</a>
-  </li>
-  <li ngbNavItem="#/blinds">
-    <a ngbNavLink routerLink="blinds">Volets</a>
-  </li>
-  <li ngbNavItem="#/temp">
-    <a ngbNavLink routerLink="temp">Températures</a>
-  </li>
-  <li ngbNavItem="#/config">
-    <a ngbNavLink routerLink="config">Configuration</a>
-  </li>
-</ul>
+<div class="toggle">
+  <mat-icon (click)="toggleMenu()">
+    {{ "dehaze" }}
+  </mat-icon>
+</div>
+<mat-sidenav-container (backdropClick)="toggleMenu()">
+  <mat-sidenav
+    #sidenav
+    fixedInViewport="true"
+    mode="side"
+    [opened]="isExpanded"
+  >
+    <section [class.sidenav]="true">
+      <mat-list class="nav" (click)="toggleMenu()">
+        <a mat-list-item class="hover">
+          <mat-icon >{{"keyboard_backspace" }}</mat-icon>
+        </a>
+      </mat-list>
+
+      <mat-list class="nav" *ngFor="let route of routeLinks">
+        <a
+          mat-list-item
+          routerLinkActive="active-link"
+          class="hover"
+          routerLink="{{ route.link }}"
+        >
+          <mat-icon>{{ route.icon }}</mat-icon>
+          {{ route.name }}
+        </a>
+      </mat-list>
+    </section>
+  </mat-sidenav>
+</mat-sidenav-container>
+
+
+
+
+
+
+

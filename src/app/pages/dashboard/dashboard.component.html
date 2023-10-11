@@ -1,3 +1,12 @@
-<p>dashboard works!</p>
-
-<app-carrousel *ngIf="blinds.length > 0"  [element]="blinds"/>
+<div *ngIf="favoritesEtage.length>0">
+  <p>Etage</p>
+  <app-carrousel [elements]="favoritesEtage"/>
+</div>
+<div *ngIf="favoritesRdC.length>0">
+  <p>Rez de chaussée</p>
+  <app-carrousel [elements]="favoritesRdC"/>
+</div>
+<div *ngIf="favoritesUnknownPlan.length>0">
+  <p>Autre plan</p>
+  <app-carrousel [elements]="favoritesUnknownPlan"/>
+</div>

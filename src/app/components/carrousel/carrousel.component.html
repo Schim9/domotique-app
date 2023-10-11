@@ -1,5 +1,10 @@
 <div class="keen-slider" #sliderRef >
-  <app-carrousel-item
-    *ngFor="let elt of element" class="keen-slider__slide number-slide1"
-    [element]="elt"/>
+  <div 
+       *ngFor="let element of elements" [ngSwitch]="element.type">
+    <app-blind-button *ngSwitchCase="'BLIND'" [element]="element" class="keen-slider__slide number-slide1"/>
+    <app-action-button *ngSwitchCase="'PUSH_BUTTON'" [element]="element" class="keen-slider__slide number-slide1"/>
+    <app-temp-button *ngSwitchCase="'TEMP'" [element]="element" class="keen-slider__slide number-slide1"/>
+    <app-unknown-item *ngSwitchDefault [element]="element" class="keen-slider__slide number-slide1"/>
+  </div>
+
 </div>

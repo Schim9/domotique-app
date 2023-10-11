@@ -4,3 +4,17 @@
 @import 'bootstrap/scss/bootstrap';
 @import 'keen-slider/keen-slider.min.css';
 
+
+// override material inline style to allow mini nav state
+mat-sidenav[style] {
+  visibility: visible !important;
+}
+.mat-drawer {
+  transform: none !important;
+}
+
+html, body {
+  background-color: #edeeee !important; // override Bootstrap style for body
+  height: 100%;
+  margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+}

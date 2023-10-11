@@ -1,9 +1,7 @@
-import {Injectable} from '@angular/core';
-import {CallApi, HTTP_COMMAND} from "./CallApi";
+import {EventEmitter, Injectable, Output} from '@angular/core';
 import {DomoticzItem} from "../models/domoticz-item.model";
-import {map, Observable} from "rxjs";
 import {Blind} from "../models/blind.model";
-import {Temp} from "../models/temp.model";
+import {TemperatureElement} from "../models/temp.model";
 import {MotionSensor} from "../models/motion-sensor.model";
 import {Switch} from "../models/switch.model";
 import {PushButton} from "../models/push-button.model";
@@ -15,31 +13,26 @@ import {Unknown} from "../models/unknown.model";
 })
 export class ToolboxService {
 
-  constructor(private callApi: CallApi) {}
-
   blinds: DomoticzItem[] = []
+  favorites: DomoticzItem[] = []
   tempSensors: DomoticzItem[] = []
   others: DomoticzItem[] = []
-
-  fetchAllElements = (): Observable<any> => {
-    let param = '?type=command&param=getdevices&used=true&type=devices'
-
-    return this.callApi.call(
-      HTTP_COMMAND.GET,
-      param
-    ).pipe(
-      map(result => this.mapItem(result)),
-      map(result => {
-      // Testing purpose
-      console.log('mapped result', result);
-      return result
-    }),
-      map(result => this.dispatchItems(result))
-    )
-  }
+  @Output() fireRefresh: EventEmitter<any> = new EventEmitter();
 
   getBlinds = (): DomoticzItem[] => {
     return this.blinds;
+  }
+
+  getFavorites = (): DomoticzItem[] => {
+    return this.favorites;
+  }
+
+  getTemperatures = (): DomoticzItem[] => {
+    return this.tempSensors;
+  }
+
+  getRefreshTrigger = (): EventEmitter<any> => {
+    return this.fireRefresh;
   }
 
   dispatchItems = (elements: DomoticzItem[]) => {
@@ -53,6 +46,9 @@ export class ToolboxService {
           break;
         default:
           this.others.push(element)
+      }
+      if (element.Favorite === 1) {
+        this.favorites.push(element);
       }
     })
   }
@@ -92,7 +88,8 @@ export class ToolboxService {
       json.PlanID,
       json.LastUpdate,
       json.Type,
-      json.Status
+      json.Status,
+      json.Favorite
     )
   }
 
@@ -104,7 +101,8 @@ export class ToolboxService {
       json.PlanID,
       json.LastUpdate,
       json.Type,
-      json.Status
+      json.Status,
+      json.Favorite
     )
   }
 
@@ -115,7 +113,8 @@ export class ToolboxService {
       json.Description,
       json.PlanID,
       json.LastUpdate,
-      json.Type
+      json.Type,
+      json.Favorite
     )
   }
 
@@ -126,7 +125,8 @@ export class ToolboxService {
       json.Description,
       json.PlanID,
       json.LastUpdate,
-      json.Type
+      json.Type,
+      json.Favorite
     )
   }
 
@@ -137,12 +137,13 @@ export class ToolboxService {
       json.Description,
       json.PlanID,
       json.LastUpdate,
-      json.Type
+      json.Type,
+      json.Favorite
     )
   }
 
   mapToTemp = (json: any): DomoticzItem => {
-    return new Temp(
+    return new TemperatureElement(
       json.idx,
       json.Name,
       json.Description,
@@ -151,7 +152,8 @@ export class ToolboxService {
       json.Type,
       json.Temp,
       json.Humidity,
-      json.HumidityStatus
+      json.HumidityStatus,
+      json.Favorite
     )
   }
 
@@ -162,7 +164,8 @@ export class ToolboxService {
       json.SwitchType,
       json.PlanID,
       json.LastUpdate,
-      json.Type
+      json.Type,
+      json.Favorite
     )
   }
 }

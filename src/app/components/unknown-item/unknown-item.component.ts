@@ -2,10 +2,10 @@ import {Component, Input} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 
 @Component({
-  selector: 'app-blind-button',
-  templateUrl: './blind-button.component.html',
-  styleUrls: ['./blind-button.component.scss']
+  selector: 'app-unknown-item',
+  templateUrl: './unknown-item.component.html',
+  styleUrls: ['./unknown-item.component.scss']
 })
-export class BlindButtonComponent {
+export class UnknownItemComponent {
   @Input() element: DomoticzItem
 }

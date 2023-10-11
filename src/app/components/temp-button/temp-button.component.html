@@ -1,3 +1,17 @@
-<div class="picsum-img-wrapper">
-  <img [src]="src" [alt]="element.id" />
+<div class="label">
+  <div class="image-container" *ngIf="elementAsTmp.temperature">
+    <img [src]="defineTemperatureIcon()" alt="Temperature">
+    <p>{{defineTemperature()}}°C</p>
+  </div>
+  <div class="image-container" *ngIf="elementAsTmp.humidity">
+    <img src="./assets/temperature/humidity.png" alt="Humidity">
+    <p>{{elementAsTmp.humidity}}%</p>
+  </div>
+  <div class="image-container">
+    <img src="./assets/temperature/update.png" alt="Last seen">
+    <p>{{defineLastTime()}}</p>
+  </div>
+  <h3>{{elementAsTmp.title}}</h3>
 </div>
+
+

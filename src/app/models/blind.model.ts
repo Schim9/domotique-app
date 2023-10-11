@@ -16,6 +16,7 @@ export class Blind extends DomoticzItem {
     plan: string,
     lastUpdate: string,
     domoticzType: string,
+    favorite: number
   ) {
     super(
       id,
@@ -23,7 +24,8 @@ export class Blind extends DomoticzItem {
       caption,
       plan,
       lastUpdate,
-      domoticzType
+      domoticzType,
+      favorite
     )
   }
 }

@@ -8,7 +8,8 @@ describe('DomoticzItem', () => {
       "",
       "0",
       "",
-      ""
+      "",
+      0
     )).toBeTruthy();
   });
 });

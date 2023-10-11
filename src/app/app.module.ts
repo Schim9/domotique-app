@@ -13,10 +13,16 @@ import {ConfigComponent} from './pages/config/config.component';
 import {HttpClientModule} from "@angular/common/http";
 import {CarrouselComponent} from './components/carrousel/carrousel.component';
 import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
-import { BlindButtonComponent } from './components/blind-button/blind-button.component';
-import { TempButtonComponent } from './components/temp-button/temp-button.component';
-import { ActionButtonComponent } from './components/action-button/action-button.component';
-import { CarrouselItemComponent } from './components/carrousel-item/carrousel-item.component';
+import {BlindButtonComponent} from './components/blind-button/blind-button.component';
+import {TempButtonComponent} from './components/temp-button/temp-button.component';
+import {ActionButtonComponent} from './components/action-button/action-button.component';
+import {UnknownItemComponent} from './components/unknown-item/unknown-item.component';
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
+import {MatListModule} from "@angular/material/list";
+import {MatTooltipModule} from "@angular/material/tooltip";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {MatIconModule} from "@angular/material/icon";
+import {MatButtonModule} from "@angular/material/button";
 
 @NgModule({
   declarations: [
@@ -30,11 +36,12 @@ import { CarrouselItemComponent } from './components/carrousel-item/carrousel-it
     BlindButtonComponent,
     TempButtonComponent,
     ActionButtonComponent,
-    CarrouselItemComponent
+    UnknownItemComponent
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    BrowserAnimationsModule,
     NgbModule,
     AppRoutingModule,
     ServiceWorkerModule.register('ngsw-worker.js', {
@@ -43,7 +50,11 @@ import { CarrouselItemComponent } from './components/carrousel-item/carrousel-it
       // or after 30 seconds (whichever comes first).
       registrationStrategy: 'registerWhenStable:30000'
     }),
-    NgbModule
+    MatSidenavModule,
+    MatListModule,
+    MatIconModule,
+    MatTooltipModule,
+    MatButtonModule,
   ],
   providers: [
     CallApi

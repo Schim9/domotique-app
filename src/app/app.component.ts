@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ToolboxService} from "./services/toolbox.service";
+import {DomoticzApiService} from "./services/domoticz-api.service";
 
 @Component({
   selector: 'app-root',
@@ -7,13 +7,16 @@ import {ToolboxService} from "./services/toolbox.service";
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
-  title = 'DomotiqueApp';
 
-  constructor(private toolbox: ToolboxService) {
+  constructor(private domoticzApiService: DomoticzApiService) {
   }
 
+
+
   ngOnInit(): void {
-    this.toolbox.fetchAllElements().subscribe()
+    this.domoticzApiService
+      .fetchAllElements()
+      .subscribe()
   }
 
 

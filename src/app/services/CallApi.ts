@@ -5,8 +5,8 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Injectable()
 export class CallApi {
-  serverAddress: string = 'https://domotique.kaminski.lu';
-  // serverAddress: string = 'http://192.168.0.97:8084';
+  // serverAddress: string = 'https://domotique.kaminski.lu';
+  serverAddress: string = ' http://localhost:3000';
   constructor(
     private newHttp: HttpClient
   ) {
@@ -21,7 +21,8 @@ export class CallApi {
       .append('Content-Type', 'application/json')
 
     if (command === HTTP_COMMAND.GET) {
-      return this.newHttp.get(this.serverAddress + '/json.htm' + (param ? param : ''),
+      // return this.newHttp.get(this.serverAddress + '/json.htm' + (param ? param : ''),
+      return this.newHttp.get(this.serverAddress + '/json.htm',
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.POST) {
       return this.newHttp.post(this.serverAddress + '/json.htm',

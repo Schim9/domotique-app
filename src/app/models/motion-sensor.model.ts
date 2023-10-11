@@ -17,7 +17,8 @@ export class MotionSensor extends DomoticzItem {
     plan: string,
     lastUpdate: string,
     domoticzType: string,
-    status: string
+    status: string,
+    favorite: number
   ) {
     super(
       id,
@@ -25,7 +26,8 @@ export class MotionSensor extends DomoticzItem {
       caption,
       plan,
       lastUpdate,
-      domoticzType
+      domoticzType,
+      favorite
     )
     this.status = status;
   }

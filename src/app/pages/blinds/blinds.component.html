@@ -1,1 +1,12 @@
-<p>blinds works!</p>
+<div *ngIf="blindsEtage.length>0">
+  <p>Etage</p>
+  <app-carrousel [elements]="blindsEtage"/>
+</div>
+<div *ngIf="blindsRdC.length>0">
+  <p>Rez de chaussée</p>
+  <app-carrousel [elements]="blindsRdC"/>
+</div>
+<div *ngIf="blindesUnknownPlan.length>0">
+  <p>Autre plan</p>
+  <app-carrousel [elements]="blindsRdC"/>
+</div>
