@@ -1,0 +1,22 @@
+<section [class.sidenav]="isExpanded">
+  <div class="toggle">
+    <mat-icon (click)="toggleMenu.emit(null)">
+      {{ isExpanded ? "keyboard_backspace" : "dehaze" }}
+    </mat-icon>
+  </div>
+
+  <mat-list class="nav" *ngFor="let route of routeLinks">
+    <div class="test-span-class">
+      <a mat-list-item
+         routerLinkActive="active-link"
+         class="hover"
+         routerLink="{{ route.link }}"
+      >
+        <mat-icon>{{ route.icon }}</mat-icon>
+        <span *ngIf="isExpanded">
+            {{ route.name }}
+        </span>
+      </a>
+    </div>
+  </mat-list>
+</section>

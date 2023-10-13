@@ -1,0 +1,45 @@
+@import '../../../vars.scss';
+
+.sidenav {
+  width: 250px;
+}
+
+.toggle {
+  color: $navbar-icon-color;
+  display: flex;
+  justify-content: space-around;
+  padding: 25px 0;
+  height: 100%;
+  margin-left: 10px;
+
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.test-span-class {
+  display: flex;
+  height: 100%;
+  margin-left: 10px;
+}
+
+.nav {
+  .active-link {
+    background-color: $navbar-selected-element-color;
+    border-left: solid 3px $navbar-selected-element-border;
+  }
+
+  .hover {
+    transition-duration: 400ms;
+    transition-timing-function: cubic-bezier(0.25, 0.8, 0.25, 1);
+    transition-property: transform, border, background-color;
+  }
+
+  mat-list-item, a:hover {
+    cursor: pointer;
+  }
+
+  mat-icon {
+    color: $navbar-icon-color;
+  }
+}

@@ -4,7 +4,6 @@ import {BrowserModule} from '@angular/platform-browser';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ServiceWorkerModule} from '@angular/service-worker';
-import {NavBarComponent} from './components/nav-bar/nav-bar.component';
 import {CallApi} from "./services/CallApi";
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {BlindsComponent} from './pages/blinds/blinds.component';
@@ -23,11 +22,12 @@ import {MatTooltipModule} from "@angular/material/tooltip";
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
+import {MatLineModule} from "@angular/material/core";
+import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavBarComponent,
     DashboardComponent,
     BlindsComponent,
     TemperaturesComponent,
@@ -36,7 +36,8 @@ import {MatButtonModule} from "@angular/material/button";
     BlindButtonComponent,
     TempButtonComponent,
     ActionButtonComponent,
-    UnknownItemComponent
+    UnknownItemComponent,
+    SidenavComponent
   ],
   imports: [
     BrowserModule,
@@ -55,6 +56,8 @@ import {MatButtonModule} from "@angular/material/button";
     MatIconModule,
     MatTooltipModule,
     MatButtonModule,
+    MatLineModule,
+    MatListModule,
   ],
   providers: [
     CallApi

@@ -1,5 +1,15 @@
+@import '../vars.scss';
+
 .content-container {
   min-height: 100vh;
   box-sizing: border-box;
   padding: 25px;
+}
+
+.mat-sidenav-container {
+  background: $body-bg-color;
+}
+
+.mat-sidenav {
+  background: $navbar-bg-color;
 }
