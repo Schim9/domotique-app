@@ -1,17 +1,19 @@
-<div class="label">
-  <div class="image-container" *ngIf="elementAsTmp.temperature">
-    <img [src]="defineTemperatureIcon()" alt="Temperature">
-    <p>{{defineTemperature()}}°C</p>
+<div class="card-carrousel-item">
+  <p class="card-header">{{elementAsTmp.title}}</p>
+  <div class="card-content">
+    <div class="image-container" *ngIf="elementAsTmp.temperature">
+      <img [src]="defineTemperatureIcon()" alt="Temperature">
+      <p>{{defineTemperature()}}°C</p>
+    </div>
+    <div class="image-container" *ngIf="elementAsTmp.humidity">
+      <img src="./assets/temperature/humidity.png" alt="Humidity">
+      <p>{{elementAsTmp.humidity}}%</p>
+    </div>
+    <div class="image-container">
+      <img src="./assets/temperature/update.png" alt="Last seen">
+      <p>{{defineLastTime()}}</p>
+    </div>
   </div>
-  <div class="image-container" *ngIf="elementAsTmp.humidity">
-    <img src="./assets/temperature/humidity.png" alt="Humidity">
-    <p>{{elementAsTmp.humidity}}%</p>
-  </div>
-  <div class="image-container">
-    <img src="./assets/temperature/update.png" alt="Last seen">
-    <p>{{defineLastTime()}}</p>
-  </div>
-  <h3>{{elementAsTmp.title}}</h3>
 </div>
 
 
