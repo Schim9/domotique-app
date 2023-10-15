@@ -36,13 +36,8 @@ export class TempButtonComponent implements  OnChanges {
   defineLastTime = (): string => {
     let lastUpdateAsMoment =  moment(this.element.lastUpdate);
     let currentDay = moment().startOf('day');
-    console.log('currentDay:', currentDay);
     let updateDay =  moment(lastUpdateAsMoment, 'MM/D/YYYY');
-    console.log('updateDay:', updateDay);
     let test = currentDay.diff(updateDay, 'days');
-    console.log('test:', currentDay.isSame(updateDay));
-    console.log('currentDay.isSame(updateDay):', test);
-    console.log('test duration:', this.element.title, currentDay, updateDay, test);
     if (currentDay.isSame(updateDay, 'day')) {
       return moment(lastUpdateAsMoment).format('HH:mm');
     } else if (test == 0) {
