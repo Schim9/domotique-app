@@ -1,14 +1,14 @@
   <p class="card-header">{{elementAsTmp.title}}</p>
   <div class="card-content">
-    <div class="image-container" *ngIf="elementAsTmp.temperature">
+    <div class="image-container-temp" *ngIf="elementAsTmp.temperature">
       <img [src]="defineTemperatureIcon()" alt="Temperature">
       <p>{{defineTemperature()}}°C</p>
     </div>
-    <div class="image-container" *ngIf="elementAsTmp.humidity">
+    <div class="image-container-temp" *ngIf="elementAsTmp.humidity">
       <img src="./assets/temperature/humidity.png" alt="Humidity">
       <p>{{elementAsTmp.humidity}}%</p>
     </div>
-    <div class="image-container">
+    <div class="image-container-temp">
       <img src="./assets/temperature/update.png" alt="Last seen">
       <p>{{defineLastTime()}}</p>
     </div>
