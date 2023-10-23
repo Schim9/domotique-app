@@ -7,6 +7,7 @@ import {Switch} from "../models/switch.model";
 import {PushButton} from "../models/push-button.model";
 import {Contact} from "../models/contact.model";
 import {Unknown} from "../models/unknown.model";
+import * as moment from "moment/moment";
 
 @Injectable({
   providedIn: 'root'
@@ -167,5 +168,19 @@ export class ToolboxService {
       json.Type,
       json.Favorite
     )
+  }
+
+  formatLastSeen = (lastUpdate: string): string => {
+    let lastUpdateAsMoment =  moment(lastUpdate);
+    let currentDay = moment().startOf('day');
+    let updateDay =  moment(lastUpdateAsMoment, 'MM/D/YYYY');
+    let test = currentDay.diff(updateDay, 'days');
+    if (currentDay.isSame(updateDay, 'day')) {
+      return moment(lastUpdateAsMoment).format('HH:mm');
+    } else if (test == 0) {
+      return moment(lastUpdateAsMoment).format('[yest.] HH:mm');
+    } else {
+      return moment(lastUpdateAsMoment).format('DD MMM');
+    }
   }
 }

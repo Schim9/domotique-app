@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
+import {ToolboxService} from "../../services/toolbox.service";
 
 @Component({
   selector: 'app-action-button',
@@ -7,6 +8,12 @@ import {DomoticzItem} from "../../models/domoticz-item.model";
   styleUrls: ['./action-button.component.scss']
 })
 export class ActionButtonComponent {
-  src: string = './assets/action.png'
   @Input() element: DomoticzItem
+
+  constructor(private toolboxService: ToolboxService) {
+  }
+
+  defineLastTime = (): string => {
+    return this.toolboxService.formatLastSeen(this.element.lastUpdate || "")
+  }
 }

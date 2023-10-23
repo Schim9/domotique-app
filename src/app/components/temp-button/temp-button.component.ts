@@ -1,7 +1,7 @@
 import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {TemperatureElement} from "../../models/temp.model";
 import {DomoticzItem} from "../../models/domoticz-item.model";
-import * as moment from 'moment';
+import {ToolboxService} from "../../services/toolbox.service";
 
 @Component({
   selector: 'app-temp-button',
@@ -12,6 +12,9 @@ export class TempButtonComponent implements  OnChanges {
   @Input() element: DomoticzItem
 
   elementAsTmp : TemperatureElement
+
+  constructor(private toolboxService: ToolboxService) {
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
     this.elementAsTmp = this.element as TemperatureElement
@@ -34,17 +37,7 @@ export class TempButtonComponent implements  OnChanges {
   };
 
   defineLastTime = (): string => {
-    let lastUpdateAsMoment =  moment(this.element.lastUpdate);
-    let currentDay = moment().startOf('day');
-    let updateDay =  moment(lastUpdateAsMoment, 'MM/D/YYYY');
-    let test = currentDay.diff(updateDay, 'days');
-    if (currentDay.isSame(updateDay, 'day')) {
-      return moment(lastUpdateAsMoment).format('HH:mm');
-    } else if (test == 0) {
-      return moment(lastUpdateAsMoment).format('[yest.] HH:mm');
-    } else {
-      return moment(lastUpdateAsMoment).format('DD MMM');
-    }
+    return this.toolboxService.formatLastSeen(this.element.lastUpdate || "")
   }
 
   defineTemperature = (): string => {
