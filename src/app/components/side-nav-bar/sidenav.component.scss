@@ -19,14 +19,15 @@
 
 .test-span-class {
   display: flex;
-  height: 100%;
   margin-left: 10px;
 }
 
 .nav {
   .active-link {
-    background-color: $navbar-selected-element-color;
+    background: $navbar-selected-element-color;
     border-left: solid 3px $navbar-selected-element-border;
+    filter: opacity(50%);
+    -webkit-filter: opacity(50%);
   }
 
   .hover {
