@@ -40,6 +40,14 @@
     cursor: pointer;
   }
 
+  .side-menu-element {
+    display: flex;
+
+    p {
+      padding-left: 15px;
+    }
+  }
+
   mat-icon {
     color: $navbar-icon-color;
   }
