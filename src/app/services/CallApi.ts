@@ -23,7 +23,7 @@ export class CallApi {
     let serverAddress = this.toolboxService.getAppConfig().serverUrl
     let credential = this.toolboxService.getCredential()
 
-    if (serverAddress.match(this.urlRegEx)) {
+    if (!serverAddress.match(this.urlRegEx)) {
       this.router.navigate(['/config'])
         .then(r => throwError(() => `${serverAddress} is not a valid url`))
     }
