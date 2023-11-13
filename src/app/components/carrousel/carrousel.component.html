@@ -1,8 +1,28 @@
-<div class="keen-slider carrousel-elements" #sliderRef >
+<div class="keen-slider carrousel-elements" #sliderRef>
   <div *ngFor="let element of elements" [ngSwitch]="element.type">
-    <app-blind-button *ngSwitchCase="'BLIND'" [element]="element" class="keen-slider__slide card-carrousel-item"/>
-    <app-action-button *ngSwitchCase="'PUSH_BUTTON'" [element]="element" class="keen-slider__slide card-carrousel-item"/>
-    <app-temp-button *ngSwitchCase="'TEMP'" [element]="element" class="keen-slider__slide card-carrousel-item"/>
-    <app-unknown-item *ngSwitchDefault [element]="element" class="keen-slider__slide card-carrousel-item"/>
+    <app-blind-button
+      *ngSwitchCase="'BLIND'"
+      [element]="element"
+      class="keen-slider__slide card-carrousel-item"
+      (click)="onCLick(element)"
+    />
+    <app-action-button
+      *ngSwitchCase="'PUSH_BUTTON'"
+      [element]="element"
+      class="keen-slider__slide card-carrousel-item"
+      (click)="onCLick(element)"
+    />
+    <app-temp-button
+      *ngSwitchCase="'TEMP'"
+      [element]="element"
+      class="keen-slider__slide card-carrousel-item"
+      (click)="onCLick(element)"
+    />
+    <app-unknown-item
+      *ngSwitchDefault
+      [element]="element"
+      class="keen-slider__slide card-carrousel-item"
+      (click)="onCLick(element)"
+    />
   </div>
 </div>

@@ -10,7 +10,7 @@ const routes: Routes = [
   { path: 'blinds', component: BlindsComponent },
   { path: 'temp', component: TemperaturesComponent },
   { path: 'config', component: ConfigComponent },
-  { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
+  { path: '', redirectTo: '/temp', pathMatch: 'full' },
 
 ];
 

@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable, Output} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {DomoticzItem} from "../models/domoticz-item.model";
 import {Blind} from "../models/blind.model";
 import {TemperatureElement} from "../models/temp.model";
@@ -8,6 +8,7 @@ import {PushButton} from "../models/push-button.model";
 import {Contact} from "../models/contact.model";
 import {Unknown} from "../models/unknown.model";
 import * as moment from "moment/moment";
+import {Config} from "../models/config.model";
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +19,15 @@ export class ToolboxService {
   favorites: DomoticzItem[] = []
   tempSensors: DomoticzItem[] = []
   others: DomoticzItem[] = []
-  @Output() fireRefresh: EventEmitter<any> = new EventEmitter();
+  fireRefresh: EventEmitter<any> = new EventEmitter();
+  triggerError: EventEmitter<{ type: string, message: string }> = new EventEmitter()
+
+  // aide
+  //Stockage d'un objet plus compliqué
+  // localStorage.setItem('monObjet', JSON.stringify(monObjet));
+  //Récupération de l'objet
+  // monObjet = JSON.parse(localStorage.getItem('monObjet'));
+
 
   getBlinds = (): DomoticzItem[] => {
     return this.blinds;
@@ -36,6 +45,31 @@ export class ToolboxService {
     return this.fireRefresh;
   }
 
+  getErrorTrigger = (): EventEmitter<{ type: string, message: string }> => {
+    return this.triggerError;
+  }
+
+  getAppConfig = (): Config  => {
+    let currentConf = localStorage.getItem('appConfig');
+    if (!!currentConf && currentConf.trim().length > 0 ) {
+      return JSON.parse(currentConf);
+    } else {
+      return new Config();
+    }
+  }
+
+  getCredential = (): string => {
+    let userName = this.getAppConfig().username
+    let password = this.getAppConfig().password
+    return btoa(`${userName}:${password}`);
+  }
+
+  setAppConfig = (appConfig: Config)  => {
+    localStorage.setItem('appConfig', JSON.stringify(appConfig));
+}
+  /**
+   * Map devices
+   */
   dispatchItems = (elements: DomoticzItem[]) => {
     elements.forEach(element => {
       switch (element.type) {
@@ -170,6 +204,9 @@ export class ToolboxService {
     )
   }
 
+  /**
+   * Data format
+   */
   formatLastSeen = (lastUpdate: string): string => {
     let lastUpdateAsMoment =  moment(lastUpdate);
     let currentDay = moment().startOf('day');

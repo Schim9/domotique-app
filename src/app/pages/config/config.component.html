@@ -1,22 +1,66 @@
 <h1>Configuration</h1>
 
 <div class="container mt-5">
-  <form action="votre_script_de_traitement.php" method="post">
+  <form [formGroup]="form" (ngSubmit)="submit()">
     <div class="form-group">
       <label for="login">Login :</label>
-      <input type="text" class="form-control" id="login" name="login" [value]="userLogin" required>
+      <input type="text"
+             id="login"
+             name="login"
+             class="form-control"
+             formControlName="userName"
+             [value]="form.controls.userName"
+      >
+      <div *ngIf="!form.controls.userName.valid && form.controls.userName.touched">
+        <div *ngIf="form.controls.userName.errors?.required"
+             class="alert alert-danger"
+             role="alert">
+          Please provide a user name
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="password">Mot de passe :</label>
-      <input type="password" class="form-control" id="password" name="password" [value]="userPassword" required>
+      <input type="password"
+             id="password"
+             name="password"
+             class="form-control"
+             formControlName="userPassword"
+             [value]="form.controls.userPassword"
+      >
+      <div *ngIf="!form.controls.userPassword.valid && form.controls.userPassword.touched">
+        <div *ngIf="form.controls.userPassword.errors?.required"
+             class="alert alert-danger"
+             role="alert">
+          Please provide a user password
+        </div>
+      </div>
     </div>
 
     <div class="form-group">
       <label for="url">Adresse du serveur :</label>
-      <input type="url" class="form-control" id="url" name="url" [value]="serverUrl" required>
+      <input type="url"
+             id="url"
+             name="url"
+             class="form-control"
+             formControlName="serverUrl"
+             [value]="form.controls['serverUrl']"
+      >
+      <div *ngIf="!form.controls['serverUrl'].valid && form.controls['serverUrl'].touched">
+        <div *ngIf="form.controls['serverUrl'].errors?.required"
+             class="alert alert-danger"
+             role="alert">
+          Please provide an url
+        </div>
+        <div *ngIf="form.controls['serverUrl'].errors?.pattern"
+             class="alert alert-danger"
+             role="alert">
+          Please provide a valid url
+        </div>
+      </div>
     </div>
 
-    <button type="submit" class="btn btn-primary">Sauvegarder</button>
+    <button (click)="submit()" [disabled]="form.invalid" class="btn btn-primary">Sauvegarder</button>
   </form>
 </div>

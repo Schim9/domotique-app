@@ -17,3 +17,11 @@
     </div>
   </mat-sidenav-content>
 </mat-sidenav-container>
+
+<div
+  *ngIf="message!==''"
+  id="notification"
+  class="alert alert-success"
+  role="alert">
+  <strong>{{messageType}}</strong> {{message}}
+</div>

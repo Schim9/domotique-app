@@ -24,6 +24,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {MatButtonModule} from "@angular/material/button";
 import {MatLineModule} from "@angular/material/core";
 import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
   declarations: [
@@ -39,26 +40,28 @@ import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
     UnknownItemComponent,
     SidenavComponent
   ],
-  imports: [
-    BrowserModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    NgbModule,
-    AppRoutingModule,
-    ServiceWorkerModule.register('ngsw-worker.js', {
-      enabled: !isDevMode(),
-      // Register the ServiceWorker as soon as the application is stable
-      // or after 30 seconds (whichever comes first).
-      registrationStrategy: 'registerWhenStable:30000'
-    }),
-    MatSidenavModule,
-    MatListModule,
-    MatIconModule,
-    MatTooltipModule,
-    MatButtonModule,
-    MatLineModule,
-    MatListModule,
-  ],
+    imports: [
+        BrowserModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        NgbModule,
+        FormsModule,
+        AppRoutingModule,
+        ServiceWorkerModule.register('ngsw-worker.js', {
+            enabled: !isDevMode(),
+            // Register the ServiceWorker as soon as the application is stable
+            // or after 30 seconds (whichever comes first).
+            registrationStrategy: 'registerWhenStable:30000'
+        }),
+        MatSidenavModule,
+        MatListModule,
+        MatIconModule,
+        MatTooltipModule,
+        MatButtonModule,
+        MatLineModule,
+        MatListModule,
+        ReactiveFormsModule,
+    ],
   providers: [
     CallApi
   ],
