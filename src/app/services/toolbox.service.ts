@@ -71,6 +71,10 @@ export class ToolboxService {
    * Map devices
    */
   dispatchItems = (elements: DomoticzItem[]) => {
+    this.blinds = [];
+    this.tempSensors = [];
+    this.others = [];
+    this.favorites = [];
     elements.forEach(element => {
       switch (element.type) {
         case "BLIND":

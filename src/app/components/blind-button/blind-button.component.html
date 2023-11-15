@@ -1,13 +1,19 @@
-<div class="card-header">{{element.title}}</div>
-<div class="card-content">
-  <div class="image-container-blind">
-    <img src="./assets/blinds/blindsopen48.png" alt="Open blind">
-    <img src="./assets/blinds/blindsstop%20-%20vertical.png" alt="Stop blind">
-    <img src="./assets/blinds/blinds48sel.png" alt="Close blind">
-  </div>
+<div class="keen-slider__slide card-carrousel-item">
+  <p class="card-header">{{element.title}}</p>
+  <div class="card-content">
 
-  <div class="image-container-blind clock">
-    <img src="./assets/temperature/update.png" alt="Last seen">
-    <p>{{defineLastTime()}}</p>
+    <div class="image-container-blind">
+      <img src="./assets/blinds/blindsopen48.png" alt="Open blind">
+      <img src="./assets/blinds/blinds48sel.png" alt="Close blind">
+    </div>
+
+    <div class="stop-button">
+      STOP
+    </div>
+
+    <div class="image-with-data">
+      <img src="./assets/temperature/update.png" alt="Last seen">
+      <p>{{defineLastTime()}}</p>
+    </div>
   </div>
 </div>

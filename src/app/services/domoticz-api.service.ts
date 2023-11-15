@@ -26,7 +26,7 @@ export class DomoticzApiService {
       map(() => console.log("EMIT!")),
       map(() => this.toolBox.getRefreshTrigger().emit(true)),
       catchError(error => {
-        this.toolBox.triggerError.emit({type: 'error', message: `${error}`})
+        this.toolBox.triggerError.emit({type: 'error', message: `${error.message}`})
         return of(`Bad Promise: ${error}`)
       })
     )
