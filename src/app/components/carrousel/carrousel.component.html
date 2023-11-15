@@ -3,22 +3,25 @@
     <app-blind-button
       *ngSwitchCase="'BLIND'"
       [element]="element"
-      (click)="onCLick(element)"
+      (triggerAction)="onCLick($event)"
     />
     <app-action-button
       *ngSwitchCase="'PUSH_BUTTON'"
       [element]="element"
-      (click)="onCLick(element)"
+      (triggerAction)="onCLick($event)"
     />
     <app-temp-button
       *ngSwitchCase="'TEMP'"
       [element]="element"
-      (click)="onCLick(element)"
+    />
+    <app-switch-button
+      *ngSwitchCase="'SWITCH'"
+      [element]="element"
+      (triggerAction)="onCLick($event)"
     />
     <app-unknown-item
       *ngSwitchDefault
       [element]="element"
-      (click)="onCLick(element)"
     />
   </div>
 </div>

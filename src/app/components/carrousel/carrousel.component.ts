@@ -2,6 +2,7 @@ import {AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild} from 
 import KeenSlider, {KeenSliderInstance} from "keen-slider"
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
+import {Action} from "../../models/action.model";
 
 @Component({
   selector: 'app-carrousel',
@@ -32,7 +33,8 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy{
     if (this.slider) this.slider.destroy()
   }
 
-  onCLick = (element: DomoticzItem) => {
-    this.toolboxService.getErrorTrigger().emit({type: "info", message: `${element.title} has been activated`})
+  onCLick = (action: Action) => {
+    this.toolboxService.getErrorTrigger()
+      .emit({type: "info", message: `${action.elementName} has been activated with ${action.action  }`})
   }
 }

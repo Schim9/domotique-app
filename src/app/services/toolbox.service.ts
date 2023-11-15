@@ -128,7 +128,9 @@ export class ToolboxService {
       json.LastUpdate,
       json.Type,
       json.Status,
-      json.Favorite
+      json.Favorite,
+      json.Image,
+      json.CustomImage
     )
   }
 

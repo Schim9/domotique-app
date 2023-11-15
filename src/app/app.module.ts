@@ -25,6 +25,7 @@ import {MatButtonModule} from "@angular/material/button";
 import {MatLineModule} from "@angular/material/core";
 import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
     TempButtonComponent,
     ActionButtonComponent,
     UnknownItemComponent,
-    SidenavComponent
+    SidenavComponent,
+    SwitchButtonComponent
   ],
     imports: [
         BrowserModule,

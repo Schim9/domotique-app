@@ -6,9 +6,11 @@ export class Switch extends DomoticzItem {
   override title: string
   override caption: string
   override type: string = 'SWITCH'
-  override   plan?: string
-  override   lastUpdate?: string
+  override plan?: string
+  override lastUpdate?: string
   status?: string
+  image?: string
+  customeImage?: number
 
   constructor(
     id: number,
@@ -18,7 +20,9 @@ export class Switch extends DomoticzItem {
     lastUpdate: string,
     domoticzType: string,
     status: string,
-    favorite: number
+    favorite: number,
+    image: string,
+    customeImage: number
   ) {
     super(
       id,
@@ -30,5 +34,7 @@ export class Switch extends DomoticzItem {
       favorite
     )
     this.status = status;
+    this.image = image;
+    this.customeImage = customeImage;
   }
 }

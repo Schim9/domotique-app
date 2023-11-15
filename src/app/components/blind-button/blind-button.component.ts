@@ -1,6 +1,7 @@
-import {Component, Input} from '@angular/core';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
+import {Action} from "../../models/action.model";
 
 @Component({
   selector: 'app-blind-button',
@@ -9,8 +10,19 @@ import {ToolboxService} from "../../services/toolbox.service";
 })
 export class BlindButtonComponent {
   @Input() element: DomoticzItem
+  @Output() triggerAction: EventEmitter<Action> = new EventEmitter<Action>()
 
   constructor(private toolboxService: ToolboxService) {
+  }
+
+  handleClick = (action: string): void => {
+    this.triggerAction.emit(
+      new Action(
+        this.element.id,
+        this.element.title,
+        action
+      )
+    )
   }
 
   defineLastTime = (): string => {
