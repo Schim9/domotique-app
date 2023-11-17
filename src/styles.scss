@@ -20,9 +20,13 @@ h1 {
   font-weight: 500;
   height: 100%;
   width: 100%;
+  max-width: 160px;
 }
 
 .card-header {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   padding-top: 20px;
   padding-bottom: 20px;
   text-align: center;
@@ -30,6 +34,7 @@ h1 {
   color: $navbar-icon-color;
   width: 100%;
   font-size: 20px;
+  min-height: 80px;
 }
 
 .card-content {

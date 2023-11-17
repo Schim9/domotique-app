@@ -8,7 +8,7 @@ import {Router} from "@angular/router";
 @Injectable()
 export class CallApi {
 
-  urlRegEx = /^(?:(http(s)?)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+  urlRegEx: RegExp = /https?:\/\/(?:w{1,3}\.)?[^\s.]+(?:\.[a-z]+)*(?::\d+)?(?![^<]*(?:<\/\w+>|\/?>))/
 
   constructor(
     private newHttp: HttpClient,
@@ -23,9 +23,9 @@ export class CallApi {
     let serverAddress = this.toolboxService.getAppConfig().serverUrl
     let credential = this.toolboxService.getCredential()
 
-    if (!!serverAddress.match(this.urlRegEx)) {
+    if (!this.urlRegEx.test(serverAddress)) {
       this.router.navigate(['/config'])
-        .then(r => throwError(() => `${serverAddress} is not a valid url`))
+        .then(() => throwError(() => `${serverAddress} is not a valid url`))
     }
 
     const authenticatedHeader: HttpHeaders = new HttpHeaders()

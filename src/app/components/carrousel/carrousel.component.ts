@@ -1,4 +1,11 @@
-import {AfterViewInit, Component, ElementRef, Input, OnDestroy, ViewChild} from '@angular/core';
+import {
+  AfterViewInit,
+  Component,
+  ElementRef, HostListener,
+  Input,
+  OnDestroy,
+  ViewChild
+} from '@angular/core';
 import KeenSlider, {KeenSliderInstance} from "keen-slider"
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
@@ -9,7 +16,7 @@ import {Action} from "../../models/action.model";
   templateUrl: './carrousel.component.html',
   styleUrls: ['./carrousel.component.scss']
 })
-export class CarrouselComponent implements AfterViewInit, OnDestroy{
+export class CarrouselComponent implements AfterViewInit, OnDestroy {
 
   @Input() elements: DomoticzItem[]
 
@@ -17,13 +24,20 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy{
 
   constructor(private toolboxService: ToolboxService) {
   }
+
   slider: KeenSliderInstance | null = null
 
+  isMobileIfLargerThan = 600
+
   ngAfterViewInit() {
+    let perViewValue = 2;
+    if (window.innerWidth >= this.isMobileIfLargerThan) {
+      perViewValue = 5
+    }
     this.slider = new KeenSlider(this.sliderRef?.nativeElement, {
       initial: 0,
       slides: {
-        perView: 2,
+        perView: perViewValue,
         spacing: 19,
       },
     })
@@ -35,6 +49,21 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy{
 
   onCLick = (action: Action) => {
     this.toolboxService.getErrorTrigger()
-      .emit({type: "info", message: `${action.elementName} has been activated with ${action.action  }`})
+      .emit({type: "info", message: `${action.elementName} has been activated with ${action.action}`})
+  }
+
+  @HostListener('window:resize', ['$event'])
+  onWindowResize() {
+    let perViewValue = 2;
+    if (window.innerWidth >= this.isMobileIfLargerThan) {
+      perViewValue = 5
+    }
+    this.slider = new KeenSlider(this.sliderRef?.nativeElement, {
+      initial: 0,
+      slides: {
+        perView: perViewValue,
+        spacing: 19,
+      },
+    })
   }
 }

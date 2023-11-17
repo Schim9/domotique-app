@@ -13,7 +13,7 @@ export class ConfigComponent implements OnInit {
 
   form: FormGroup
 
-  urlRegEx: RegExp = /^(?:(http(s)?)?:\/\/)?[\w.-]+(?:\.[\w\.-]+)+[\w\-\._~:/?#[\]@!\$&'\(\)\*\+,;=.]+$/
+  urlRegEx: RegExp = /https?:\/\/(?:w{1,3}\.)?[^\s.]+(?:\.[a-z]+)*(?::\d+)?(?![^<]*(?:<\/\w+>|\/?>))/
 
   constructor(
     private toolboxService: ToolboxService,
