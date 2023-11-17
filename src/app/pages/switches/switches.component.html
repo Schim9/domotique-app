@@ -1,0 +1,13 @@
+<h1>Switches</h1>
+<div *ngIf="switchesEtage.length>0">
+  <p>Etage</p>
+  <app-carrousel [elements]="switchesEtage"/>
+</div>
+<div *ngIf="switchesRdC.length>0">
+  <p>Rez de chaussée</p>
+  <app-carrousel [elements]="switchesRdC"/>
+</div>
+<div *ngIf="switchesUnknownPlan.length>0">
+  <p>Autre plan</p>
+  <app-carrousel [elements]="switchesUnknownPlan"/>
+</div>

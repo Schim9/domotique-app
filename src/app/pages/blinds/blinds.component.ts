@@ -11,7 +11,7 @@ export class BlindsComponent implements OnInit {
 
   blindsRdC: DomoticzItem[] = []
   blindsEtage: DomoticzItem[] = []
-  blindesUnknownPlan: DomoticzItem[] = []
+  blindsUnknownPlan: DomoticzItem[] = []
 
   constructor(private toolboxService: ToolboxService) {}
 
@@ -26,9 +26,8 @@ export class BlindsComponent implements OnInit {
       switch (element.plan) {
         case '3': this.blindsRdC.push(element); break;
         case '4': this.blindsEtage.push(element); break;
-        default: this.blindesUnknownPlan.push(element);
+        default: this.blindsUnknownPlan.push(element);
       }
     })
   }
-
 }

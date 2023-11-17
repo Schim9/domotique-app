@@ -3,6 +3,7 @@
 /* Importing Bootstrap SCSS file. */
 @import 'bootstrap/scss/bootstrap';
 @import 'keen-slider/keen-slider.min.css';
+@import 'material-icons/iconfont/material-icons.css';
 @import "vars";
 
 h1 {
@@ -52,12 +53,13 @@ h1 {
 
 .image-with-data {
   display: flex;
+  align-items: center;
   justify-content: space-between;
   width: 100%;
   img {
     width: 40%;
     height: 40%;
-    max-width: 100px;
+    max-width: 70px;
     padding: 15px 5px 5px;
   }
   p {

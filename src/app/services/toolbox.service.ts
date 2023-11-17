@@ -18,6 +18,7 @@ export class ToolboxService {
   blinds: DomoticzItem[] = []
   favorites: DomoticzItem[] = []
   tempSensors: DomoticzItem[] = []
+  switches: DomoticzItem[] = []
   others: DomoticzItem[] = []
   fireRefresh: EventEmitter<any> = new EventEmitter();
   triggerError: EventEmitter<{ type: string, message: string }> = new EventEmitter()
@@ -39,6 +40,10 @@ export class ToolboxService {
 
   getTemperatures = (): DomoticzItem[] => {
     return this.tempSensors;
+  }
+
+  getSwitches = (): DomoticzItem[] => {
+    return this.switches;
   }
 
   getRefreshTrigger = (): EventEmitter<any> => {
@@ -73,6 +78,7 @@ export class ToolboxService {
   dispatchItems = (elements: DomoticzItem[]) => {
     this.blinds = [];
     this.tempSensors = [];
+    this.switches = [];
     this.others = [];
     this.favorites = [];
     elements.forEach(element => {
@@ -82,6 +88,9 @@ export class ToolboxService {
           break;
         case "TEMP":
           this.tempSensors.push(element);
+          break;
+        case "SWITCH":
+          this.switches.push(element);
           break;
         default:
           this.others.push(element)
