@@ -13,7 +13,7 @@ export class SidenavComponent {
     { link: "dashboard", name: "Dashboard", icon: "dashboard" },
     { link: "blinds", name: "Blinds", icon: "roller_shades" },
     { link: "temp", name: "Temperature", icon: "dew_point" },
-    { link: "switches", name: "Switches", icon: "switch" },
+    { link: "switches", name: "Switches", icon: "emoji_objects" },
     { link: "config", name: "Configuration", icon: "settings" },
   ];
 }

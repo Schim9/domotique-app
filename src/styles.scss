@@ -56,15 +56,15 @@ h1 {
   align-items: center;
   justify-content: space-between;
   width: 100%;
+  padding: 16px;
+
   img {
     width: 40%;
     height: 40%;
-    max-width: 70px;
-    padding: 15px 5px 5px;
+    max-width: 60px;
   }
   p {
     font-size: 15px;
-    padding-top: 30px;
-    padding-right: 5px;
+    margin: 0;
   }
 }

@@ -7,13 +7,13 @@
       <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('OFF')">
     </div>
 
-    <div class="stop-button" (click)="handleClick('STOP')">
-      STOP
-    </div>
-
     <div class="image-with-data">
       <img src="./assets/temperature/update.png" alt="Last seen">
       <p>{{defineLastTime()}}</p>
+    </div>
+
+    <div class="stop-button" (click)="handleClick('STOP')">
+      STOP
     </div>
   </div>
 </div>

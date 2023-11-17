@@ -1,5 +1,10 @@
 @import '../../../styles.scss';
 
-label {
+.config-form-element {
+  padding-bottom: 16px;
+
+  label {
     color: $header-font-color;
+    padding-bottom: 4px;
+  }
 }
