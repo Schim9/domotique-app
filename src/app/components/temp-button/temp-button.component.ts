@@ -42,6 +42,6 @@ export class TempButtonComponent implements  OnChanges {
 
   defineTemperature = (): string => {
     let value: number = +this.elementAsTmp.temperature
-    return value.toFixed(2);
+    return value.toFixed(1);
   }
 }
