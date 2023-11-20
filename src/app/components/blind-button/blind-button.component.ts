@@ -15,7 +15,8 @@ export class BlindButtonComponent {
   constructor(private toolboxService: ToolboxService) {
   }
 
-  handleClick = (action: string): void => {
+  handleClick = (value: string): void => {
+    let action = `type=command&param=switchlight&idx=${this.element.id}&switchcmd=${value}`
     this.triggerAction.emit(
       new Action(
         this.element.id,

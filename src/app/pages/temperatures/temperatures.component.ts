@@ -22,6 +22,9 @@ export class TemperaturesComponent  implements OnInit {
   }
 
   initElement = () : void => {
+    this.tempRdC = []
+    this.tempEtage = []
+    this.tempUnknownPlan = []
     this.toolboxService.getTemperatures().forEach(element => {
       switch (element.plan) {
         case '3': this.tempRdC.push(element); break;

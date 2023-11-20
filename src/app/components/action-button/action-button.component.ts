@@ -15,7 +15,8 @@ export class ActionButtonComponent {
   constructor(private toolboxService: ToolboxService) {
   }
 
-  handleClick = (action: string): void => {
+  handleClick = (): void => {
+    let action = `type=command&param=switchlight&idx=${this.element.id}&switchcmd=Toggle`
     this.triggerAction.emit(
       new Action(
         this.element.id,

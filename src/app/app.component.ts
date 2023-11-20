@@ -44,4 +44,11 @@ export class AppComponent implements OnInit {
       }, 3000);
   }
 
+  defineToastClass() {
+    if (this.messageType === 'info') {
+      return 'alert alert-success';
+    } else {
+      return 'alert alert-danger';
+    }
+  }
 }

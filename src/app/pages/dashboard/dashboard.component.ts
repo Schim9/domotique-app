@@ -16,14 +16,15 @@ export class DashboardComponent implements OnInit {
   constructor(private toolboxService: ToolboxService) {}
 
   ngOnInit(): void {
-    console.log('Dashboard Init');
     this.initElement();
     this.toolboxService.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
   initElement = () : void => {
-    console.log('Dashboard Element Init');
+    this.favoritesRdC = []
+    this.favoritesEtage = []
+    this.favoritesUnknownPlan = []
     this.toolboxService.getFavorites().forEach(element => {
       switch (element.plan) {
         case '3': this.favoritesRdC.push(element); break;

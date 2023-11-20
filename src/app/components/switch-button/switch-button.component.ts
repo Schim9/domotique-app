@@ -23,7 +23,8 @@ export class SwitchButtonComponent implements OnChanges {
     this.elementAsTmp = this.element as Switch
   }
 
-  handleClick = (action: string): void => {
+  handleClick = (): void => {
+    let action = `type=command&param=switchlight&idx=${this.elementAsTmp.id}&switchcmd=Toggle`
     this.triggerAction.emit(
       new Action(
         this.element.id,

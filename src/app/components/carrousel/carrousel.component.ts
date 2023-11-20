@@ -10,6 +10,8 @@ import KeenSlider, {KeenSliderInstance} from "keen-slider"
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
+import {DomoticzApiService} from "../../services/domoticz-api.service";
+
 
 @Component({
   selector: 'app-carrousel',
@@ -22,7 +24,10 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy {
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>
 
-  constructor(private toolboxService: ToolboxService) {
+  constructor(
+    private toolboxService: ToolboxService,
+    private domoticzService: DomoticzApiService,
+  ) {
   }
 
   slider: KeenSliderInstance | null = null
@@ -48,8 +53,7 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy {
   }
 
   onCLick = (action: Action) => {
-    this.toolboxService.getErrorTrigger()
-      .emit({type: "info", message: `${action.elementName} has been activated with ${action.action}`})
+    this.domoticzService.sendCommand(action).subscribe()
   }
 
   @HostListener('window:resize', ['$event'])

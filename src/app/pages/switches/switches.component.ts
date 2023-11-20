@@ -22,6 +22,9 @@ export class SwitchesComponent  implements OnInit {
   }
 
   initElement = () : void => {
+    this.switchesRdC = []
+    this.switchesEtage = []
+    this.switchesUnknownPlan = []
     this.toolboxService.getSwitches().forEach(element => {
       switch (element.plan) {
         case '3': this.switchesRdC.push(element); break;

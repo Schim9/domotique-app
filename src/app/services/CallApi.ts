@@ -33,7 +33,7 @@ export class CallApi {
       .append('Content-Type', 'application/json')
 
     if (command === HTTP_COMMAND.GET) {
-      return this.newHttp.get(serverAddress + '/json.htm' + (param ? param : ''),
+      return this.newHttp.get(serverAddress + '/json.htm?' + (param ? param : ''),
         {headers: authenticatedHeader});
     } else if (command === HTTP_COMMAND.POST) {
       return this.newHttp.post(serverAddress + '/json.htm',

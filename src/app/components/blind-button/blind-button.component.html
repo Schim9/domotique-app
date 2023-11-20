@@ -3,8 +3,8 @@
   <div class="card-content">
 
     <div class="image-container-blind">
-      <img src="./assets/blinds/blindsopen48sel.png" alt="Open blind" (click)="handleClick('ON')">
-      <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('OFF')">
+      <img src="./assets/blinds/blindsopen48sel.png" alt="Open blind" (click)="handleClick('Open')">
+      <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('Close')">
     </div>
 
     <div class="image-with-data">
@@ -12,7 +12,7 @@
       <p>{{defineLastTime()}}</p>
     </div>
 
-    <div class="stop-button" (click)="handleClick('STOP')">
+    <div class="stop-button" (click)="handleClick('Stop')">
       STOP
     </div>
   </div>

@@ -101,6 +101,24 @@ export class ToolboxService {
     })
   }
 
+  replaceItem = (elements: DomoticzItem[]) => {
+    elements.forEach(element => {
+      console.log('element', element);
+      switch (element.type) {
+        case "BLIND":
+         (this.blinds.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          break;
+        case "SWITCH":
+         (this.switches.find(blind => blind.id === element.id) as Switch).status = (element as Switch)?.status;
+         (this.switches.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          break;
+        default:
+         (this.others.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+      }
+      // (this.favorites.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+    })
+  }
+
   mapItem = (json : any): DomoticzItem[] => {
     // Force as Array in order to use map
     let jsonAsArray: any[] = json.result

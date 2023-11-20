@@ -22,6 +22,9 @@ export class BlindsComponent implements OnInit {
   }
 
   initElement = () : void => {
+    this.blindsRdC = []
+    this.blindsEtage = []
+    this.blindsUnknownPlan = []
     this.toolboxService.getBlinds().forEach(element => {
       switch (element.plan) {
         case '3': this.blindsRdC.push(element); break;

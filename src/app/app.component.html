@@ -21,7 +21,7 @@
 <div
   *ngIf="message!==''"
   id="notification"
-  class="alert alert-success"
+  [class]="defineToastClass()"
   role="alert">
-  <strong>{{messageType}}</strong> {{message}}
+  {{message}}
 </div>
