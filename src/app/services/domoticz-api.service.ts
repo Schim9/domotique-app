@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {catchError, map, Observable, of, tap} from "rxjs";
+import {catchError, map, Observable, of, switchMap} from "rxjs";
 import {CallApi, HTTP_COMMAND} from "./CallApi";
 import {ToolboxService} from "./toolbox.service";
 import {Action} from "../models/action.model";
@@ -43,8 +43,6 @@ export class DomoticzApiService {
     ).pipe(
       map(result => this.toolBox.mapItem(result)),
       map(result => this.toolBox.replaceItem(result)),
-      map(() => console.log("REFRESH!")),
-      map(() => this.toolBox.getRefreshTrigger().emit(true)),
       catchError(error => {
         this.toolBox.triggerError.emit({type: 'error', message: `${error.message}`})
         return of(`Bad Promise: ${error}`)
@@ -66,7 +64,7 @@ export class DomoticzApiService {
           return of(0)
         }
       }),
-      tap(() => this.fetchOneElement(actionData.elementId).subscribe()),
+      switchMap(() => this.fetchOneElement(actionData.elementId)),
       catchError(error => {
         this.toolBox.triggerError.emit({type: 'error', message: `${error.message}`})
         return of(`Bad Promise: ${error}`)
