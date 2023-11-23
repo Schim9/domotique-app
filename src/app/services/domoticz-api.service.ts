@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {catchError, map, Observable, of, switchMap} from "rxjs";
 import {CallApi, HTTP_COMMAND} from "./CallApi";
 import {ToolboxService} from "./toolbox.service";
@@ -9,11 +9,10 @@ import {Action} from "../models/action.model";
 })
 export class DomoticzApiService {
 
-  constructor(
-    private callApi: CallApi,
-    private toolBox: ToolboxService
-  ) {
-  }
+
+  private callApi: CallApi = inject(CallApi)
+  private toolBox: ToolboxService = inject(ToolboxService)
+
 
   fetchAllElements = (): Observable<any> => {
     let param = 'type=command&param=getdevices&used=true&type=devices'
