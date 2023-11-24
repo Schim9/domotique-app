@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
@@ -12,8 +12,7 @@ export class ActionButtonComponent {
   @Input() element: DomoticzItem
   @Output() triggerAction: EventEmitter<Action> = new EventEmitter<Action>()
 
-  constructor(private toolboxService: ToolboxService) {
-  }
+  private toolBoxService: ToolboxService = inject(ToolboxService)
 
   handleClick = (): void => {
     let action = `type=command&param=switchlight&idx=${this.element.id}&switchcmd=Toggle`
@@ -27,6 +26,6 @@ export class ActionButtonComponent {
   }
 
   defineLastTime = (): string => {
-    return this.toolboxService.formatLastSeen(this.element.lastUpdate || "")
+    return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
   }
 }

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
@@ -16,8 +16,7 @@ export class SwitchButtonComponent implements OnChanges {
 
   elementAsTmp : Switch
 
-  constructor(private toolboxService: ToolboxService) {
-  }
+  private toolBoxService: ToolboxService = inject(ToolboxService)
 
   ngOnChanges(changes: SimpleChanges): void {
     this.elementAsTmp = this.element as Switch
@@ -35,7 +34,7 @@ export class SwitchButtonComponent implements OnChanges {
   }
 
   defineLastTime = (): string => {
-    return this.toolboxService.formatLastSeen(this.element.lastUpdate || "")
+    return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
   }
 
   defineIcon = (): string => {

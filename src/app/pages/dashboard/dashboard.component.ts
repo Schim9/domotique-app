@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ToolboxService} from "../../services/toolbox.service";
 import {DomoticzItem} from "../../models/domoticz-item.model";
 
@@ -13,11 +13,11 @@ export class DashboardComponent implements OnInit {
   favoritesEtage: DomoticzItem[] = []
   favoritesUnknownPlan: DomoticzItem[] = []
 
-  constructor(private toolboxService: ToolboxService) {}
+  private toolBoxService: ToolboxService = inject(ToolboxService)
 
   ngOnInit(): void {
     this.initElement();
-    this.toolboxService.getRefreshTrigger()
+    this.toolBoxService.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
@@ -25,7 +25,7 @@ export class DashboardComponent implements OnInit {
     this.favoritesRdC = []
     this.favoritesEtage = []
     this.favoritesUnknownPlan = []
-    this.toolboxService.getFavorites().forEach(element => {
+    this.toolBoxService.getFavorites().forEach(element => {
       switch (element.plan) {
         case '3': this.favoritesRdC.push(element); break;
         case '4': this.favoritesEtage.push(element); break;

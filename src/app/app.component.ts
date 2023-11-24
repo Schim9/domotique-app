@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzApiService} from "./services/domoticz-api.service";
 import {ToolboxService} from "./services/toolbox.service";
 
@@ -9,11 +9,8 @@ import {ToolboxService} from "./services/toolbox.service";
 })
 export class AppComponent implements OnInit {
 
-  constructor(
-    private toolBoxService: ToolboxService,
-    private domoticzApiService: DomoticzApiService
-  ) {
-  }
+  private toolBoxService: ToolboxService = inject(ToolboxService)
+  private domoticzApiService: DomoticzApiService = inject(DomoticzApiService)
 
   public isExpanded = false;
 
@@ -36,7 +33,7 @@ export class AppComponent implements OnInit {
       .subscribe()
   }
 
-  handleNotification = ()  => {
+  handleNotification = () => {
     setTimeout(
       () => {
         this.message = "";

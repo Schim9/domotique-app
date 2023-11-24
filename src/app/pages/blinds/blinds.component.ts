@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 
@@ -13,11 +13,11 @@ export class BlindsComponent implements OnInit {
   blindsEtage: DomoticzItem[] = []
   blindsUnknownPlan: DomoticzItem[] = []
 
-  constructor(private toolboxService: ToolboxService) {}
+  private toolBoxService: ToolboxService = inject(ToolboxService)
 
   ngOnInit(): void {
     this.initElement();
-    this.toolboxService.getRefreshTrigger()
+    this.toolBoxService.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
@@ -25,7 +25,7 @@ export class BlindsComponent implements OnInit {
     this.blindsRdC = []
     this.blindsEtage = []
     this.blindsUnknownPlan = []
-    this.toolboxService.getBlinds().forEach(element => {
+    this.toolBoxService.getBlinds().forEach(element => {
       switch (element.plan) {
         case '3': this.blindsRdC.push(element); break;
         case '4': this.blindsEtage.push(element); break;

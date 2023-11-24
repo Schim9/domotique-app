@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {ToolboxService} from "../../services/toolbox.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Config} from "../../models/config.model";
@@ -15,11 +15,8 @@ export class ConfigComponent implements OnInit {
 
   urlRegEx: RegExp = /https?:\/\/(?:w{1,3}\.)?[^\s.]+(?:\.[a-z]+)*(?::\d+)?(?![^<]*(?:<\/\w+>|\/?>))/
 
-  constructor(
-    private toolboxService: ToolboxService,
-    private domoticzApiService: DomoticzApiService
-  ) {
-  }
+  private toolboxService: ToolboxService = inject(ToolboxService)
+  private domoticzApiService: DomoticzApiService = inject(DomoticzApiService)
 
   ngOnInit(): void {
     this.initForm();
@@ -29,9 +26,9 @@ export class ConfigComponent implements OnInit {
   initForm() {
     let appConfig: Config = this.toolboxService.getAppConfig();
     this.form = new FormGroup({
-      userName: new FormControl(appConfig.username, { validators: [Validators.required]}),
-      userPassword: new FormControl(appConfig.password, { validators: [Validators.required]}),
-      serverUrl: new FormControl(appConfig.serverUrl, { validators: [Validators.required, Validators.pattern(this.urlRegEx)]}),
+      userName: new FormControl(appConfig.username, {validators: [Validators.required]}),
+      userPassword: new FormControl(appConfig.password, {validators: [Validators.required]}),
+      serverUrl: new FormControl(appConfig.serverUrl, {validators: [Validators.required, Validators.pattern(this.urlRegEx)]}),
       homepage: new FormControl(appConfig.homepage),
     })
   }

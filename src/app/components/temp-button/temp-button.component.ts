@@ -1,4 +1,4 @@
-import {Component, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
 import {TemperatureElement} from "../../models/temp.model";
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
@@ -13,8 +13,7 @@ export class TempButtonComponent implements  OnChanges {
 
   elementAsTmp : TemperatureElement
 
-  constructor(private toolboxService: ToolboxService) {
-  }
+  private toolBoxService: ToolboxService = inject(ToolboxService)
 
   ngOnChanges(changes: SimpleChanges): void {
     this.elementAsTmp = this.element as TemperatureElement
@@ -37,7 +36,7 @@ export class TempButtonComponent implements  OnChanges {
   };
 
   defineLastTime = (): string => {
-    return this.toolboxService.formatLastSeen(this.element.lastUpdate || "")
+    return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
   }
 
   defineTemperature = (): string => {
