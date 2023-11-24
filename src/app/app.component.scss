@@ -13,3 +13,14 @@
 .mat-sidenav {
   background: $navbar-bg-color;
 }
+
+.notification-banner   {
+  display: flex;
+  align-content: center;
+  p {
+    margin-top: 2px;
+  }
+  span {
+    margin-right: 16px;
+  }
+}

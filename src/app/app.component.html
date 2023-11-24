@@ -18,10 +18,12 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<div
+<div class="notification-banner"
   *ngIf="message!==''"
   id="notification"
   [class]="defineToastClass()"
   role="alert">
-  {{message}}
+  <span *ngIf="messageType==='info'" class="material-icons-outlined">done</span>
+  <span *ngIf="messageType==='error'" class="material-icons-outlined">report_gmailerrorred</span>
+  <p>{{message}}</p>
 </div>
