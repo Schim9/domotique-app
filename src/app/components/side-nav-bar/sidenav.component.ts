@@ -1,6 +1,5 @@
 import {Component, Input, Output, EventEmitter, inject} from "@angular/core";
 import {ToolboxService} from "../../services/toolbox.service";
-import {DomoticzApiService} from "../../services/domoticz-api.service";
 
 @Component({
   selector: "side-nav",
