@@ -18,8 +18,11 @@ export class ConfigComponent implements OnInit {
   private toolboxService: ToolboxService = inject(ToolboxService)
   private domoticzApiService: DomoticzApiService = inject(DomoticzApiService)
 
+  sideMenuElements: any
+
   ngOnInit(): void {
     this.initForm();
+    this.sideMenuElements = this.toolboxService.routeLinks
   }
 
 

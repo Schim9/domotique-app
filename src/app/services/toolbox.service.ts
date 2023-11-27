@@ -23,12 +23,16 @@ export class ToolboxService {
   fireRefresh: EventEmitter<any> = new EventEmitter();
   triggerError: EventEmitter<{ type: string, message: string }> = new EventEmitter()
 
-  // aide
-  //Stockage d'un objet plus compliqué
-  // localStorage.setItem('monObjet', JSON.stringify(monObjet));
-  //Récupération de l'objet
-  // monObjet = JSON.parse(localStorage.getItem('monObjet'));
-
+  public routeLinks = [
+    { link: "dashboard", name: "Dashboard", icon: "dashboard" },
+    { link: "blinds", name: "Blinds", icon: "roller_shades" },  // blinds
+    { link: "temp", name: "Temperature", icon: "dew_point" },
+    { link: "switches", name: "Switches", icon: "emoji_objects" },
+    { link: "sensors", name: "Sensors", icon: "sensors" },   // radar
+    { link: "mesures", name: "Mesures", icon: "content_paste_search" }, // design_services  // network_check // monitor_heart // manage_search
+    { link: "scenes", name: "Scenes", icon: "batch_prediction" }, // map  // local_movies // play_circle  // auto_mode
+    { link: "config", name: "Configuration", icon: "settings" },
+  ];
 
   getBlinds = (): DomoticzItem[] => {
     return this.blinds;

@@ -1,4 +1,6 @@
-import { Component, Input, Output, EventEmitter } from "@angular/core";
+import {Component, Input, Output, EventEmitter, inject} from "@angular/core";
+import {ToolboxService} from "../../services/toolbox.service";
+import {DomoticzApiService} from "../../services/domoticz-api.service";
 
 @Component({
   selector: "side-nav",
@@ -9,11 +11,7 @@ export class SidenavComponent {
   @Input() isExpanded: boolean;
   @Output() toggleMenu = new EventEmitter();
 
-  public routeLinks = [
-    { link: "dashboard", name: "Dashboard", icon: "dashboard" },
-    { link: "blinds", name: "Blinds", icon: "roller_shades" },
-    { link: "temp", name: "Temperature", icon: "dew_point" },
-    { link: "switches", name: "Switches", icon: "emoji_objects" },
-    { link: "config", name: "Configuration", icon: "settings" },
-  ];
+  private toolBoxService: ToolboxService = inject(ToolboxService)
+
+  public routeLinks = this.toolBoxService.routeLinks
 }
