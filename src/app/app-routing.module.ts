@@ -5,6 +5,7 @@ import {BlindsComponent} from "./pages/blinds/blinds.component";
 import {TemperaturesComponent} from "./pages/temperatures/temperatures.component";
 import {ConfigComponent} from "./pages/config/config.component";
 import {SwitchesComponent} from "./pages/switches/switches.component";
+import {SensorsComponent} from "./pages/sensors/sensors.component";
 
 const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent },
@@ -12,6 +13,7 @@ const routes: Routes = [
   { path: 'temp', component: TemperaturesComponent },
   { path: 'switches', component: SwitchesComponent },
   { path: 'config', component: ConfigComponent },
+  { path: 'sensors', component: SensorsComponent },
   { path: '', redirectTo: '/temp', pathMatch: 'full' },
 
 ];

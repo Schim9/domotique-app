@@ -19,19 +19,20 @@ export class ToolboxService {
   favorites: DomoticzItem[] = []
   tempSensors: DomoticzItem[] = []
   switches: DomoticzItem[] = []
+  sensors: DomoticzItem[] = []
   others: DomoticzItem[] = []
   fireRefresh: EventEmitter<any> = new EventEmitter();
   triggerError: EventEmitter<{ type: string, message: string }> = new EventEmitter()
 
   public routeLinks = [
-    { link: "dashboard", name: "Dashboard", icon: "dashboard" },
-    { link: "blinds", name: "Blinds", icon: "roller_shades" },  // blinds
-    { link: "temp", name: "Temperature", icon: "dew_point" },
-    { link: "switches", name: "Switches", icon: "emoji_objects" },
-    { link: "sensors", name: "Sensors", icon: "sensors" },   // radar
-    { link: "mesures", name: "Mesures", icon: "content_paste_search" }, // design_services  // network_check // monitor_heart // manage_search
-    { link: "scenes", name: "Scenes", icon: "batch_prediction" }, // map  // local_movies // play_circle  // auto_mode
-    { link: "config", name: "Configuration", icon: "settings" },
+    {link: "dashboard", name: "Dashboard", icon: "dashboard"},
+    {link: "blinds", name: "Blinds", icon: "roller_shades"},  // blinds
+    {link: "temp", name: "Temperature", icon: "dew_point"},
+    {link: "switches", name: "Switches", icon: "emoji_objects"},
+    {link: "sensors", name: "Sensors", icon: "sensors"},   // radar
+    {link: "mesures", name: "Mesures", icon: "content_paste_search"}, // design_services  // network_check // monitor_heart // manage_search
+    {link: "scenes", name: "Scenes", icon: "batch_prediction"}, // map  // local_movies // play_circle  // auto_mode
+    {link: "config", name: "Configuration", icon: "settings"},
   ];
 
   getBlinds = (): DomoticzItem[] => {
@@ -50,17 +51,17 @@ export class ToolboxService {
     return this.switches;
   }
 
+  getSensors = (): DomoticzItem[] => {
+    return this.sensors;
+  }
+
   getRefreshTrigger = (): EventEmitter<any> => {
     return this.fireRefresh;
   }
 
-  getErrorTrigger = (): EventEmitter<{ type: string, message: string }> => {
-    return this.triggerError;
-  }
-
-  getAppConfig = (): Config  => {
+  getAppConfig = (): Config => {
     let currentConf = localStorage.getItem('appConfig');
-    if (!!currentConf && currentConf.trim().length > 0 ) {
+    if (!!currentConf && currentConf.trim().length > 0) {
       return JSON.parse(currentConf);
     } else {
       return new Config();
@@ -73,9 +74,9 @@ export class ToolboxService {
     return btoa(`${userName}:${password}`);
   }
 
-  setAppConfig = (appConfig: Config)  => {
+  setAppConfig = (appConfig: Config) => {
     localStorage.setItem('appConfig', JSON.stringify(appConfig));
-}
+  }
   /**
    * Map devices
    */
@@ -96,6 +97,9 @@ export class ToolboxService {
         case "SWITCH":
           this.switches.push(element);
           break;
+        case "MOTION_SENSOR":
+          this.sensors.push(element);
+          break;
         default:
           this.others.push(element)
       }
@@ -109,16 +113,16 @@ export class ToolboxService {
     elements.forEach(element => {
       switch (element.type) {
         case "SWITCH":
-         (this.switches.find(blind => blind.id === element.id) as Switch).status = (element as Switch)?.status;
-         (this.switches.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.switches.find(blind => blind.id === element.id) as Switch).status = (element as Switch)?.status;
+          (this.switches.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
           break;
         default:
-         (this.others.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.others.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
       }
     })
   }
 
-  mapItem = (json : any): DomoticzItem[] => {
+  mapItem = (json: any): DomoticzItem[] => {
     // Force as Array in order to use map
     let jsonAsArray: any[] = json.result
     return jsonAsArray.map(jsonElement => {
@@ -127,16 +131,16 @@ export class ToolboxService {
         case "Dimmer":
           return this.mapToSwitch(jsonElement)
         case "Push On Button":
-          return  this.mapToPushButton(jsonElement)
+          return this.mapToPushButton(jsonElement)
         case "Motion Sensor":
-          return  this.mapToMotionSensor(jsonElement)
+          return this.mapToMotionSensor(jsonElement)
         case "Blinds":
-          return  this.mapToBlind(jsonElement)
+          return this.mapToBlind(jsonElement)
         case "Contact":
-          return  this.mapToContact(jsonElement)
+          return this.mapToContact(jsonElement)
         default:
           if (['Temp + Humidity', 'Temp'].includes(jsonElement.Type)) {
-            return  this.mapToTemp(jsonElement)
+            return this.mapToTemp(jsonElement)
           } else {
             console.log('Unlnown element', jsonElement)
             return this.mapToUnknown(jsonElement)
@@ -240,9 +244,9 @@ export class ToolboxService {
    * Data format
    */
   formatLastSeen = (lastUpdate: string): string => {
-    let lastUpdateAsMoment =  moment(lastUpdate);
+    let lastUpdateAsMoment = moment(lastUpdate);
     let currentDay = moment().startOf('day');
-    let updateDay =  moment(lastUpdateAsMoment, 'MM/D/YYYY');
+    let updateDay = moment(lastUpdateAsMoment, 'MM/D/YYYY');
     let test = currentDay.diff(updateDay, 'days');
     if (currentDay.isSame(updateDay, 'day')) {
       return moment(lastUpdateAsMoment).format('HH:mm');

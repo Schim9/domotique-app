@@ -27,6 +27,8 @@ import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import { SwitchButtonComponent } from './components/switch-button/switch-button.component';
 import {SwitchesComponent} from "./pages/switches/switches.component";
+import { SensorsComponent } from './pages/sensors/sensors.component';
+import { SensorButtonComponent } from './components/sensor-button/sensor-button.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +44,9 @@ import {SwitchesComponent} from "./pages/switches/switches.component";
     UnknownItemComponent,
     SidenavComponent,
     SwitchButtonComponent,
-    SwitchesComponent
+    SwitchesComponent,
+    SensorsComponent,
+    SensorButtonComponent
   ],
     imports: [
         BrowserModule,
