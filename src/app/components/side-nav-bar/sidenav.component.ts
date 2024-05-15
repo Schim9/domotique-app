@@ -13,4 +13,12 @@ export class SidenavComponent {
   private toolBoxService: ToolboxService = inject(ToolboxService)
 
   public routeLinks = this.toolBoxService.routeLinks
+
+  handleClick() {
+    // In case the side nav bar is open
+    // We close it before routing.
+    // Otherwise, the keen slider's rendering will be awful
+    if (this.isExpanded)
+      this.toggleMenu.emit()
+  }
 }

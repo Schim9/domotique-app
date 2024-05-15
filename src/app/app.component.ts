@@ -14,7 +14,7 @@ export class AppComponent implements OnInit {
   private domoticzApiService: DomoticzApiService = inject(DomoticzApiService)
   private router: Router = inject(Router)
 
-  public isExpanded = false;
+  public isExpanded: boolean = false;
 
   public messageType: string = ""
   public message: string = ""
