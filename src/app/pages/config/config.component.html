@@ -9,7 +9,6 @@
              name="login"
              class="form-control"
              formControlName="userName"
-             [value]="form.controls.userName"
       >
       <div *ngIf="!form.controls.userName.valid && form.controls.userName.touched">
         <div *ngIf="form.controls.userName.errors?.required"
@@ -27,7 +26,6 @@
              name="password"
              class="form-control"
              formControlName="userPassword"
-             [value]="form.controls.userPassword"
       >
       <div *ngIf="!form.controls.userPassword.valid && form.controls.userPassword.touched">
         <div *ngIf="form.controls.userPassword.errors?.required"
@@ -45,7 +43,6 @@
              name="url"
              class="form-control"
              formControlName="serverUrl"
-             [value]="form.controls['serverUrl']"
       >
       <div *ngIf="!form.controls['serverUrl'].valid && form.controls['serverUrl'].touched">
         <div *ngIf="form.controls['serverUrl'].errors?.required"
@@ -68,7 +65,6 @@
               name="homepage"
               class="form-control"
               formControlName="homepage"
-              [value]="form.controls['homepage']"
       >
         <option *ngFor="let element of sideMenuElements" [value]="element.link">{{element.name}}</option>
       </select>

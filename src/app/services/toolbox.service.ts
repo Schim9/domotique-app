@@ -30,8 +30,8 @@ export class ToolboxService {
     {link: "temp", name: "Temperature", icon: "dew_point"},
     {link: "switches", name: "Switches", icon: "emoji_objects"},
     {link: "sensors", name: "Sensors", icon: "sensors"},   // radar
-    {link: "mesures", name: "Mesures", icon: "content_paste_search"}, // design_services  // network_check // monitor_heart // manage_search
-    {link: "scenes", name: "Scenes", icon: "batch_prediction"}, // map  // local_movies // play_circle  // auto_mode
+//    {link: "mesures", name: "Mesures", icon: "content_paste_search"}, // design_services  // network_check // monitor_heart // manage_search
+//    {link: "scenes", name: "Scenes", icon: "batch_prediction"}, // map  // local_movies // play_circle  // auto_mode
     {link: "config", name: "Configuration", icon: "settings"},
   ];
 
