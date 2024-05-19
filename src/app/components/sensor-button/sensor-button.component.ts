@@ -1,4 +1,4 @@
-import {Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {MotionSensor} from "../../models/motion-sensor.model";
@@ -11,19 +11,25 @@ import {MotionSensor} from "../../models/motion-sensor.model";
 export class SensorButtonComponent implements OnChanges {
 
   @Input() element: DomoticzItem
+  @Output() triggerRefresh: EventEmitter<number> = new EventEmitter<number>()
 
-  elementAsTmp : MotionSensor
+  elementAsTmp: MotionSensor
 
   private toolBoxService: ToolboxService = inject(ToolboxService)
 
   ngOnChanges(changes: SimpleChanges): void {
     this.elementAsTmp = this.element as MotionSensor
   }
+
   defineIcon = (): string => {
-      return `./assets/motion/motion48_${this.elementAsTmp.status}.png`
+    return `./assets/motion/motion48_${this.elementAsTmp.status}.png`
   }
 
   defineLastTime = (): string => {
     return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
+  }
+
+  handleClick = (): void => {
+    this.triggerRefresh.emit(this.elementAsTmp.id)
   }
 }

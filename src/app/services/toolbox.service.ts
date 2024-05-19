@@ -113,11 +113,19 @@ export class ToolboxService {
     elements.forEach(element => {
       switch (element.type) {
         case "SWITCH":
-          (this.switches.find(blind => blind.id === element.id) as Switch).status = (element as Switch)?.status;
-          (this.switches.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.switches.find(item => item.id === element.id) as Switch).status = (element as Switch)?.status;
+          (this.switches.find(item => item.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
           break;
+        case "BLIND":
+          (this.blinds.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          break;
+        case "MOTION_SENSOR":
+          (this.sensors.find(sensor => sensor.id === element.id) as Switch).status = (element as Switch).status;
+          (this.sensors.find(sensor => sensor.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          break;
+
         default:
-          (this.others.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.others.find(otherItem => otherItem.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
       }
     })
   }

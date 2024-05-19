@@ -51,6 +51,10 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy {
     this.domoticzApiService.sendCommand(action).subscribe()
   }
 
+  triggerRefresh = (elementId: number) => {
+    this.domoticzApiService.fetchOneElement(elementId).subscribe()
+  }
+
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
     let perViewValue = 2;
