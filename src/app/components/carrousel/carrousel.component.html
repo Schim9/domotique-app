@@ -22,7 +22,6 @@
     <app-sensor-button
       *ngSwitchCase="'MOTION_SENSOR'"
       [element]="element"
-      (triggerRefresh)="triggerRefresh($event)"
     />
     <app-unknown-item
       *ngSwitchDefault

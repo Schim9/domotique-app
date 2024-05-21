@@ -257,7 +257,7 @@ export class ToolboxService {
   formatLastSeen = (lastUpdate: string): string => {
     let lastUpdateDate: any = new Date(lastUpdate);
     let todayDate: any = new Date();
-    let diffDays:any = Math.floor((todayDate - lastUpdateDate) / (1000 * 60 * 60 * 24));
+    let diffDays: any = Math.floor((todayDate - lastUpdateDate) / (1000 * 60 * 60 * 24));
     if (diffDays === 0) {
       return this.datePipe.transform(lastUpdate, "HH:mm") || "";
     } else if (diffDays === 1) {

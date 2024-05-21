@@ -27,7 +27,7 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy {
 
   slider: KeenSliderInstance | null = null
 
-  isMobileIfLargerThan = 600
+  isMobileIfLargerThan = 900
 
   ngAfterViewInit() {
     let perViewValue = 2;
@@ -49,10 +49,6 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy {
 
   onCLick = (action: Action) => {
     this.domoticzApiService.sendCommand(action).subscribe()
-  }
-
-  triggerRefresh = (elementId: number) => {
-    this.domoticzApiService.fetchOneElement(elementId).subscribe()
   }
 
   @HostListener('window:resize', ['$event'])
