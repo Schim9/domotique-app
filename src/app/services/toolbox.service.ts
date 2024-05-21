@@ -84,6 +84,7 @@ export class ToolboxService {
     this.blinds = [];
     this.tempSensors = [];
     this.switches = [];
+    this.sensors = [];
     this.others = [];
     this.favorites = [];
     elements.forEach(element => {

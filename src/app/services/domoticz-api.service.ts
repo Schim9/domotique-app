@@ -23,7 +23,6 @@ export class DomoticzApiService {
     ).pipe(
       map(result => this.toolBox.mapItem(result)),
       map(result => this.toolBox.dispatchItems(result)),
-      map(() => console.log("EMIT!")),
       map(() => this.toolBox.getRefreshTrigger().emit(true)),
       catchError(error => {
         this.toolBox.triggerError.emit({type: 'error', message: `${error.message}`})

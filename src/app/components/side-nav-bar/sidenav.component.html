@@ -22,4 +22,21 @@
       </a>
     </div>
   </mat-list>
+  <mat-list class="nav">
+    <div class="test-span-class">
+      <a mat-list-item
+         routerLinkActive="active-link"
+         class="hover"
+         (click)="handleClick()"
+      >
+        <div class="side-menu-element">
+          <mat-icon>refresh</mat-icon>
+          <p *ngIf="isExpanded">
+            Refresh
+          </p>
+        </div>
+      </a>
+    </div>
+  </mat-list>
 </section>
+
