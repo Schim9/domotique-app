@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, inject, Injectable} from '@angular/core';
 import {DomoticzItem} from "../models/domoticz-item.model";
 import {Blind} from "../models/blind.model";
 import {TemperatureElement} from "../models/temp.model";
@@ -7,13 +7,15 @@ import {Switch} from "../models/switch.model";
 import {PushButton} from "../models/push-button.model";
 import {Contact} from "../models/contact.model";
 import {Unknown} from "../models/unknown.model";
-import * as moment from "moment/moment";
 import {Config} from "../models/config.model";
+import {DatePipe} from "@angular/common";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ToolboxService {
+
+  datePipe: DatePipe = inject(DatePipe)
 
   blinds: DomoticzItem[] = []
   favorites: DomoticzItem[] = []
@@ -253,16 +255,15 @@ export class ToolboxService {
    * Data format
    */
   formatLastSeen = (lastUpdate: string): string => {
-    let lastUpdateAsMoment = moment(lastUpdate);
-    let currentDay = moment().startOf('day');
-    let updateDay = moment(lastUpdateAsMoment, 'MM/D/YYYY');
-    let test = currentDay.diff(updateDay, 'days');
-    if (currentDay.isSame(updateDay, 'day')) {
-      return moment(lastUpdateAsMoment).format('HH:mm');
-    } else if (test == 0) {
-      return moment(lastUpdateAsMoment).format('[yest.] HH:mm');
+    let lastUpdateDate: any = new Date(lastUpdate);
+    let todayDate: any = new Date();
+    let diffDays:any = Math.floor((todayDate - lastUpdateDate) / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) {
+      return this.datePipe.transform(lastUpdate, "HH:mm") || "";
+    } else if (diffDays === 1) {
+      return "yest." + this.datePipe.transform(lastUpdate, "HH:mm") || "";
     } else {
-      return moment(lastUpdateAsMoment).format('DD MMM');
+      return this.datePipe.transform(lastUpdate, "dd MMM") || "";
     }
   }
 }

@@ -29,6 +29,7 @@ import { SwitchButtonComponent } from './components/switch-button/switch-button.
 import {SwitchesComponent} from "./pages/switches/switches.component";
 import { SensorsComponent } from './pages/sensors/sensors.component';
 import { SensorButtonComponent } from './components/sensor-button/sensor-button.component';
+import {DatePipe} from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -71,7 +72,8 @@ import { SensorButtonComponent } from './components/sensor-button/sensor-button.
         ReactiveFormsModule,
     ],
   providers: [
-    CallApi
+    CallApi,
+    DatePipe
   ],
   bootstrap: [AppComponent]
 })
