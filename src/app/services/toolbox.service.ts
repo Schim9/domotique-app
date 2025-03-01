@@ -146,6 +146,7 @@ export class ToolboxService {
         case "Motion Sensor":
           return this.mapToMotionSensor(jsonElement)
         case "Blinds":
+        case "Blinds + Stop":
           return this.mapToBlind(jsonElement)
         case "Contact":
           return this.mapToContact(jsonElement)
@@ -153,7 +154,7 @@ export class ToolboxService {
           if (['Temp + Humidity', 'Temp'].includes(jsonElement.Type)) {
             return this.mapToTemp(jsonElement)
           } else {
-            console.log('Unlnown element', jsonElement)
+            // console.log('Unknown element', jsonElement)
             return this.mapToUnknown(jsonElement)
           }
       }
