@@ -34,7 +34,7 @@ export class BlindButtonComponent {
   handleRangeChange = (event: Event): void => {
     let input = event.target as HTMLInputElement;
     let dimmerLevel = parseFloat(input.value);
-    let action = `type=command&param=switchlight&idx=${this.element.id}&switchcmd=Set%20Level&level=${dimmerLevel}`
+    let action = `type=command&param=switchlight&idx=${this.element.id}&switchcmd=Set%20Level&level=${this.convertLevelValue(dimmerLevel)}`
     this.triggerAction.emit(
       new Action(
         this.element.id,
@@ -46,5 +46,9 @@ export class BlindButtonComponent {
 
   defineLastTime = (): string => {
     return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
+  }
+
+  convertLevelValue = (domoticzBlindLevel: number = 0) : number =>  {
+    return 100 - domoticzBlindLevel
   }
 }
