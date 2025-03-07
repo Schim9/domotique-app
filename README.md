@@ -10,14 +10,9 @@ Server on version 2023.2
 
 
 # TODO
-- Add Sensors
 - Handle plans in a dynamic way
 - Hide icons/pages in case there is no element
 - Add a Refresh button
 - Add Unknown elements page
 - Add Scenarii
 - Add Mesures
-
-- Add First page to display in conf (done)
-- Handle refresh for favorites (done)
-- Improve refresh of data (initElement can be done in a better way) (done)

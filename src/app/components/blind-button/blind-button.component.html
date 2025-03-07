@@ -1,10 +1,25 @@
 <div class="keen-slider__slide card-carrousel-item">
-  <p class="card-header">{{element.title}}</p>
+  <p class="card-header">{{elementAsTmp.title}}</p>
   <div class="card-content">
 
     <div class="image-container-blind">
-      <img src="./assets/blinds/blindsopen48sel.png" alt="Open blind" (click)="handleClick('Open')">
-      <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('Close')">
+      <div class="img">
+        <img src="./assets/blinds/blindsopen48sel.png" alt="Open blind" (click)="handleClick('Open')">
+      </div>
+      <div  *ngIf="elementAsTmp.hasDimmer" class="select-range">
+        <input
+          type="range"
+          class="input-range"
+          step="1"
+          [value]="elementAsTmp.level"
+          min="0"
+          max="100"
+          (input)="handleRangeChange($event)"
+        >
+      </div>
+      <div class="img">
+        <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('Close')">
+      </div>
     </div>
 
     <div class="image-with-data">

@@ -6,12 +6,37 @@
   width: 100%;
   font-size: 30px;
 
-  img {
-    width: 50%;
-    height: 50%;
-    max-width: 100px;
+  .img {
+    flex-grow: 4;
     padding: 15px 5px;
+    display: flex;
+    justify-content: center;
+    img {
+      width: 100%;
+      height: 100%;
+      max-width: 100px;
+    }
+
   }
+
+  .select-range {
+    width: 10px;
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px 5px;
+    .input-range {
+      max-width: 100px;
+      -webkit-transform:rotate(90deg); /* Safari and Chrome */
+      -moz-transform:rotate(90deg);
+      -o-transform:rotate(90deg);
+      -ms-transform:rotate(90deg);
+      transform:rotate(90deg);
+
+    }
+  }
+
 }
 
 .stop-button {
@@ -25,5 +50,4 @@
   background-color: $stop-button-bg-color;
   color: $stop-button-font-color;
 }
-
 

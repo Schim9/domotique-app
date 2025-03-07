@@ -8,6 +8,8 @@ export class Blind extends DomoticzItem {
   override type: string = 'BLIND'
   override   plan?: string
   override   lastUpdate?: string
+  hasDimmer: boolean = false
+  level?: number
 
   constructor(
     id: number,
@@ -16,6 +18,8 @@ export class Blind extends DomoticzItem {
     plan: string,
     lastUpdate: string,
     domoticzType: string,
+    hasDimmer: boolean,
+    level: number,
     favorite: number
   ) {
     super(
@@ -26,6 +30,8 @@ export class Blind extends DomoticzItem {
       lastUpdate,
       domoticzType,
       favorite
-    )
+    );
+    this.hasDimmer = hasDimmer;
+    this.level = level;
   }
 }

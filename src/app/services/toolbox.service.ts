@@ -209,6 +209,8 @@ export class ToolboxService {
       json.PlanID,
       json.LastUpdate,
       json.Type,
+      json.HaveDimmer,
+      json.Level,
       json.Favorite
     )
   }
