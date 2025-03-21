@@ -29,7 +29,7 @@
          class="hover"
          (click)="handleClick()"
       >
-        <div class="side-menu-element">
+        <div class="side-menu-element" (click)="triggerRefresh()">
           <mat-icon>refresh</mat-icon>
           <p *ngIf="isExpanded">
             Refresh

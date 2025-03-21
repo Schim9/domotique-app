@@ -14,7 +14,7 @@ export class DomoticzApiService {
   private toolBox: ToolboxService = inject(ToolboxService)
 
 
-  fetchAllElements = (): Observable<any> => {
+  fetchAllElements = (isRefresh: boolean): Observable<any> => {
     let param = 'type=command&param=getdevices&used=true&type=devices'
 
     return this.callApi.call(
@@ -22,7 +22,14 @@ export class DomoticzApiService {
       param
     ).pipe(
       map(result => this.toolBox.mapItem(result)),
-      map(result => this.toolBox.dispatchItems(result)),
+      map(result => {
+        // FIXME: Make this in a cleaner way
+        if (isRefresh) {
+          this.toolBox.replaceItem(result)
+        } else {
+          this.toolBox.dispatchItems(result)
+        }
+      }),
       map(() => this.toolBox.getRefreshTrigger().emit(true)),
       catchError(error => {
         this.toolBox.triggerError.emit({type: 'error', message: `${error.message}`})
@@ -32,7 +39,7 @@ export class DomoticzApiService {
   }
 
 
-  fetchOneElement = (elementId: number): Observable<any> => {
+  fetchOneElement = (elementId: string): Observable<any> => {
     let param: string = `type=command&param=getdevices&rid=${elementId}`
 
     return this.callApi.call(

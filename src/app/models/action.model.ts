@@ -1,10 +1,10 @@
 export class Action {
-  elementId: number
+  elementId: string
   elementName: string
   action: string
 
   constructor(
-    elementId: number,
+    elementId: string,
     elementName: string,
     action: string
   ) {

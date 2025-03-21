@@ -6,20 +6,20 @@
       <div class="img">
         <img src="./assets/blinds/blindsopen48sel.png" alt="Open blind" (click)="handleClick('Open')">
       </div>
-      <div  *ngIf="elementAsTmp.hasDimmer" class="select-range">
-        <input
-          type="range"
-          class="input-range"
-          step="1"
-          [value]="convertLevelValue(elementAsTmp.level)"
-          min="0"
-          max="100"
-          (input)="handleRangeChange($event)"
-        >
-      </div>
       <div class="img">
         <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('Close')">
       </div>
+    </div>
+    <div *ngIf="elementAsTmp.hasDimmer" class="select-range-horizontal">
+      <input
+        type="range"
+        class="input-range-horizontal"
+        step="1"
+        [value]="convertLevelValue(elementAsTmp.level)"
+        min="0"
+        max="100"
+        (input)="handleRangeChange($event)"
+      >
     </div>
 
     <div class="image-with-data">

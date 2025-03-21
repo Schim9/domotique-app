@@ -120,15 +120,21 @@ export class ToolboxService {
           (this.switches.find(item => item.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
           break;
         case "BLIND":
-          (this.blinds.find(blind => blind.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.blinds.find(blind => blind.id === element.id) as Blind).lastUpdate = (element as Blind).lastUpdate;
+          (this.blinds.find(blind => blind.id === element.id) as Blind).level = (element as Blind).level;
           break;
         case "MOTION_SENSOR":
-          (this.sensors.find(sensor => sensor.id === element.id) as Switch).status = (element as Switch).status;
-          (this.sensors.find(sensor => sensor.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.sensors.find(sensor => sensor.id === element.id) as MotionSensor).status = (element as MotionSensor).status;
+          (this.sensors.find(sensor => sensor.id === element.id) as MotionSensor).lastUpdate = (element as MotionSensor).lastUpdate;
+          break;
+        case "TEMP":
+          (this.tempSensors.find(sensor => sensor.id === element.id) as TemperatureElement).temperature = (element as TemperatureElement).temperature;
+          (this.tempSensors.find(sensor => sensor.id === element.id) as TemperatureElement).humidity = (element as TemperatureElement).humidity;
+          (this.tempSensors.find(sensor => sensor.id === element.id) as TemperatureElement).lastUpdate = (element as TemperatureElement).lastUpdate;
           break;
 
         default:
-          (this.others.find(otherItem => otherItem.id === element.id) as Switch).lastUpdate = (element as Switch).lastUpdate;
+          (this.others.find(otherItem => otherItem.id === element.id) as DomoticzItem).lastUpdate = (element as DomoticzItem).lastUpdate;
       }
     })
   }

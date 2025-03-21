@@ -1,7 +1,7 @@
 import {DomoticzItem} from "./domoticz-item.model";
 
 export class TemperatureElement extends DomoticzItem {
-  override id: number
+  override id: string
   override domoticzType?: string
   override title: string
   override caption: string
@@ -13,7 +13,7 @@ export class TemperatureElement extends DomoticzItem {
   HumidityStatus?: string
 
   constructor(
-    id: number,
+    id: string,
     title: string,
     caption: string,
     plan: string,

@@ -1,7 +1,7 @@
 import {DomoticzItem} from "./domoticz-item.model";
 
 export class Unknown extends DomoticzItem {
-  override id: number = 0
+  override id: string
   override domoticzType?: string
   override title: string
   override caption: string
@@ -10,7 +10,7 @@ export class Unknown extends DomoticzItem {
   override   lastUpdate?: string
 
   constructor(
-    id: number,
+    id: string,
     title: string,
     caption: string,
     plan: string,

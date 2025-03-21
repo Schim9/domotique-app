@@ -1,4 +1,4 @@
-import {Component, EventEmitter, inject, Input, Output, SimpleChanges} from '@angular/core';
+import {Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
@@ -9,7 +9,7 @@ import {Blind} from "../../models/blind.model";
   templateUrl: './blind-button.component.html',
   styleUrls: ['./blind-button.component.scss']
 })
-export class BlindButtonComponent {
+export class BlindButtonComponent implements OnChanges {
   @Input() element: DomoticzItem
   @Output() triggerAction: EventEmitter<Action> = new EventEmitter<Action>()
 

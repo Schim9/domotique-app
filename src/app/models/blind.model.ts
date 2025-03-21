@@ -1,7 +1,7 @@
 import {DomoticzItem} from "./domoticz-item.model";
 
 export class Blind extends DomoticzItem {
-  override id: number
+  override id: string
   override domoticzType?: string
   override title: string
   override caption: string
@@ -12,7 +12,7 @@ export class Blind extends DomoticzItem {
   level?: number
 
   constructor(
-    id: number,
+    id: string,
     title: string,
     caption: string,
     plan: string,

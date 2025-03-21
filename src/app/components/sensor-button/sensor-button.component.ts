@@ -11,7 +11,7 @@ import {MotionSensor} from "../../models/motion-sensor.model";
 export class SensorButtonComponent implements OnChanges {
 
   @Input() element: DomoticzItem
-  @Output() triggerRefresh: EventEmitter<number> = new EventEmitter<number>()
+  @Output() triggerRefresh: EventEmitter<string> = new EventEmitter<string>()
 
   elementAsTmp: MotionSensor
 

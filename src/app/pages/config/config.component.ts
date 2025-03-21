@@ -46,7 +46,7 @@ export class ConfigComponent implements OnInit {
     );
     this.toolboxService.setAppConfig(config);
     this.domoticzApiService
-      .fetchAllElements()
+      .fetchAllElements(false)
       .subscribe()
   }
 }

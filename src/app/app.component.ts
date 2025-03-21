@@ -35,7 +35,7 @@ export class AppComponent implements OnInit {
       this.router.navigate([`/${this.toolBoxService.getAppConfig()?.homepage}`])
     }
     this.domoticzApiService
-      .fetchAllElements()
+      .fetchAllElements(false)
       .subscribe()
   }
 

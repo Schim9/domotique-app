@@ -1,5 +1,5 @@
 export class DomoticzItem {
-  id: number = 0
+  id: string = '0'
   domoticzType?: string
   title: string
   caption: string
@@ -9,7 +9,7 @@ export class DomoticzItem {
   Favorite?: number
 
   constructor(
-    id: number,
+    id: string,
     title: string,
     caption: string,
     plan: string,

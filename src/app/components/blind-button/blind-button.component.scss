@@ -11,32 +11,24 @@
     padding: 15px 5px;
     display: flex;
     justify-content: center;
+
     img {
       width: 100%;
       height: 100%;
       max-width: 100px;
     }
-
   }
+}
 
-  .select-range {
-    width: 10px;
-    flex-grow: 1;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 15px 5px;
-    .input-range {
-      max-width: 100px;
-      -webkit-transform:rotate(90deg); /* Safari and Chrome */
-      -moz-transform:rotate(90deg);
-      -o-transform:rotate(90deg);
-      -ms-transform:rotate(90deg);
-      transform:rotate(90deg);
+.select-range-horizontal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+}
 
-    }
-  }
-
+.input-range-horizontal {
+  max-width: 100%;
 }
 
 .stop-button {

@@ -1,7 +1,7 @@
 import {DomoticzItem} from "./domoticz-item.model";
 
 export class PushButton extends DomoticzItem {
-  override id: number
+  override id: string
   override domoticzType?: string
   override title: string
   override caption: string
@@ -10,7 +10,7 @@ export class PushButton extends DomoticzItem {
   override   lastUpdate?: string
 
   constructor(
-    id: number,
+    id: string,
     title: string,
     caption: string,
     plan: string,
