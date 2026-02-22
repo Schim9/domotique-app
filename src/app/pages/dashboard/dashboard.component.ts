@@ -1,14 +1,13 @@
 import {Component, computed, inject} from '@angular/core';
 import {DeviceStoreService} from "../../services/device-store.service";
-import {NgIf} from "@angular/common";
+
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
 @Component({
-  selector: 'app-dashboard',
-  templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss'],
-  standalone: true,
-  imports: [NgIf, CarrouselComponent]
+    selector: 'app-dashboard',
+    templateUrl: './dashboard.component.html',
+    styleUrls: ['./dashboard.component.scss'],
+    imports: [CarrouselComponent]
 })
 export class DashboardComponent {
 

@@ -1,17 +1,16 @@
 import {Component, Input, Output, EventEmitter, inject} from "@angular/core";
 import {ToolboxService} from "../../services/toolbox.service";
 import {DomoticzApiService} from "../../services/domoticz-api.service";
-import {NgFor, NgIf} from "@angular/common";
+
 import {RouterModule} from "@angular/router";
 import {MatListModule} from "@angular/material/list";
 import {MatIconModule} from "@angular/material/icon";
 
 @Component({
-  selector: "side-nav",
-  styleUrls: ["./sidenav.component.scss"],
-  templateUrl: 'sidenav.component.html',
-  standalone: true,
-  imports: [NgFor, NgIf, RouterModule, MatListModule, MatIconModule]
+    selector: "side-nav",
+    styleUrls: ["./sidenav.component.scss"],
+    templateUrl: 'sidenav.component.html',
+    imports: [RouterModule, MatListModule, MatIconModule]
 })
 export class SidenavComponent {
   @Input() isExpanded: boolean;

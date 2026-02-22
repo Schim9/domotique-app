@@ -5,70 +5,86 @@
     <div class="config-form-element">
       <label for="login">Login :</label>
       <input type="text"
-             id="login"
-             name="login"
-             class="field-input"
-             formControlName="userName"
-      >
-      <div *ngIf="!form.controls.userName.valid && form.controls.userName.touched">
-        <div *ngIf="form.controls.userName.errors?.['required']"
-             class="field-error"
-             role="alert">
-          Please provide a user name
-        </div>
+        id="login"
+        name="login"
+        class="field-input"
+        formControlName="userName"
+        >
+        @if (!form.controls.userName.valid && form.controls.userName.touched) {
+          <div>
+            @if (form.controls.userName.errors?.['required']) {
+              <div
+                class="field-error"
+                role="alert">
+                Please provide a user name
+              </div>
+            }
+          </div>
+        }
       </div>
-    </div>
 
-    <div class="config-form-element">
-      <label for="password">Password :</label>
-      <input type="password"
-             id="password"
-             name="password"
-             class="field-input"
-             formControlName="userPassword"
-      >
-      <div *ngIf="!form.controls.userPassword.valid && form.controls.userPassword.touched">
-        <div *ngIf="form.controls.userPassword.errors?.['required']"
-             class="field-error"
-             role="alert">
-          Please provide a user password
+      <div class="config-form-element">
+        <label for="password">Password :</label>
+        <input type="password"
+          id="password"
+          name="password"
+          class="field-input"
+          formControlName="userPassword"
+          >
+          @if (!form.controls.userPassword.valid && form.controls.userPassword.touched) {
+            <div>
+              @if (form.controls.userPassword.errors?.['required']) {
+                <div
+                  class="field-error"
+                  role="alert">
+                  Please provide a user password
+                </div>
+              }
+            </div>
+          }
         </div>
-      </div>
-    </div>
 
-    <div class="config-form-element">
-      <label for="url">Server address :</label>
-      <input type="url"
-             id="url"
-             name="url"
-             class="field-input"
-             formControlName="serverUrl"
-      >
-      <div *ngIf="!form.controls['serverUrl'].valid && form.controls['serverUrl'].touched">
-        <div *ngIf="form.controls['serverUrl'].errors?.['required']"
-             class="field-error"
-             role="alert">
-          Please provide an url
-        </div>
-        <div *ngIf="form.controls['serverUrl'].errors?.['pattern']"
-             class="field-error"
-             role="alert">
-          Please provide a valid url
-        </div>
-      </div>
-    </div>
+        <div class="config-form-element">
+          <label for="url">Server address :</label>
+          <input type="url"
+            id="url"
+            name="url"
+            class="field-input"
+            formControlName="serverUrl"
+            >
+            @if (!form.controls['serverUrl'].valid && form.controls['serverUrl'].touched) {
+              <div>
+                @if (form.controls['serverUrl'].errors?.['required']) {
+                  <div
+                    class="field-error"
+                    role="alert">
+                    Please provide an url
+                  </div>
+                }
+                @if (form.controls['serverUrl'].errors?.['pattern']) {
+                  <div
+                    class="field-error"
+                    role="alert">
+                    Please provide a valid url
+                  </div>
+                }
+              </div>
+            }
+          </div>
 
-    <div class="config-form-element">
-      <label for="homepage">Homepage :</label>
-      <select id="homepage"
+          <div class="config-form-element">
+            <label for="homepage">Homepage :</label>
+            <select id="homepage"
               name="homepage"
               class="field-input"
               formControlName="homepage"
-      >
-        <option *ngFor="let element of sideMenuElements" [value]="element.link">{{element.name}}</option>
-      </select>
-    </div>
+              >
+              @for (element of sideMenuElements; track element) {
+                <option [value]="element.link">{{element.name}}</option>
+              }
+            </select>
+          </div>
 
-    <button mat-stroked-button (click)="submit()" [disabled]="form.invalid">Save</button>
-  </form>
-</div>
+          <button mat-stroked-button (click)="submit()" [disabled]="form.invalid">Save</button>
+        </form>
+      </div>

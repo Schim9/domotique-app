@@ -1,31 +1,41 @@
 <div class="keen-slider" #sliderRef>
-  <div *ngFor="let element of elements" [ngSwitch]="element.type">
-    <app-blind-button
-      *ngSwitchCase="'BLIND'"
-      [element]="element"
-      (triggerAction)="onCLick($event)"
-    />
-    <app-action-button
-      *ngSwitchCase="'PUSH_BUTTON'"
-      [element]="element"
-      (triggerAction)="onCLick($event)"
-    />
-    <app-temp-button
-      *ngSwitchCase="'TEMP'"
-      [element]="element"
-    />
-    <app-switch-button
-      *ngSwitchCase="'SWITCH'"
-      [element]="element"
-      (triggerAction)="onCLick($event)"
-    />
-    <app-sensor-button
-      *ngSwitchCase="'MOTION_SENSOR'"
-      [element]="element"
-    />
-    <app-unknown-item
-      *ngSwitchDefault
-      [element]="element"
-    />
-  </div>
+  @for (element of elements; track element) {
+    <div>
+      @switch (element.type) {
+        @case ('BLIND') {
+          <app-blind-button
+            [element]="element"
+            (triggerAction)="onCLick($event)"
+            />
+        }
+        @case ('PUSH_BUTTON') {
+          <app-action-button
+            [element]="element"
+            (triggerAction)="onCLick($event)"
+            />
+        }
+        @case ('TEMP') {
+          <app-temp-button
+            [element]="element"
+            />
+        }
+        @case ('SWITCH') {
+          <app-switch-button
+            [element]="element"
+            (triggerAction)="onCLick($event)"
+            />
+        }
+        @case ('MOTION_SENSOR') {
+          <app-sensor-button
+            [element]="element"
+            />
+        }
+        @default {
+          <app-unknown-item
+            [element]="element"
+            />
+        }
+      }
+    </div>
+  }
 </div>

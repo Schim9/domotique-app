@@ -10,17 +10,19 @@
         <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('Close')">
       </div>
     </div>
-    <div *ngIf="elementAsTmp.hasDimmer" class="select-range-horizontal">
-      <input
-        type="range"
-        class="input-range-horizontal"
-        step="1"
-        [value]="convertLevelValue(elementAsTmp.level)"
-        min="0"
-        max="100"
-        (input)="handleRangeChange($event)"
-      >
-    </div>
+    @if (elementAsTmp.hasDimmer) {
+      <div class="select-range-horizontal">
+        <input
+          type="range"
+          class="input-range-horizontal"
+          step="1"
+          [value]="convertLevelValue(elementAsTmp.level)"
+          min="0"
+          max="100"
+          (input)="handleRangeChange($event)"
+          >
+      </div>
+    }
 
     <div class="image-with-data">
       <img src="./assets/temperature/update.png" alt="Last seen">

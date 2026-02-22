@@ -1,13 +1,19 @@
 <h1>Sensors</h1>
-<div *ngIf="sensorsEtage().length>0">
-  <p>Etage</p>
-  <app-carrousel [elements]="sensorsEtage()"/>
-</div>
-<div *ngIf="sensorsRdC().length>0">
-  <p>Rez de chaussée</p>
-  <app-carrousel [elements]="sensorsRdC()"/>
-</div>
-<div *ngIf="sensorsUnknownPlan().length>0">
-  <p>Autre plan</p>
-  <app-carrousel [elements]="sensorsUnknownPlan()"/>
-</div>
+@if (sensorsEtage().length>0) {
+  <div>
+    <p>Etage</p>
+    <app-carrousel [elements]="sensorsEtage()"/>
+  </div>
+}
+@if (sensorsRdC().length>0) {
+  <div>
+    <p>Rez de chaussée</p>
+    <app-carrousel [elements]="sensorsRdC()"/>
+  </div>
+}
+@if (sensorsUnknownPlan().length>0) {
+  <div>
+    <p>Autre plan</p>
+    <app-carrousel [elements]="sensorsUnknownPlan()"/>
+  </div>
+}

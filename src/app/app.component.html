@@ -4,7 +4,7 @@
     fixedInViewport="true"
     mode="side"
     opened="{{ true }}"
-  >
+    >
     <side-nav
       (toggleMenu)="toggleMenu()"
       [isExpanded]="isExpanded"
@@ -18,12 +18,17 @@
   </mat-sidenav-content>
 </mat-sidenav-container>
 
-<div class="notification-banner"
-  *ngIf="message!==''"
-  id="notification"
-  [class]="defineToastClass()"
-  role="alert">
-  <span *ngIf="messageType==='info'" class="material-icons-outlined">done</span>
-  <span *ngIf="messageType==='error'" class="material-icons-outlined">report_gmailerrorred</span>
-  <p>{{message}}</p>
-</div>
+@if (message!=='') {
+  <div class="notification-banner"
+    id="notification"
+    [class]="defineToastClass()"
+    role="alert">
+    @if (messageType==='info') {
+      <span class="material-icons-outlined">done</span>
+    }
+    @if (messageType==='error') {
+      <span class="material-icons-outlined">report_gmailerrorred</span>
+    }
+    <p>{{message}}</p>
+  </div>
+}

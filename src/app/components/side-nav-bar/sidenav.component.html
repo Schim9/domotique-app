@@ -5,35 +5,41 @@
     </mat-icon>
   </div>
 
-  <mat-list class="nav" *ngFor="let route of routeLinks">
-    <div class="test-span-class">
-      <a mat-list-item
-         routerLinkActive="active-link"
-         class="hover"
-         (click)="handleClick()"
-         routerLink="{{ route.link }}"
-      >
-        <div class="side-menu-element">
-          <mat-icon>{{ route.icon }}</mat-icon>
-          <p *ngIf="isExpanded">
-            {{ route.name }}
-          </p>
-        </div>
-      </a>
-    </div>
-  </mat-list>
+  @for (route of routeLinks; track route) {
+    <mat-list class="nav">
+      <div class="test-span-class">
+        <a mat-list-item
+          routerLinkActive="active-link"
+          class="hover"
+          (click)="handleClick()"
+          routerLink="{{ route.link }}"
+          >
+          <div class="side-menu-element">
+            <mat-icon>{{ route.icon }}</mat-icon>
+            @if (isExpanded) {
+              <p>
+                {{ route.name }}
+              </p>
+            }
+          </div>
+        </a>
+      </div>
+    </mat-list>
+  }
   <mat-list class="nav">
     <div class="test-span-class">
       <a mat-list-item
-         routerLinkActive="active-link"
-         class="hover"
-         (click)="handleClick()"
-      >
+        routerLinkActive="active-link"
+        class="hover"
+        (click)="handleClick()"
+        >
         <div class="side-menu-element" (click)="triggerRefresh()">
           <mat-icon>refresh</mat-icon>
-          <p *ngIf="isExpanded">
-            Refresh
-          </p>
+          @if (isExpanded) {
+            <p>
+              Refresh
+            </p>
+          }
         </div>
       </a>
     </div>

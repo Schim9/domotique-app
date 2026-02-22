@@ -4,11 +4,10 @@ import {ToolboxService} from "../../services/toolbox.service";
 import {MotionSensor} from "../../models/motion-sensor.model";
 
 @Component({
-  selector: 'app-sensor-button',
-  templateUrl: './sensor-button.component.html',
-  styleUrls: ['./sensor-button.component.scss'],
-  standalone: true,
-  imports: []
+    selector: 'app-sensor-button',
+    templateUrl: './sensor-button.component.html',
+    styleUrls: ['./sensor-button.component.scss'],
+    imports: []
 })
 export class SensorButtonComponent implements OnChanges {
 

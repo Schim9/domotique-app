@@ -1,14 +1,18 @@
 <div class="keen-slider__slide card-carrousel-item">
   <div class="card-header">{{elementAsTmp.title}}</div>
   <div class="card-content">
-    <div class="image-with-data" *ngIf="elementAsTmp.temperature">
-      <img [src]="defineTemperatureIcon()" alt="Temperature">
-      <p>{{defineTemperature()}}°C</p>
-    </div>
-    <div class="image-with-data" *ngIf="elementAsTmp.humidity">
-      <img src="./assets/temperature/humidity.png" alt="Humidity">
-      <p>{{elementAsTmp.humidity}}%</p>
-    </div>
+    @if (elementAsTmp.temperature) {
+      <div class="image-with-data">
+        <img [src]="defineTemperatureIcon()" alt="Temperature">
+        <p>{{defineTemperature()}}°C</p>
+      </div>
+    }
+    @if (elementAsTmp.humidity) {
+      <div class="image-with-data">
+        <img src="./assets/temperature/humidity.png" alt="Humidity">
+        <p>{{elementAsTmp.humidity}}%</p>
+      </div>
+    }
     <div class="image-with-data">
       <img src="./assets/temperature/update.png" alt="Last seen">
       <p>{{defineLastTime()}}</p>

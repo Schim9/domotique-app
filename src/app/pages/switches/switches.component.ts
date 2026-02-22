@@ -1,14 +1,13 @@
 import {Component, computed, inject} from '@angular/core';
 import {DeviceStoreService} from "../../services/device-store.service";
-import {NgIf} from "@angular/common";
+
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
 @Component({
-  selector: 'app-switches',
-  templateUrl: './switches.component.html',
-  styleUrls: ['./switches.component.scss'],
-  standalone: true,
-  imports: [NgIf, CarrouselComponent]
+    selector: 'app-switches',
+    templateUrl: './switches.component.html',
+    styleUrls: ['./switches.component.scss'],
+    imports: [CarrouselComponent]
 })
 export class SwitchesComponent {
 

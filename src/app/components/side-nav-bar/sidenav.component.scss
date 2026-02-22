@@ -1,4 +1,4 @@
-@import '../../../vars.scss';
+@use '../../../vars' as *;
 
 .sidenav {
   width: 250px;

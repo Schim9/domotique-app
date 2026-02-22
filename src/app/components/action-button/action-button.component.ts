@@ -4,11 +4,10 @@ import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
 
 @Component({
-  selector: 'app-action-button',
-  templateUrl: './action-button.component.html',
-  styleUrls: ['./action-button.component.scss'],
-  standalone: true,
-  imports: []
+    selector: 'app-action-button',
+    templateUrl: './action-button.component.html',
+    styleUrls: ['./action-button.component.scss'],
+    imports: []
 })
 export class ActionButtonComponent {
   @Input() element: DomoticzItem

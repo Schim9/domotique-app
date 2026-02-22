@@ -1,13 +1,19 @@
 <h1>Blinds</h1>
-<div *ngIf="blindsEtage().length>0">
-  <p>Etage</p>
-  <app-carrousel [elements]="blindsEtage()"/>
-</div>
-<div *ngIf="blindsRdC().length>0">
-  <p>Rez de chaussée</p>
-  <app-carrousel [elements]="blindsRdC()"/>
-</div>
-<div *ngIf="blindsUnknownPlan().length>0">
-  <p>Autre plan</p>
-  <app-carrousel [elements]="blindsUnknownPlan()"/>
-</div>
+@if (blindsEtage().length>0) {
+  <div>
+    <p>Etage</p>
+    <app-carrousel [elements]="blindsEtage()"/>
+  </div>
+}
+@if (blindsRdC().length>0) {
+  <div>
+    <p>Rez de chaussée</p>
+    <app-carrousel [elements]="blindsRdC()"/>
+  </div>
+}
+@if (blindsUnknownPlan().length>0) {
+  <div>
+    <p>Autre plan</p>
+    <app-carrousel [elements]="blindsUnknownPlan()"/>
+  </div>
+}

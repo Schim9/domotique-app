@@ -1,4 +1,4 @@
-@import "../vars";
+@use "../vars" as *;
 
 .content-container {
   min-height: 100vh;

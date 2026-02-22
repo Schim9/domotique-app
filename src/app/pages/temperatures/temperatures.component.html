@@ -1,13 +1,19 @@
 <h1>Temperatures</h1>
-<div *ngIf="tempEtage().length>0">
-  <p>Etage</p>
-  <app-carrousel [elements]="tempEtage()"/>
-</div>
-<div *ngIf="tempRdC().length>0">
-  <p>Rez de chaussée</p>
-  <app-carrousel [elements]="tempRdC()"/>
-</div>
-<div *ngIf="tempUnknownPlan().length>0">
-  <p>Autre plan</p>
-  <app-carrousel [elements]="tempUnknownPlan()"/>
-</div>
+@if (tempEtage().length>0) {
+  <div>
+    <p>Etage</p>
+    <app-carrousel [elements]="tempEtage()"/>
+  </div>
+}
+@if (tempRdC().length>0) {
+  <div>
+    <p>Rez de chaussée</p>
+    <app-carrousel [elements]="tempRdC()"/>
+  </div>
+}
+@if (tempUnknownPlan().length>0) {
+  <div>
+    <p>Autre plan</p>
+    <app-carrousel [elements]="tempUnknownPlan()"/>
+  </div>
+}

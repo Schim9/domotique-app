@@ -3,16 +3,15 @@ import {DomoticzApiService} from "./services/domoticz-api.service";
 import {ToolboxService} from "./services/toolbox.service";
 import {DeviceStoreService} from "./services/device-store.service";
 import {Router, RouterOutlet} from "@angular/router";
-import {NgIf} from "@angular/common";
+
 import {MatSidenavModule} from "@angular/material/sidenav";
 import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 
 @Component({
-  selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
-  standalone: true,
-  imports: [NgIf, RouterOutlet, MatSidenavModule, SidenavComponent]
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.scss'],
+    imports: [RouterOutlet, MatSidenavModule, SidenavComponent]
 })
 export class AppComponent implements OnInit {
 

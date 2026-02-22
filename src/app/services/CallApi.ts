@@ -1,7 +1,7 @@
 import {inject, Injectable} from '@angular/core';
 import {EMPTY, Observable, throwError} from 'rxjs';
 
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {ToolboxService} from "./toolbox.service";
 import {Router} from "@angular/router";
 
