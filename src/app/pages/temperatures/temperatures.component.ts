@@ -4,10 +4,11 @@ import {DeviceStoreService} from "../../services/device-store.service";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
 @Component({
-    selector: 'app-temperatures',
-    templateUrl: './temperatures.component.html',
-    styleUrls: ['./temperatures.component.scss'],
-    imports: [CarrouselComponent]
+  selector: 'app-temperatures',
+  templateUrl: './temperatures.component.html',
+  styleUrls: ['./temperatures.component.scss'],
+  standalone: true,
+  imports: [CarrouselComponent]
 })
 export class TemperaturesComponent {
 

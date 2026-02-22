@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, Input} from '@angular/core';
+import {Component, computed, inject, input} from '@angular/core';
 import {TemperatureElement} from "../../models/temp.model";
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
@@ -11,7 +11,7 @@ import {ToolboxService} from "../../services/toolbox.service";
   imports: []
 })
 export class TempButtonComponent {
-  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
+  readonly element = input.required<DomoticzItem>();
 
   private toolBoxService = inject(ToolboxService);
   readonly elementAsTmp = computed(() => this.element() as TemperatureElement);

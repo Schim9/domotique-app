@@ -1,4 +1,4 @@
-import {Component, inject, input, Input, output} from '@angular/core';
+import {Component, inject, input, output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
@@ -11,7 +11,7 @@ import {Action} from "../../models/action.model";
   imports: []
 })
 export class ActionButtonComponent {
-  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
+  readonly element = input.required<DomoticzItem>();
   readonly triggerAction = output<Action>();
 
   private toolBoxService = inject(ToolboxService);

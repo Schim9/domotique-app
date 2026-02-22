@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, Input, output} from '@angular/core';
+import {Component, computed, inject, input, output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {MotionSensor} from "../../models/motion-sensor.model";
@@ -11,7 +11,7 @@ import {MotionSensor} from "../../models/motion-sensor.model";
   imports: []
 })
 export class SensorButtonComponent {
-  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
+  readonly element = input.required<DomoticzItem>();
   readonly triggerRefresh = output<string>();
 
   private toolBoxService = inject(ToolboxService);

@@ -1,4 +1,4 @@
-import {Component, computed, inject, input, Input, output} from '@angular/core';
+import {Component, computed, inject, input, output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
@@ -12,7 +12,7 @@ import {Switch} from "../../models/switch.model";
   imports: []
 })
 export class SwitchButtonComponent {
-  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
+  readonly element = input.required<DomoticzItem>();
   readonly triggerAction = output<Action>();
 
   private toolBoxService = inject(ToolboxService);
