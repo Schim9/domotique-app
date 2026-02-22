@@ -1,6 +1,14 @@
 /* You can add global styles to this file, and also import other style files */
 @use "vars" as *;
 
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+}
+
 @import 'keen-slider/keen-slider.min.css';
 @import 'material-icons/iconfont/material-icons.css';
 
@@ -70,9 +78,10 @@ h1 {
   padding: 16px;
 
   img {
-    width: 40%;
-    height: 40%;
-    max-width: 60px;
+    width: auto;
+    height: auto;
+    max-width: 40px;
+    max-height: 40px;
   }
   p {
     font-size: 15px;
