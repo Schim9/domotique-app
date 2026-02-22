@@ -73,19 +73,20 @@ h1 {
 .image-with-data {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: 8px;
   width: 100%;
-  padding: 16px;
+  padding: 16px 16px 6px;
 
   img {
     width: auto;
     height: auto;
-    max-width: 40px;
-    max-height: 40px;
+    max-width: 28px;
+    max-height: 28px;
   }
   p {
     font-size: 15px;
-    margin: 0;
-    text-align: end;
+    margin-bottom: 0 !important;
+    white-space: nowrap;
   }
 }
