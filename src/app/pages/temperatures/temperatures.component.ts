@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
-import {ToolboxService} from "../../services/toolbox.service";
+import {DeviceStoreService} from "../../services/device-store.service";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
@@ -17,11 +17,11 @@ export class TemperaturesComponent  implements OnInit {
   tempEtage: DomoticzItem[] = []
   tempUnknownPlan: DomoticzItem[] = []
 
-  private toolboxService: ToolboxService = inject(ToolboxService)
+  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
 
   ngOnInit(): void {
     this.initElement();
-    this.toolboxService.getRefreshTrigger()
+    this.deviceStore.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
@@ -29,7 +29,7 @@ export class TemperaturesComponent  implements OnInit {
     this.tempRdC = []
     this.tempEtage = []
     this.tempUnknownPlan = []
-    this.toolboxService.getTemperatures().forEach(element => {
+    this.deviceStore.getTemperatures().forEach(element => {
       switch (element.plan) {
         case '3': this.tempRdC.push(element); break;
         case '4': this.tempEtage.push(element); break;

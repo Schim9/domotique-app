@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
-import {ToolboxService} from "../../services/toolbox.service";
+import {DeviceStoreService} from "../../services/device-store.service";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
@@ -17,11 +17,11 @@ export class BlindsComponent implements OnInit {
   blindsEtage: DomoticzItem[] = []
   blindsUnknownPlan: DomoticzItem[] = []
 
-  private toolBoxService: ToolboxService = inject(ToolboxService)
+  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
 
   ngOnInit(): void {
     this.initElement();
-    this.toolBoxService.getRefreshTrigger()
+    this.deviceStore.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
@@ -29,7 +29,7 @@ export class BlindsComponent implements OnInit {
     this.blindsRdC = []
     this.blindsEtage = []
     this.blindsUnknownPlan = []
-    this.toolBoxService.getBlinds().forEach(element => {
+    this.deviceStore.getBlinds().forEach(element => {
       switch (element.plan) {
         case '3': this.blindsRdC.push(element); break;
         case '4': this.blindsEtage.push(element); break;

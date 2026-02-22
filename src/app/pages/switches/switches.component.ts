@@ -1,6 +1,6 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
-import {ToolboxService} from "../../services/toolbox.service";
+import {DeviceStoreService} from "../../services/device-store.service";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
@@ -17,11 +17,11 @@ export class SwitchesComponent  implements OnInit {
   switchesEtage: DomoticzItem[] = []
   switchesUnknownPlan: DomoticzItem[] = []
 
-  private toolBoxService: ToolboxService = inject(ToolboxService)
+  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
 
   ngOnInit(): void {
     this.initElement();
-    this.toolBoxService.getRefreshTrigger()
+    this.deviceStore.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
@@ -29,7 +29,7 @@ export class SwitchesComponent  implements OnInit {
     this.switchesRdC = []
     this.switchesEtage = []
     this.switchesUnknownPlan = []
-    this.toolBoxService.getSwitches().forEach(element => {
+    this.deviceStore.getSwitches().forEach(element => {
       switch (element.plan) {
         case '3': this.switchesRdC.push(element); break;
         case '4': this.switchesEtage.push(element); break;

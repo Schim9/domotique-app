@@ -1,6 +1,7 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzApiService} from "./services/domoticz-api.service";
 import {ToolboxService} from "./services/toolbox.service";
+import {DeviceStoreService} from "./services/device-store.service";
 import {Router, RouterOutlet} from "@angular/router";
 import {NgIf} from "@angular/common";
 import {MatSidenavModule} from "@angular/material/sidenav";
@@ -16,6 +17,7 @@ import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 export class AppComponent implements OnInit {
 
   private toolBoxService: ToolboxService = inject(ToolboxService)
+  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
   private domoticzApiService: DomoticzApiService = inject(DomoticzApiService)
   private router: Router = inject(Router)
 
@@ -30,7 +32,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.toolBoxService.triggerError.subscribe(trigger => {
+    this.deviceStore.triggerError.subscribe(trigger => {
       this.messageType = trigger.type
       this.message = trigger.message
       this.handleNotification();

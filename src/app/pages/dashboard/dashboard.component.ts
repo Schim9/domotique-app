@@ -1,5 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
-import {ToolboxService} from "../../services/toolbox.service";
+import {DeviceStoreService} from "../../services/device-store.service";
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
@@ -17,11 +17,11 @@ export class DashboardComponent implements OnInit {
   favoritesEtage: DomoticzItem[] = []
   favoritesUnknownPlan: DomoticzItem[] = []
 
-  private toolBoxService: ToolboxService = inject(ToolboxService)
+  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
 
   ngOnInit(): void {
     this.initElement();
-    this.toolBoxService.getRefreshTrigger()
+    this.deviceStore.getRefreshTrigger()
       .subscribe(() => this.initElement())
   }
 
@@ -29,7 +29,7 @@ export class DashboardComponent implements OnInit {
     this.favoritesRdC = []
     this.favoritesEtage = []
     this.favoritesUnknownPlan = []
-    this.toolBoxService.getFavorites().forEach(element => {
+    this.deviceStore.getFavorites().forEach(element => {
       switch (element.plan) {
         case '3': this.favoritesRdC.push(element); break;
         case '4': this.favoritesEtage.push(element); break;

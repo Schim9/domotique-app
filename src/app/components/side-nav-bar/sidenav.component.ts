@@ -1,5 +1,6 @@
 import {Component, Input, Output, EventEmitter, inject} from "@angular/core";
 import {ToolboxService} from "../../services/toolbox.service";
+import {DeviceStoreService} from "../../services/device-store.service";
 import {DomoticzApiService} from "../../services/domoticz-api.service";
 import {NgFor, NgIf} from "@angular/common";
 import {RouterModule} from "@angular/router";
@@ -18,16 +19,13 @@ export class SidenavComponent {
   @Output() toggleMenu = new EventEmitter();
 
   private toolBoxService: ToolboxService = inject(ToolboxService)
+  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
   private domoticzService: DomoticzApiService = inject(DomoticzApiService)
 
   public routeLinks = this.toolBoxService.routeLinks
 
   handleClick() {
-    this.toolBoxService.getRefreshTrigger().emit()
-    // In case the side nav bar is open
-    // We close it before routing.
-    // Otherwise, the keen slider's rendering will be awful
-    // this.domoticzService.fetchAllElements().subscribe()
+    this.deviceStore.getRefreshTrigger().emit()
     if (this.isExpanded)
       this.toggleMenu.emit()
   }
