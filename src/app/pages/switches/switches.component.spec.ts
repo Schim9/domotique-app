@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { DatePipe } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { SwitchesComponent } from './switches.component';
 
 describe('SwitchesComponent', () => {
@@ -8,7 +10,8 @@ describe('SwitchesComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SwitchesComponent]
+      imports: [SwitchesComponent],
+      providers: [DatePipe, provideHttpClient(), provideNoopAnimations()]
     });
     fixture = TestBed.createComponent(SwitchesComponent);
     component = fixture.componentInstance;

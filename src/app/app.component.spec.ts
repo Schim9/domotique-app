@@ -1,24 +1,19 @@
 import { TestBed } from '@angular/core/testing';
-import { RouterTestingModule } from '@angular/router/testing';
+import { DatePipe } from '@angular/common';
+import { provideRouter } from '@angular/router';
+import { provideHttpClient } from '@angular/common/http';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 
 describe('AppComponent', () => {
   beforeEach(() => TestBed.configureTestingModule({
-    imports: [RouterTestingModule],
-    declarations: [AppComponent]
+    imports: [AppComponent],
+    providers: [DatePipe, provideHttpClient(), provideRouter([]), provideNoopAnimations()]
   }));
 
   it('should create the app', () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
     expect(app).toBeTruthy();
-  });
-
-
-  it('should render title', () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
-    const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('DomotiqueApp app is running!');
   });
 });

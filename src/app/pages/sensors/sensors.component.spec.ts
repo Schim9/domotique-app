@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { DatePipe } from '@angular/common';
+import { provideHttpClient } from '@angular/common/http';
+import { provideNoopAnimations } from '@angular/platform-browser/animations';
 import { SensorsComponent } from './sensors.component';
 
 describe('SensorsComponent', () => {
@@ -8,7 +10,8 @@ describe('SensorsComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [SensorsComponent]
+      imports: [SensorsComponent],
+      providers: [DatePipe, provideHttpClient(), provideNoopAnimations()]
     });
     fixture = TestBed.createComponent(SensorsComponent);
     component = fixture.componentInstance;

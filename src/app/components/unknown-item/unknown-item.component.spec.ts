@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { UnknownItemComponent } from './unknown-item.component';
+import { DomoticzItem } from '../../models/domoticz-item.model';
 
 describe('UnknownItemComponent', () => {
   let component: UnknownItemComponent;
@@ -8,10 +8,11 @@ describe('UnknownItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [UnknownItemComponent]
+      imports: [UnknownItemComponent]
     });
     fixture = TestBed.createComponent(UnknownItemComponent);
     component = fixture.componentInstance;
+    component.element = new DomoticzItem('1', 'Test Item', '', '3', '2024-01-01', 'Unknown', 0);
     fixture.detectChanges();
   });
 
