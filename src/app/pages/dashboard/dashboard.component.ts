@@ -1,6 +1,5 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {Component, computed, inject} from '@angular/core';
 import {DeviceStoreService} from "../../services/device-store.service";
-import {DomoticzItem} from "../../models/domoticz-item.model";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
@@ -11,30 +10,11 @@ import {CarrouselComponent} from "../../components/carrousel/carrousel.component
   standalone: true,
   imports: [NgIf, CarrouselComponent]
 })
-export class DashboardComponent implements OnInit {
+export class DashboardComponent {
 
-  favoritesRdC: DomoticzItem[] = []
-  favoritesEtage: DomoticzItem[] = []
-  favoritesUnknownPlan: DomoticzItem[] = []
+  private deviceStore = inject(DeviceStoreService)
 
-  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
-
-  ngOnInit(): void {
-    this.initElement();
-    this.deviceStore.getRefreshTrigger()
-      .subscribe(() => this.initElement())
-  }
-
-  initElement = () : void => {
-    this.favoritesRdC = []
-    this.favoritesEtage = []
-    this.favoritesUnknownPlan = []
-    this.deviceStore.getFavorites().forEach(element => {
-      switch (element.plan) {
-        case '3': this.favoritesRdC.push(element); break;
-        case '4': this.favoritesEtage.push(element); break;
-        default: this.favoritesUnknownPlan.push(element);
-      }
-    })
-  }
+  readonly favoritesRdC = computed(() => this.deviceStore.favorites().filter(e => e.plan === '3'))
+  readonly favoritesEtage = computed(() => this.deviceStore.favorites().filter(e => e.plan === '4'))
+  readonly favoritesUnknownPlan = computed(() => this.deviceStore.favorites().filter(e => e.plan !== '3' && e.plan !== '4'))
 }

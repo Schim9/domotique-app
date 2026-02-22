@@ -26,7 +26,6 @@ export class DomoticzApiService {
           this.deviceStore.dispatchItems(result)
         }
       }),
-      map(() => this.deviceStore.getRefreshTrigger().emit(true)),
       catchError(error => {
         this.deviceStore.triggerError.emit({type: 'error', message: `${error.message}`})
         return of(`Bad Promise: ${error}`)

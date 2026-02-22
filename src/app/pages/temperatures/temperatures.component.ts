@@ -1,5 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {DomoticzItem} from "../../models/domoticz-item.model";
+import {Component, computed, inject} from '@angular/core';
 import {DeviceStoreService} from "../../services/device-store.service";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
@@ -11,30 +10,11 @@ import {CarrouselComponent} from "../../components/carrousel/carrousel.component
   standalone: true,
   imports: [NgIf, CarrouselComponent]
 })
-export class TemperaturesComponent  implements OnInit {
+export class TemperaturesComponent {
 
-  tempRdC: DomoticzItem[] = []
-  tempEtage: DomoticzItem[] = []
-  tempUnknownPlan: DomoticzItem[] = []
+  private deviceStore = inject(DeviceStoreService)
 
-  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
-
-  ngOnInit(): void {
-    this.initElement();
-    this.deviceStore.getRefreshTrigger()
-      .subscribe(() => this.initElement())
-  }
-
-  initElement = () : void => {
-    this.tempRdC = []
-    this.tempEtage = []
-    this.tempUnknownPlan = []
-    this.deviceStore.getTemperatures().forEach(element => {
-      switch (element.plan) {
-        case '3': this.tempRdC.push(element); break;
-        case '4': this.tempEtage.push(element); break;
-        default: this.tempUnknownPlan.push(element);
-      }
-    })
-  }
+  readonly tempRdC = computed(() => this.deviceStore.tempSensors().filter(e => e.plan === '3'))
+  readonly tempEtage = computed(() => this.deviceStore.tempSensors().filter(e => e.plan === '4'))
+  readonly tempUnknownPlan = computed(() => this.deviceStore.tempSensors().filter(e => e.plan !== '3' && e.plan !== '4'))
 }

@@ -1,4 +1,4 @@
-import {EventEmitter, Injectable} from '@angular/core';
+import {EventEmitter, Injectable, signal} from '@angular/core';
 import {DomoticzItem} from "../models/domoticz-item.model";
 import {Blind} from "../models/blind.model";
 import {TemperatureElement} from "../models/temp.model";
@@ -10,85 +10,81 @@ import {Switch} from "../models/switch.model";
 })
 export class DeviceStoreService {
 
-  private blinds: DomoticzItem[] = []
-  private favorites: DomoticzItem[] = []
-  private tempSensors: DomoticzItem[] = []
-  private switches: DomoticzItem[] = []
-  private sensors: DomoticzItem[] = []
-  private others: DomoticzItem[] = []
+  readonly blinds = signal<DomoticzItem[]>([])
+  readonly favorites = signal<DomoticzItem[]>([])
+  readonly tempSensors = signal<DomoticzItem[]>([])
+  readonly switches = signal<DomoticzItem[]>([])
+  readonly sensors = signal<DomoticzItem[]>([])
+  private readonly others = signal<DomoticzItem[]>([])
 
-  fireRefresh: EventEmitter<any> = new EventEmitter()
   triggerError: EventEmitter<{ type: string, message: string }> = new EventEmitter()
 
-  getBlinds = (): DomoticzItem[] => this.blinds
-  getFavorites = (): DomoticzItem[] => this.favorites
-  getTemperatures = (): DomoticzItem[] => this.tempSensors
-  getSwitches = (): DomoticzItem[] => this.switches
-  getSensors = (): DomoticzItem[] => this.sensors
-
-  getRefreshTrigger = (): EventEmitter<any> => this.fireRefresh
-
   dispatchItems = (elements: DomoticzItem[]): void => {
-    this.blinds = []
-    this.tempSensors = []
-    this.switches = []
-    this.sensors = []
-    this.others = []
-    this.favorites = []
+    const blinds: DomoticzItem[] = []
+    const tempSensors: DomoticzItem[] = []
+    const switches: DomoticzItem[] = []
+    const sensors: DomoticzItem[] = []
+    const others: DomoticzItem[] = []
+    const favorites: DomoticzItem[] = []
+
     elements.forEach(element => {
       switch (element.type) {
-        case "BLIND":        this.blinds.push(element); break;
-        case "TEMP":         this.tempSensors.push(element); break;
-        case "SWITCH":       this.switches.push(element); break;
-        case "MOTION_SENSOR": this.sensors.push(element); break;
-        default:             this.others.push(element);
+        case "BLIND":         blinds.push(element); break
+        case "TEMP":          tempSensors.push(element); break
+        case "SWITCH":        switches.push(element); break
+        case "MOTION_SENSOR": sensors.push(element); break
+        default:              others.push(element)
       }
-      if (element.Favorite === 1) {
-        this.favorites.push(element)
-      }
+      if (element.Favorite === 1) favorites.push(element)
     })
+
+    this.blinds.set(blinds)
+    this.tempSensors.set(tempSensors)
+    this.switches.set(switches)
+    this.sensors.set(sensors)
+    this.others.set(others)
+    this.favorites.set(favorites)
   }
 
   replaceItem = (elements: DomoticzItem[]): void => {
     elements.forEach(element => {
       switch (element.type) {
-        case "SWITCH": {
-          const item = this.switches.find(s => s.id === element.id) as Switch
-          if (item) {
-            item.status = (element as Switch).status
-            item.lastUpdate = element.lastUpdate
-          }
+        case "SWITCH":
+          this.switches.update(list => list.map(s =>
+            s.id === element.id
+              ? Object.assign(s, { status: (element as Switch).status, lastUpdate: element.lastUpdate })
+              : s
+          ))
           break
-        }
-        case "BLIND": {
-          const item = this.blinds.find(b => b.id === element.id) as Blind
-          if (item) {
-            item.lastUpdate = element.lastUpdate
-            item.level = (element as Blind).level
-          }
+        case "BLIND":
+          this.blinds.update(list => list.map(b =>
+            b.id === element.id
+              ? Object.assign(b, { lastUpdate: element.lastUpdate, level: (element as Blind).level })
+              : b
+          ))
           break
-        }
-        case "MOTION_SENSOR": {
-          const item = this.sensors.find(s => s.id === element.id) as MotionSensor
-          if (item) {
-            item.status = (element as MotionSensor).status
-            item.lastUpdate = element.lastUpdate
-          }
+        case "MOTION_SENSOR":
+          this.sensors.update(list => list.map(s =>
+            s.id === element.id
+              ? Object.assign(s, { status: (element as MotionSensor).status, lastUpdate: element.lastUpdate })
+              : s
+          ))
           break
-        }
-        case "TEMP": {
-          const item = this.tempSensors.find(s => s.id === element.id) as TemperatureElement
-          if (item) {
-            item.temperature = (element as TemperatureElement).temperature
-            item.humidity = (element as TemperatureElement).humidity
-            item.lastUpdate = element.lastUpdate
-          }
+        case "TEMP":
+          this.tempSensors.update(list => list.map(s =>
+            s.id === element.id
+              ? Object.assign(s, {
+                  temperature: (element as TemperatureElement).temperature,
+                  humidity: (element as TemperatureElement).humidity,
+                  lastUpdate: element.lastUpdate
+                })
+              : s
+          ))
           break
-        }
-        default: {
-          const item = this.others.find(o => o.id === element.id)
-          if (item) item.lastUpdate = element.lastUpdate
-        }
+        default:
+          this.others.update(list => list.map(o =>
+            o.id === element.id ? Object.assign(o, { lastUpdate: element.lastUpdate }) : o
+          ))
       }
     })
   }

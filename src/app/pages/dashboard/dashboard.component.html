@@ -1,13 +1,13 @@
 <h1>Dashboard</h1>
-<div *ngIf="favoritesEtage.length>0">
+<div *ngIf="favoritesEtage().length>0">
   <p>Etage</p>
-  <app-carrousel [elements]="favoritesEtage"/>
+  <app-carrousel [elements]="favoritesEtage()"/>
 </div>
-<div *ngIf="favoritesRdC.length>0">
+<div *ngIf="favoritesRdC().length>0">
   <p>Rez de chaussée</p>
-  <app-carrousel [elements]="favoritesRdC"/>
+  <app-carrousel [elements]="favoritesRdC()"/>
 </div>
-<div *ngIf="favoritesUnknownPlan.length>0">
+<div *ngIf="favoritesUnknownPlan().length>0">
   <p>Autre plan</p>
-  <app-carrousel [elements]="favoritesUnknownPlan"/>
+  <app-carrousel [elements]="favoritesUnknownPlan()"/>
 </div>

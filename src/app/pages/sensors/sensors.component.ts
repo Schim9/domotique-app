@@ -1,5 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
-import {DomoticzItem} from "../../models/domoticz-item.model";
+import {Component, computed, inject} from '@angular/core';
 import {DeviceStoreService} from "../../services/device-store.service";
 import {NgIf} from "@angular/common";
 import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
@@ -11,31 +10,11 @@ import {CarrouselComponent} from "../../components/carrousel/carrousel.component
   standalone: true,
   imports: [NgIf, CarrouselComponent]
 })
-export class SensorsComponent implements OnInit{
+export class SensorsComponent {
 
+  private deviceStore = inject(DeviceStoreService)
 
-  sensorsRdC: DomoticzItem[] = []
-  sensorsEtage: DomoticzItem[] = []
-  sensorsUnknownPlan: DomoticzItem[] = []
-
-  private deviceStore: DeviceStoreService = inject(DeviceStoreService)
-
-  ngOnInit(): void {
-    this.initElement();
-    this.deviceStore.getRefreshTrigger()
-      .subscribe(() => this.initElement())
-  }
-
-  initElement = () : void => {
-    this.sensorsRdC = []
-    this.sensorsEtage = []
-    this.sensorsUnknownPlan = []
-    this.deviceStore.getSensors().forEach(element => {
-      switch (element.plan) {
-        case '3': this.sensorsRdC.push(element); break;
-        case '4': this.sensorsEtage.push(element); break;
-        default: this.sensorsUnknownPlan.push(element);
-      }
-    })
-  }
+  readonly sensorsRdC = computed(() => this.deviceStore.sensors().filter(e => e.plan === '3'))
+  readonly sensorsEtage = computed(() => this.deviceStore.sensors().filter(e => e.plan === '4'))
+  readonly sensorsUnknownPlan = computed(() => this.deviceStore.sensors().filter(e => e.plan !== '3' && e.plan !== '4'))
 }
