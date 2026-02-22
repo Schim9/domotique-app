@@ -1,11 +1,15 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
+import {NgIf} from "@angular/common";
+import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
 @Component({
   selector: 'app-blinds',
   templateUrl: './blinds.component.html',
-  styleUrls: ['./blinds.component.scss']
+  styleUrls: ['./blinds.component.scss'],
+  standalone: true,
+  imports: [NgIf, CarrouselComponent]
 })
 export class BlindsComponent implements OnInit {
 

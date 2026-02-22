@@ -7,7 +7,9 @@ import {Switch} from "../../models/switch.model";
 @Component({
   selector: 'app-switch-button',
   templateUrl: './switch-button.component.html',
-  styleUrls: ['./switch-button.component.scss']
+  styleUrls: ['./switch-button.component.scss'],
+  standalone: true,
+  imports: []
 })
 export class SwitchButtonComponent implements OnChanges {
 

@@ -1,11 +1,15 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
+import {NgIf} from "@angular/common";
+import {CarrouselComponent} from "../../components/carrousel/carrousel.component";
 
 @Component({
   selector: 'app-temperatures',
   templateUrl: './temperatures.component.html',
-  styleUrls: ['./temperatures.component.scss']
+  styleUrls: ['./temperatures.component.scss'],
+  standalone: true,
+  imports: [NgIf, CarrouselComponent]
 })
 export class TemperaturesComponent  implements OnInit {
 
@@ -13,7 +17,7 @@ export class TemperaturesComponent  implements OnInit {
   tempEtage: DomoticzItem[] = []
   tempUnknownPlan: DomoticzItem[] = []
 
-  constructor(private toolboxService: ToolboxService) {}
+  private toolboxService: ToolboxService = inject(ToolboxService)
 
   ngOnInit(): void {
     this.initElement();

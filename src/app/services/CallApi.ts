@@ -1,21 +1,18 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {EMPTY, Observable, throwError} from 'rxjs';
 
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {ToolboxService} from "./toolbox.service";
 import {Router} from "@angular/router";
 
-@Injectable()
+@Injectable({ providedIn: 'root' })
 export class CallApi {
 
   urlRegEx: RegExp = /https?:\/\/(?:w{1,3}\.)?[^\s.]+(?:\.[a-z]+)*(?::\d+)?(?![^<]*(?:<\/\w+>|\/?>))/
 
-  constructor(
-    private newHttp: HttpClient,
-    private toolboxService: ToolboxService,
-    private router: Router
-  ) {
-  }
+  private newHttp: HttpClient = inject(HttpClient)
+  private toolboxService: ToolboxService = inject(ToolboxService)
+  private router: Router = inject(Router)
 
   call = (command: HTTP_COMMAND, param?: any): Observable<any> => {
 

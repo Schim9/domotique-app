@@ -10,12 +10,25 @@ import KeenSlider, {KeenSliderInstance} from "keen-slider"
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {Action} from "../../models/action.model";
 import {DomoticzApiService} from "../../services/domoticz-api.service";
+import {NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault} from "@angular/common";
+import {BlindButtonComponent} from "../blind-button/blind-button.component";
+import {ActionButtonComponent} from "../action-button/action-button.component";
+import {TempButtonComponent} from "../temp-button/temp-button.component";
+import {SwitchButtonComponent} from "../switch-button/switch-button.component";
+import {SensorButtonComponent} from "../sensor-button/sensor-button.component";
+import {UnknownItemComponent} from "../unknown-item/unknown-item.component";
 
 
 @Component({
   selector: 'app-carrousel',
   templateUrl: './carrousel.component.html',
-  styleUrls: ['./carrousel.component.scss']
+  styleUrls: ['./carrousel.component.scss'],
+  standalone: true,
+  imports: [
+    NgFor, NgSwitch, NgSwitchCase, NgSwitchDefault,
+    BlindButtonComponent, ActionButtonComponent, TempButtonComponent,
+    SwitchButtonComponent, SensorButtonComponent, UnknownItemComponent
+  ]
 })
 export class CarrouselComponent implements AfterViewInit, OnDestroy {
 

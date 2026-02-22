@@ -6,7 +6,9 @@ import {MotionSensor} from "../../models/motion-sensor.model";
 @Component({
   selector: 'app-sensor-button',
   templateUrl: './sensor-button.component.html',
-  styleUrls: ['./sensor-button.component.scss']
+  styleUrls: ['./sensor-button.component.scss'],
+  standalone: true,
+  imports: []
 })
 export class SensorButtonComponent implements OnChanges {
 

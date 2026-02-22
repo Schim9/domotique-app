@@ -3,11 +3,15 @@ import {ToolboxService} from "../../services/toolbox.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Config} from "../../models/config.model";
 import {DomoticzApiService} from "../../services/domoticz-api.service";
+import {NgIf, NgFor} from "@angular/common";
+import {ReactiveFormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-config',
   templateUrl: './config.component.html',
-  styleUrls: ['./config.component.scss']
+  styleUrls: ['./config.component.scss'],
+  standalone: true,
+  imports: [NgIf, NgFor, ReactiveFormsModule]
 })
 export class ConfigComponent implements OnInit {
 

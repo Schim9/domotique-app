@@ -1,12 +1,17 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {DomoticzApiService} from "./services/domoticz-api.service";
 import {ToolboxService} from "./services/toolbox.service";
-import {Router} from "@angular/router";
+import {Router, RouterOutlet} from "@angular/router";
+import {NgIf} from "@angular/common";
+import {MatSidenavModule} from "@angular/material/sidenav";
+import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss']
+  styleUrls: ['./app.component.scss'],
+  standalone: true,
+  imports: [NgIf, RouterOutlet, MatSidenavModule, SidenavComponent]
 })
 export class AppComponent implements OnInit {
 

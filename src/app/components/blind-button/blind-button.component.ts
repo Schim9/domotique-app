@@ -3,11 +3,15 @@ import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
 import {Blind} from "../../models/blind.model";
+import {NgIf} from "@angular/common";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-blind-button',
   templateUrl: './blind-button.component.html',
-  styleUrls: ['./blind-button.component.scss']
+  styleUrls: ['./blind-button.component.scss'],
+  standalone: true,
+  imports: [NgIf, FormsModule]
 })
 export class BlindButtonComponent implements OnChanges {
   @Input() element: DomoticzItem

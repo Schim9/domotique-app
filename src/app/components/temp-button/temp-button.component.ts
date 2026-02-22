@@ -2,11 +2,14 @@ import {Component, inject, Input, OnChanges, SimpleChanges} from '@angular/core'
 import {TemperatureElement} from "../../models/temp.model";
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-temp-button',
   templateUrl: './temp-button.component.html',
-  styleUrls: ['./temp-button.component.scss']
+  styleUrls: ['./temp-button.component.scss'],
+  standalone: true,
+  imports: [NgIf]
 })
 export class TempButtonComponent implements  OnChanges {
   @Input() element: DomoticzItem
