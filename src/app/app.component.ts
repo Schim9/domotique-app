@@ -56,9 +56,9 @@ export class AppComponent implements OnInit {
 
   defineToastClass() {
     if (this.messageType === 'info') {
-      return 'alert alert-success';
+      return 'notification-success';
     } else {
-      return 'alert alert-danger';
+      return 'notification-danger';
     }
   }
 }

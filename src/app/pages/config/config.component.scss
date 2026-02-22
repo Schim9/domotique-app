@@ -1,10 +1,37 @@
 @import "../../../styles";
 
+.config-container {
+  max-width: 480px;
+  margin-top: 2rem;
+}
+
 .config-form-element {
+  display: flex;
+  flex-direction: column;
   padding-bottom: 16px;
 
   label {
     color: $header-font-color;
     padding-bottom: 4px;
+    font-size: 14px;
   }
+}
+
+.field-input {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 14px;
+  outline: none;
+
+  &:focus {
+    border-color: #1976d2;
+    box-shadow: 0 0 0 2px rgba(25, 118, 210, 0.2);
+  }
+}
+
+.field-error {
+  color: #d32f2f;
+  font-size: 12px;
+  margin-top: 4px;
 }
