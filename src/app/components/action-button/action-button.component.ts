@@ -11,7 +11,7 @@ import {Action} from "../../models/action.model";
   imports: []
 })
 export class ActionButtonComponent {
-  @Input({ isSignal: true, required: true }) readonly element = input.required<DomoticzItem>();
+  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
   readonly triggerAction = output<Action>();
 
   private toolBoxService = inject(ToolboxService);

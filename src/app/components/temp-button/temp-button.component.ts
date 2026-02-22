@@ -4,13 +4,14 @@ import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 
 @Component({
-    selector: 'app-temp-button',
-    templateUrl: './temp-button.component.html',
-    styleUrls: ['./temp-button.component.scss'],
-    imports: []
+  selector: 'app-temp-button',
+  templateUrl: './temp-button.component.html',
+  styleUrls: ['./temp-button.component.scss'],
+  standalone: true,
+  imports: []
 })
 export class TempButtonComponent {
-  @Input({ isSignal: true, required: true }) readonly element = input.required<DomoticzItem>();
+  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
 
   private toolBoxService = inject(ToolboxService);
   readonly elementAsTmp = computed(() => this.element() as TemperatureElement);

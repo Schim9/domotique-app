@@ -32,7 +32,7 @@ import {UnknownItemComponent} from "../unknown-item/unknown-item.component";
   ]
 })
 export class CarrouselComponent implements AfterViewInit, OnDestroy {
-  @Input({ isSignal: true, required: true }) readonly elements = input.required<DomoticzItem[]>();
+  @Input({ isSignal: true, required: true } as any) readonly elements = input.required<DomoticzItem[]>();
 
   @ViewChild("sliderRef") sliderRef: ElementRef<HTMLElement>
 

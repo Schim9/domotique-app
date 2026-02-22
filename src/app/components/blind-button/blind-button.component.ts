@@ -13,7 +13,7 @@ import {FormsModule} from "@angular/forms";
   imports: [FormsModule]
 })
 export class BlindButtonComponent {
-  @Input({ isSignal: true, required: true }) readonly element = input.required<DomoticzItem>();
+  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
   readonly triggerAction = output<Action>();
 
   private toolBoxService = inject(ToolboxService);

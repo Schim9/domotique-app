@@ -11,7 +11,7 @@ import {MotionSensor} from "../../models/motion-sensor.model";
   imports: []
 })
 export class SensorButtonComponent {
-  @Input({ isSignal: true, required: true }) readonly element = input.required<DomoticzItem>();
+  @Input({ isSignal: true, required: true } as any) readonly element = input.required<DomoticzItem>();
   readonly triggerRefresh = output<string>();
 
   private toolBoxService = inject(ToolboxService);
