@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { UnknownItemComponent } from './unknown-item.component';
 import { DomoticzItem } from '../../models/domoticz-item.model';
 
@@ -8,7 +9,8 @@ describe('UnknownItemComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [UnknownItemComponent]
+      imports: [UnknownItemComponent],
+      providers: [provideZonelessChangeDetection()]
     });
     fixture = TestBed.createComponent(UnknownItemComponent);
     component = fixture.componentInstance;

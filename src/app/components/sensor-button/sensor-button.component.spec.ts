@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePipe } from '@angular/common';
-import { SimpleChange } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { SensorButtonComponent } from './sensor-button.component';
 import { MotionSensor } from '../../models/motion-sensor.model';
 
@@ -12,16 +12,22 @@ describe('SensorButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [SensorButtonComponent],
-      providers: [DatePipe]
+      providers: [DatePipe, provideZonelessChangeDetection()]
     });
     fixture = TestBed.createComponent(SensorButtonComponent);
     component = fixture.componentInstance;
-    component.element = element;
-    component.ngOnChanges({ element: new SimpleChange(null, element, true) });
+    fixture.componentRef.setInput('element', element);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit id on handleClick', () => {
+    let emitted: string | undefined;
+    component.triggerRefresh.subscribe((id: string) => emitted = id);
+    component.handleClick();
+    expect(emitted).toBe('1');
   });
 });

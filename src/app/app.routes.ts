@@ -1,17 +1,11 @@
 import { Routes } from '@angular/router';
-import {DashboardComponent} from "./pages/dashboard/dashboard.component";
-import {BlindsComponent} from "./pages/blinds/blinds.component";
-import {TemperaturesComponent} from "./pages/temperatures/temperatures.component";
-import {SwitchesComponent} from "./pages/switches/switches.component";
-import {ConfigComponent} from "./pages/config/config.component";
-import {SensorsComponent} from "./pages/sensors/sensors.component";
 
 export const routes: Routes = [
-  { path: 'dashboard', component: DashboardComponent },
-  { path: 'blinds',    component: BlindsComponent },
-  { path: 'temp',      component: TemperaturesComponent },
-  { path: 'switches',  component: SwitchesComponent },
-  { path: 'config',    component: ConfigComponent },
-  { path: 'sensors',   component: SensorsComponent },
+  { path: 'dashboard', loadComponent: () => import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent) },
+  { path: 'blinds',    loadComponent: () => import('./pages/blinds/blinds.component').then(m => m.BlindsComponent) },
+  { path: 'temp',      loadComponent: () => import('./pages/temperatures/temperatures.component').then(m => m.TemperaturesComponent) },
+  { path: 'switches',  loadComponent: () => import('./pages/switches/switches.component').then(m => m.SwitchesComponent) },
+  { path: 'config',    loadComponent: () => import('./pages/config/config.component').then(m => m.ConfigComponent) },
+  { path: 'sensors',   loadComponent: () => import('./pages/sensors/sensors.component').then(m => m.SensorsComponent) },
   { path: '', redirectTo: '/temp', pathMatch: 'full' },
 ];

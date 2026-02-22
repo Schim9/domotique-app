@@ -1,45 +1,36 @@
-import {Component, EventEmitter, inject, Input, OnChanges, Output, SimpleChanges} from '@angular/core';
+import {Component, computed, inject, input, Input, output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
 import {Switch} from "../../models/switch.model";
 
 @Component({
-    selector: 'app-switch-button',
-    templateUrl: './switch-button.component.html',
-    styleUrls: ['./switch-button.component.scss'],
-    imports: []
+  selector: 'app-switch-button',
+  templateUrl: './switch-button.component.html',
+  styleUrls: ['./switch-button.component.scss'],
+  standalone: true,
+  imports: []
 })
-export class SwitchButtonComponent implements OnChanges {
+export class SwitchButtonComponent {
+  @Input({ isSignal: true, required: true }) readonly element = input.required<DomoticzItem>();
+  readonly triggerAction = output<Action>();
 
-  @Input() element: DomoticzItem
-  @Output() triggerAction: EventEmitter<Action> = new EventEmitter<Action>()
-
-  elementAsTmp : Switch
-
-  private toolBoxService: ToolboxService = inject(ToolboxService)
-
-  ngOnChanges(changes: SimpleChanges): void {
-    this.elementAsTmp = this.element as Switch
-  }
+  private toolBoxService = inject(ToolboxService);
+  readonly elementAsTmp = computed(() => this.element() as Switch);
 
   handleClick = (): void => {
-    let action = `type=command&param=switchlight&idx=${this.elementAsTmp.id}&switchcmd=Toggle`
-    this.triggerAction.emit(
-      new Action(
-        this.element.id,
-        this.element.title,
-        action
-      )
-    )
+    const el = this.elementAsTmp();
+    let action = `type=command&param=switchlight&idx=${el.id}&switchcmd=Toggle`
+    this.triggerAction.emit(new Action(this.element().id, this.element().title, action))
   }
 
   defineLastTime = (): string => {
-    return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
+    return this.toolBoxService.formatLastSeen(this.element().lastUpdate || "")
   }
 
   defineIcon = (): string => {
-    switch (this.elementAsTmp.image) {
+    const el = this.elementAsTmp();
+    switch (el.image) {
       case "Light":
       case "ChristmasTree":
       case "Fireplace":
@@ -47,15 +38,14 @@ export class SwitchButtonComponent implements OnChanges {
       case "Push":
         return this.defineKnownIcon()
       default:
-        return `./assets/switch/Generic48_${this.elementAsTmp.status}.png`
+        return `./assets/switch/Generic48_${el.status}.png`
     }
   }
 
-  private defineKnownIcon = () : string => {
-    if (this.elementAsTmp.status == "Off") {
-      return `./assets/switch/${this.elementAsTmp.image}48_Off.png`
-    } else {
-      return `./assets/switch/${this.elementAsTmp.image}48_On.png`
-    }
+  private defineKnownIcon = (): string => {
+    const el = this.elementAsTmp();
+    return el.status === "Off"
+      ? `./assets/switch/${el.image}48_Off.png`
+      : `./assets/switch/${el.image}48_On.png`
   }
 }

@@ -1,8 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePipe } from '@angular/common';
-import { SimpleChange } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { SwitchButtonComponent } from './switch-button.component';
 import { Switch } from '../../models/switch.model';
+import { Action } from '../../models/action.model';
 
 describe('SwitchButtonComponent', () => {
   let component: SwitchButtonComponent;
@@ -12,16 +13,23 @@ describe('SwitchButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [SwitchButtonComponent],
-      providers: [DatePipe]
+      providers: [DatePipe, provideZonelessChangeDetection()]
     });
     fixture = TestBed.createComponent(SwitchButtonComponent);
     component = fixture.componentInstance;
-    component.element = element;
-    component.ngOnChanges({ element: new SimpleChange(null, element, true) });
+    fixture.componentRef.setInput('element', element);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should emit Toggle action on handleClick', () => {
+    let emitted: Action | undefined;
+    component.triggerAction.subscribe((a: Action) => emitted = a);
+    component.handleClick();
+    expect(emitted).toBeDefined();
+    expect(emitted!.action).toContain('switchcmd=Toggle');
   });
 });

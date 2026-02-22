@@ -2,18 +2,24 @@
 @if (blindsEtage().length>0) {
   <div>
     <p>Etage</p>
-    <app-carrousel [elements]="blindsEtage()"/>
+    @defer (on immediate) {
+      <app-carrousel [elements]="blindsEtage()"/>
+    }
   </div>
 }
 @if (blindsRdC().length>0) {
   <div>
     <p>Rez de chaussée</p>
-    <app-carrousel [elements]="blindsRdC()"/>
+    @defer (on immediate) {
+      <app-carrousel [elements]="blindsRdC()"/>
+    }
   </div>
 }
 @if (blindsUnknownPlan().length>0) {
   <div>
     <p>Autre plan</p>
-    <app-carrousel [elements]="blindsUnknownPlan()"/>
+    @defer (on immediate) {
+      <app-carrousel [elements]="blindsUnknownPlan()"/>
+    }
   </div>
 }

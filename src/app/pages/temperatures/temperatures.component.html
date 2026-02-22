@@ -2,18 +2,24 @@
 @if (tempEtage().length>0) {
   <div>
     <p>Etage</p>
-    <app-carrousel [elements]="tempEtage()"/>
+    @defer (on immediate) {
+      <app-carrousel [elements]="tempEtage()"/>
+    }
   </div>
 }
 @if (tempRdC().length>0) {
   <div>
     <p>Rez de chaussée</p>
-    <app-carrousel [elements]="tempRdC()"/>
+    @defer (on immediate) {
+      <app-carrousel [elements]="tempRdC()"/>
+    }
   </div>
 }
 @if (tempUnknownPlan().length>0) {
   <div>
     <p>Autre plan</p>
-    <app-carrousel [elements]="tempUnknownPlan()"/>
+    @defer (on immediate) {
+      <app-carrousel [elements]="tempUnknownPlan()"/>
+    }
   </div>
 }

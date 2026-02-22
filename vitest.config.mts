@@ -3,16 +3,18 @@ import { readFileSync } from 'fs';
 import { resolve, dirname } from 'path';
 
 /**
- * Minimal Vite plugin that inlines Angular templateUrl/styleUrls so the
- * JIT compiler can compile components in the jsdom test environment
- * without needing the @analogjs Vite plugin (which requires Vite 6+,
- * incompatible with Angular 16's bundled Vite 4).
+ * Vite plugin that inlines Angular templateUrl/styleUrls so the
+ * JIT compiler can compile components in the jsdom test environment.
+ *
+ * Note: @Input({ isSignal: true, required: true }) decorators must be declared
+ * directly in each component source file for JIT compilation to recognize
+ * signal inputs — the esbuild transform pipeline does not apply them reliably.
  */
 function angularInlineTemplates() {
   return {
     name: 'angular-inline-templates',
     transform(code: string, id: string) {
-      if (!id.endsWith('.ts') || id.endsWith('.d.ts')) return;
+      if (!id.endsWith('.ts') || id.endsWith('.d.ts') || id.endsWith('.spec.ts')) return;
       if (!code.includes('templateUrl') && !code.includes('styleUrls')) return;
 
       let result = code;
@@ -51,6 +53,15 @@ function angularInlineTemplates() {
 
 export default defineConfig({
   plugins: [angularInlineTemplates()],
+  esbuild: {
+    tsconfigRaw: {
+      compilerOptions: {
+        experimentalDecorators: true,
+        useDefineForClassFields: false,
+        target: 'ES2022',
+      },
+    },
+  },
   test: {
     globals: true,
     environment: 'jsdom',

@@ -1,32 +1,28 @@
-import {Component, EventEmitter, inject, Input, Output} from '@angular/core';
+import {Component, inject, input, Input, output} from '@angular/core';
 import {DomoticzItem} from "../../models/domoticz-item.model";
 import {ToolboxService} from "../../services/toolbox.service";
 import {Action} from "../../models/action.model";
 
 @Component({
-    selector: 'app-action-button',
-    templateUrl: './action-button.component.html',
-    styleUrls: ['./action-button.component.scss'],
-    imports: []
+  selector: 'app-action-button',
+  templateUrl: './action-button.component.html',
+  styleUrls: ['./action-button.component.scss'],
+  standalone: true,
+  imports: []
 })
 export class ActionButtonComponent {
-  @Input() element: DomoticzItem
-  @Output() triggerAction: EventEmitter<Action> = new EventEmitter<Action>()
+  @Input({ isSignal: true, required: true }) readonly element = input.required<DomoticzItem>();
+  readonly triggerAction = output<Action>();
 
-  private toolBoxService: ToolboxService = inject(ToolboxService)
+  private toolBoxService = inject(ToolboxService);
 
   handleClick = (): void => {
-    let action = `type=command&param=switchlight&idx=${this.element.id}&switchcmd=Toggle`
-    this.triggerAction.emit(
-      new Action(
-        this.element.id,
-        this.element.title,
-        action
-      )
-    )
+    const el = this.element();
+    let action = `type=command&param=switchlight&idx=${el.id}&switchcmd=Toggle`
+    this.triggerAction.emit(new Action(el.id, el.title, action))
   }
 
   defineLastTime = (): string => {
-    return this.toolBoxService.formatLastSeen(this.element.lastUpdate || "")
+    return this.toolBoxService.formatLastSeen(this.element().lastUpdate || "")
   }
 }

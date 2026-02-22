@@ -1,5 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import { DatePipe } from '@angular/common';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { provideHttpClient } from '@angular/common/http';
 import { DomoticzApiService } from './domoticz-api.service';
 
@@ -8,7 +9,7 @@ describe('DomoticzApiService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [DatePipe, provideHttpClient()]
+      providers: [DatePipe, provideHttpClient(), provideZonelessChangeDetection()]
     });
     service = TestBed.inject(DomoticzApiService);
   });

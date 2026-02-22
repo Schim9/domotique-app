@@ -1,5 +1,5 @@
 <div class="keen-slider__slide card-carrousel-item">
-  <p class="card-header">{{elementAsTmp.title}}</p>
+  <p class="card-header">{{elementAsTmp().title}}</p>
   <div class="card-content">
 
     <div class="image-container-blind">
@@ -10,13 +10,13 @@
         <img src="./assets/blinds/blinds48sel.png" alt="Close blind" (click)="handleClick('Close')">
       </div>
     </div>
-    @if (elementAsTmp.hasDimmer) {
+    @if (elementAsTmp().hasDimmer) {
       <div class="select-range-horizontal">
         <input
           type="range"
           class="input-range-horizontal"
           step="1"
-          [value]="convertLevelValue(elementAsTmp.level)"
+          [value]="convertLevelValue(elementAsTmp().level)"
           min="0"
           max="100"
           (input)="handleRangeChange($event)"

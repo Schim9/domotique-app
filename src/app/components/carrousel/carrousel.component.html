@@ -1,5 +1,5 @@
 <div class="keen-slider" #sliderRef>
-  @for (element of elements; track element) {
+  @for (element of elements(); track element) {
     <div>
       @switch (element.type) {
         @case ('BLIND') {

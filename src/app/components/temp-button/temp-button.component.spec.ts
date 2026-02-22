@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { DatePipe } from '@angular/common';
-import { SimpleChange } from '@angular/core';
+import { provideZonelessChangeDetection } from '@angular/core';
 import { TempButtonComponent } from './temp-button.component';
 import { TemperatureElement } from '../../models/temp.model';
 
@@ -12,16 +12,23 @@ describe('TempButtonComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [TempButtonComponent],
-      providers: [DatePipe]
+      providers: [DatePipe, provideZonelessChangeDetection()]
     });
     fixture = TestBed.createComponent(TempButtonComponent);
     component = fixture.componentInstance;
-    component.element = element;
-    component.ngOnChanges({ element: new SimpleChange(null, element, true) });
+    fixture.componentRef.setInput('element', element);
     fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should return temp-20-25.png icon for 20.5°', () => {
+    expect(component.defineTemperatureIcon()).toContain('temp-20-25.png');
+  });
+
+  it('should format temperature to 1 decimal', () => {
+    expect(component.defineTemperature()).toBe('20.5');
   });
 });
