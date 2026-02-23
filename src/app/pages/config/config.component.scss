@@ -35,3 +35,13 @@
   font-size: 12px;
   margin-top: 4px;
 }
+
+button[mat-stroked-button] {
+  background-color: $navbar-bg-color;
+  color: $navbar-icon-color;
+  border-color: $navbar-bg-color;
+
+  &:disabled {
+    opacity: 0.5;
+  }
+}
