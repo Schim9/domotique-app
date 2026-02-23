@@ -1,25 +1,17 @@
 <h1>Dashboard</h1>
-@if (favoritesEtage().length>0) {
-  <div>
-    <p>Etage</p>
+@for (group of byPlan().groups; track group.plan.id) {
+  <div class="plan-section">
+    <span class="plan-badge">{{ group.plan.name }}</span>
     @defer (on immediate) {
-      <app-carrousel [elements]="favoritesEtage()"/>
+      <app-carrousel [elements]="group.items"/>
     }
   </div>
 }
-@if (favoritesRdC().length>0) {
-  <div>
-    <p>Rez de chaussée</p>
+@if (byPlan().unknown.length > 0) {
+  <div class="plan-section">
+    <span class="plan-badge">Autre plan</span>
     @defer (on immediate) {
-      <app-carrousel [elements]="favoritesRdC()"/>
-    }
-  </div>
-}
-@if (favoritesUnknownPlan().length>0) {
-  <div>
-    <p>Autre plan</p>
-    @defer (on immediate) {
-      <app-carrousel [elements]="favoritesUnknownPlan()"/>
+      <app-carrousel [elements]="byPlan().unknown"/>
     }
   </div>
 }

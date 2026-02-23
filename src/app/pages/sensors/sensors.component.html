@@ -1,15 +1,15 @@
 <h1>Sensors</h1>
 @for (group of byPlan().groups; track group.plan.id) {
-  <div>
-    <p>{{ group.plan.name }}</p>
+  <div class="plan-section">
+    <span class="plan-badge">{{ group.plan.name }}</span>
     @defer (on immediate) {
       <app-carrousel [elements]="group.items"/>
     }
   </div>
 }
 @if (byPlan().unknown.length > 0) {
-  <div>
-    <p>Autre plan</p>
+  <div class="plan-section">
+    <span class="plan-badge">Autre plan</span>
     @defer (on immediate) {
       <app-carrousel [elements]="byPlan().unknown"/>
     }
