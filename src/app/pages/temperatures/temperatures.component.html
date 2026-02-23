@@ -1,25 +1,17 @@
 <h1>Temperatures</h1>
-@if (tempEtage().length>0) {
+@for (group of byPlan().groups; track group.plan.id) {
   <div>
-    <p>Etage</p>
+    <p>{{ group.plan.name }}</p>
     @defer (on immediate) {
-      <app-carrousel [elements]="tempEtage()"/>
+      <app-carrousel [elements]="group.items"/>
     }
   </div>
 }
-@if (tempRdC().length>0) {
-  <div>
-    <p>Rez de chaussée</p>
-    @defer (on immediate) {
-      <app-carrousel [elements]="tempRdC()"/>
-    }
-  </div>
-}
-@if (tempUnknownPlan().length>0) {
+@if (byPlan().unknown.length > 0) {
   <div>
     <p>Autre plan</p>
     @defer (on immediate) {
-      <app-carrousel [elements]="tempUnknownPlan()"/>
+      <app-carrousel [elements]="byPlan().unknown"/>
     }
   </div>
 }

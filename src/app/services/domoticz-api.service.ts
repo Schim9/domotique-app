@@ -1,5 +1,5 @@
 import {inject, Injectable} from '@angular/core';
-import {catchError, map, Observable, of, switchMap} from "rxjs";
+import {catchError, map, Observable, of, switchMap, tap} from "rxjs";
 import {CallApi, HTTP_COMMAND} from "./CallApi";
 import {DeviceStoreService} from "./device-store.service";
 import {DeviceMappingService} from "./device-mapping.service";
@@ -65,9 +65,14 @@ export class DomoticzApiService {
     )
   }
 
-  // TODO Lister les plans
-  fetchPlan = (): Observable<any> => {
-    // /json.htm?type=plans&order=name&used=true
-    return of(true)
+  fetchPlans = (): Observable<any> => {
+    return this.callApi.call(HTTP_COMMAND.GET, 'type=plans&order=name&used=true').pipe(
+      map(result => (result.result ?? []).map((p: any) => ({ id: String(p.idx), name: p.Name }))),
+      tap(plans => this.deviceStore.setPlans(plans)),
+      catchError(error => {
+        this.deviceStore.triggerError.emit({ type: 'error', message: error.message })
+        return of([])
+      })
+    )
   }
 }

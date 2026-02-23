@@ -13,7 +13,14 @@ export class SensorsComponent {
 
   private deviceStore = inject(DeviceStoreService)
 
-  readonly sensorsRdC = computed(() => this.deviceStore.sensors().filter(e => e.plan === '3'))
-  readonly sensorsEtage = computed(() => this.deviceStore.sensors().filter(e => e.plan === '4'))
-  readonly sensorsUnknownPlan = computed(() => this.deviceStore.sensors().filter(e => e.plan !== '3' && e.plan !== '4'))
+  readonly byPlan = computed(() => {
+    const plans = this.deviceStore.plans()
+    const knownIds = new Set(plans.map(p => p.id))
+    return {
+      groups: plans
+        .map(p => ({ plan: p, items: this.deviceStore.sensors().filter(e => e.plan === p.id) }))
+        .filter(g => g.items.length > 0),
+      unknown: this.deviceStore.sensors().filter(e => !knownIds.has(e.plan ?? ""))
+    }
+  })
 }

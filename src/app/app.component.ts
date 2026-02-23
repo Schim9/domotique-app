@@ -1,4 +1,5 @@
 import {Component, inject, OnInit} from '@angular/core';
+import {forkJoin} from "rxjs";
 import {DomoticzApiService} from "./services/domoticz-api.service";
 import {ToolboxService} from "./services/toolbox.service";
 import {DeviceStoreService} from "./services/device-store.service";
@@ -40,9 +41,10 @@ export class AppComponent implements OnInit {
     if (this.toolBoxService.getAppConfig()?.homepage) {
       this.router.navigate([`/${this.toolBoxService.getAppConfig()?.homepage}`])
     }
-    this.domoticzApiService
-      .fetchAllElements(false)
-      .subscribe()
+    forkJoin([
+      this.domoticzApiService.fetchAllElements(false),
+      this.domoticzApiService.fetchPlans()
+    ]).subscribe()
   }
 
   handleNotification = () => {

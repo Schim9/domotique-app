@@ -4,12 +4,14 @@ import {Blind} from "../models/blind.model";
 import {TemperatureElement} from "../models/temp.model";
 import {MotionSensor} from "../models/motion-sensor.model";
 import {Switch} from "../models/switch.model";
+import {Plan} from "../models/plan.model";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DeviceStoreService {
 
+  readonly plans = signal<Plan[]>([])
   readonly blinds = signal<DomoticzItem[]>([])
   readonly favorites = signal<DomoticzItem[]>([])
   readonly tempSensors = signal<DomoticzItem[]>([])
@@ -18,6 +20,8 @@ export class DeviceStoreService {
   private readonly others = signal<DomoticzItem[]>([])
 
   triggerError: EventEmitter<{ type: string, message: string }> = new EventEmitter()
+
+  setPlans = (plans: Plan[]): void => this.plans.set(plans)
 
   dispatchItems = (elements: DomoticzItem[]): void => {
     const blinds: DomoticzItem[] = []

@@ -13,7 +13,14 @@ export class SwitchesComponent {
 
   private deviceStore = inject(DeviceStoreService)
 
-  readonly switchesRdC = computed(() => this.deviceStore.switches().filter(e => e.plan === '3'))
-  readonly switchesEtage = computed(() => this.deviceStore.switches().filter(e => e.plan === '4'))
-  readonly switchesUnknownPlan = computed(() => this.deviceStore.switches().filter(e => e.plan !== '3' && e.plan !== '4'))
+  readonly byPlan = computed(() => {
+    const plans = this.deviceStore.plans()
+    const knownIds = new Set(plans.map(p => p.id))
+    return {
+      groups: plans
+        .map(p => ({ plan: p, items: this.deviceStore.switches().filter(e => e.plan === p.id) }))
+        .filter(g => g.items.length > 0),
+      unknown: this.deviceStore.switches().filter(e => !knownIds.has(e.plan ?? ""))
+    }
+  })
 }
