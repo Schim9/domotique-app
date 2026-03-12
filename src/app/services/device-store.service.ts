@@ -56,39 +56,47 @@ export class DeviceStoreService {
         case "SWITCH":
           this.switches.update(list => list.map(s =>
             s.id === element.id
-              ? Object.assign(s, { status: (element as Switch).status, lastUpdate: element.lastUpdate })
+              ? { ...s, status: (element as Switch).status, lastUpdate: element.lastUpdate }
               : s
           ))
           break
         case "BLIND":
           this.blinds.update(list => list.map(b =>
             b.id === element.id
-              ? Object.assign(b, { lastUpdate: element.lastUpdate, level: (element as Blind).level })
+              ? { ...b, lastUpdate: element.lastUpdate, level: (element as Blind).level }
               : b
           ))
           break
         case "MOTION_SENSOR":
           this.sensors.update(list => list.map(s =>
             s.id === element.id
-              ? Object.assign(s, { status: (element as MotionSensor).status, lastUpdate: element.lastUpdate })
+              ? { ...s, status: (element as MotionSensor).status, lastUpdate: element.lastUpdate }
               : s
           ))
           break
         case "TEMP":
           this.tempSensors.update(list => list.map(s =>
             s.id === element.id
-              ? Object.assign(s, {
-                  temperature: (element as TemperatureElement).temperature,
-                  humidity: (element as TemperatureElement).humidity,
-                  lastUpdate: element.lastUpdate
-                })
+              ? { ...s, temperature: (element as TemperatureElement).temperature, humidity: (element as TemperatureElement).humidity, HumidityStatus: (element as TemperatureElement).HumidityStatus, lastUpdate: element.lastUpdate }
               : s
           ))
           break
         default:
           this.others.update(list => list.map(o =>
-            o.id === element.id ? Object.assign(o, { lastUpdate: element.lastUpdate }) : o
+            o.id === element.id ? { ...o, lastUpdate: element.lastUpdate } : o
           ))
+      }
+      if (element.Favorite === 1) {
+        this.favorites.update(list => list.map(f => {
+          if (f.id !== element.id) return f
+          switch (element.type) {
+            case "SWITCH":        return { ...f, status: (element as Switch).status, lastUpdate: element.lastUpdate }
+            case "BLIND":         return { ...f, level: (element as Blind).level, lastUpdate: element.lastUpdate }
+            case "MOTION_SENSOR": return { ...f, status: (element as MotionSensor).status, lastUpdate: element.lastUpdate }
+            case "TEMP":          return { ...f, temperature: (element as TemperatureElement).temperature, humidity: (element as TemperatureElement).humidity, HumidityStatus: (element as TemperatureElement).HumidityStatus, lastUpdate: element.lastUpdate }
+            default:              return { ...f, lastUpdate: element.lastUpdate }
+          }
+        }))
       }
     })
   }

@@ -1,4 +1,4 @@
-import {Component, inject, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {forkJoin} from "rxjs";
 import {DomoticzApiService} from "./services/domoticz-api.service";
 import {ToolboxService} from "./services/toolbox.service";
@@ -16,6 +16,7 @@ import {SidenavComponent} from "./components/side-nav-bar/sidenav.component";
 })
 export class AppComponent implements OnInit {
 
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef)
   private toolBoxService: ToolboxService = inject(ToolboxService)
   private deviceStore: DeviceStoreService = inject(DeviceStoreService)
   private domoticzApiService: DomoticzApiService = inject(DomoticzApiService)
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
     this.deviceStore.triggerError.subscribe(trigger => {
       this.messageType = trigger.type
       this.message = trigger.message
+      this.cdr.detectChanges()
       this.handleNotification();
     })
 
