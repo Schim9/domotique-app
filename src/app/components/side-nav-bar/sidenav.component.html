@@ -5,7 +5,7 @@
     </mat-icon>
   </div>
 
-  @for (route of routeLinks; track route) {
+  @for (route of visibleRoutes(); track route.link) {
     <mat-list class="nav">
       <div class="test-span-class">
         <a mat-list-item

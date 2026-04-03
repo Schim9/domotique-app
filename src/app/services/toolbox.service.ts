@@ -9,16 +9,16 @@ export class ToolboxService {
 
   private datePipe: DatePipe = inject(DatePipe)
 
-  public routeLinks = [
-    {link: "dashboard", name: "Dashboard", icon: "dashboard"},
-    {link: "blinds", name: "Blinds", icon: "roller_shades"},
-    {link: "temp", name: "Temperature", icon: "dew_point"},
-    {link: "switches", name: "Switches", icon: "emoji_objects"},
-    {link: "sensors", name: "Sensors", icon: "sensors"},
-    {link: "selectors", name: "Selectors", icon: "sprinkler"},
-//    {link: "mesures", name: "Mesures", icon: "content_paste_search"},
-//    {link: "scenes", name: "Scenes", icon: "batch_prediction"},
-    {link: "config", name: "Configuration", icon: "settings"},
+  public routeLinks: { link: string, name: string, icon: string, storeKey: string | null }[] = [
+    {link: "dashboard", name: "Dashboard",     icon: "dashboard",             storeKey: null},
+    {link: "blinds",    name: "Blinds",        icon: "roller_shades",         storeKey: "blinds"},
+    {link: "temp",      name: "Temperature",   icon: "dew_point",             storeKey: "tempSensors"},
+    {link: "switches",  name: "Switches",      icon: "emoji_objects",         storeKey: "switches"},
+    {link: "sensors",   name: "Sensors",       icon: "sensors",               storeKey: "sensors"},
+    {link: "selectors", name: "Selectors",     icon: "sprinkler",             storeKey: "selectors"},
+//    {link: "mesures", name: "Mesures",        icon: "content_paste_search",  storeKey: null},
+//    {link: "scenes",  name: "Scenes",         icon: "batch_prediction",      storeKey: null},
+    {link: "config",    name: "Configuration", icon: "settings",              storeKey: null},
   ]
 
   getAppConfig = (): Config => {

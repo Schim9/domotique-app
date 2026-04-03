@@ -1,6 +1,7 @@
-import {Component, Input, Output, EventEmitter, inject} from "@angular/core";
+import {Component, Input, Output, EventEmitter, inject, computed} from "@angular/core";
 import {ToolboxService} from "../../services/toolbox.service";
 import {DomoticzApiService} from "../../services/domoticz-api.service";
+import {DeviceStoreService} from "../../services/device-store.service";
 
 import {RouterModule} from "@angular/router";
 import {MatListModule} from "@angular/material/list";
@@ -18,8 +19,13 @@ export class SidenavComponent {
 
   private toolBoxService: ToolboxService = inject(ToolboxService)
   private domoticzService: DomoticzApiService = inject(DomoticzApiService)
+  private store: DeviceStoreService = inject(DeviceStoreService)
 
-  public routeLinks = this.toolBoxService.routeLinks
+  public visibleRoutes = computed(() =>
+    this.toolBoxService.routeLinks.filter(r =>
+      r.storeKey === null || (this.store[r.storeKey as keyof DeviceStoreService] as any)().length > 0
+    )
+  )
 
   handleClick() {
     if (this.isExpanded)
