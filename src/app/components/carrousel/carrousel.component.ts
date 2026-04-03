@@ -16,6 +16,7 @@ import {TempButtonComponent} from "../temp-button/temp-button.component";
 import {SwitchButtonComponent} from "../switch-button/switch-button.component";
 import {SensorButtonComponent} from "../sensor-button/sensor-button.component";
 import {UnknownItemComponent} from "../unknown-item/unknown-item.component";
+import {SelectorButtonComponent} from "../selector-button/selector-button.component";
 
 @Component({
   selector: 'app-carrousel',
@@ -28,7 +29,8 @@ import {UnknownItemComponent} from "../unknown-item/unknown-item.component";
     TempButtonComponent,
     SwitchButtonComponent,
     SensorButtonComponent,
-    UnknownItemComponent
+    UnknownItemComponent,
+    SelectorButtonComponent
   ]
 })
 export class CarrouselComponent implements AfterViewInit, OnDestroy {

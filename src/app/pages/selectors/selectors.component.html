@@ -1,0 +1,17 @@
+<h1>Selectors</h1>
+@for (group of byPlan().groups; track group.plan.id) {
+  <div class="plan-section">
+    <span class="plan-badge">{{ group.plan.name }}</span>
+    @defer (on immediate) {
+      <app-carrousel [elements]="group.items"/>
+    }
+  </div>
+}
+@if (byPlan().unknown.length > 0) {
+  <div class="plan-section">
+    <span class="plan-badge">Autre plan</span>
+    @defer (on immediate) {
+      <app-carrousel [elements]="byPlan().unknown"/>
+    }
+  </div>
+}

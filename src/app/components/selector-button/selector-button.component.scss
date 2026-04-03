@@ -1,0 +1,53 @@
+@use "../../../vars" as *;
+
+.image-container-switch {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  img {
+    max-width: 70px;
+    width: 70%;
+    height: 70%;
+    padding: 15px 5px 5px;
+  }
+
+  .remaining-badge {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    background-color: $navbar-bg-color;
+    color: $navbar-icon-color;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+  }
+}
+
+.level-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding: 4px 0;
+
+  .level-btn {
+    width: 100%;
+    padding: 6px 4px;
+    border-radius: 6px;
+    border: 1px solid $navbar-bg-color;
+    background-color: transparent;
+    color: $header-font-color;
+    font-size: 13px;
+    cursor: pointer;
+
+    &.active {
+      background-color: $navbar-bg-color;
+      color: $navbar-icon-color;
+    }
+  }
+}

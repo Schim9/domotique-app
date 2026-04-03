@@ -38,7 +38,7 @@ export class DomoticzApiService {
 
     return this.callApi.call(HTTP_COMMAND.GET, param).pipe(
       map(result => this.deviceMapping.mapItem(result)),
-      map(result => this.deviceStore.replaceItem(result)),
+      map(mapped => this.deviceStore.replaceItem(mapped)),
       catchError(error => {
         this.deviceStore.triggerError.emit({type: 'error', message: `${error.message}`})
         return of(`Bad Promise: ${error}`)

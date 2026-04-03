@@ -15,6 +15,7 @@ export class ToolboxService {
     {link: "temp", name: "Temperature", icon: "dew_point"},
     {link: "switches", name: "Switches", icon: "emoji_objects"},
     {link: "sensors", name: "Sensors", icon: "sensors"},
+    {link: "selectors", name: "Selectors", icon: "sprinkler"},
 //    {link: "mesures", name: "Mesures", icon: "content_paste_search"},
 //    {link: "scenes", name: "Scenes", icon: "batch_prediction"},
     {link: "config", name: "Configuration", icon: "settings"},
@@ -40,9 +41,11 @@ export class ToolboxService {
   }
 
   formatLastSeen = (lastUpdate: string): string => {
-    let lastUpdateDate: any = new Date(lastUpdate)
-    let todayDate: any = new Date()
-    let diffDays: any = Math.floor((todayDate - lastUpdateDate) / (1000 * 60 * 60 * 24))
+    const lastUpdateDate = new Date(lastUpdate)
+    const today = new Date()
+    const todayMidnight = new Date(today.getFullYear(), today.getMonth(), today.getDate())
+    const lastMidnight = new Date(lastUpdateDate.getFullYear(), lastUpdateDate.getMonth(), lastUpdateDate.getDate())
+    const diffDays = Math.round((todayMidnight.getTime() - lastMidnight.getTime()) / (1000 * 60 * 60 * 24))
     if (diffDays === 0) {
       return this.datePipe.transform(lastUpdate, "HH:mm") || ""
     } else if (diffDays === 1) {

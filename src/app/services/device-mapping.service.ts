@@ -7,6 +7,7 @@ import {Switch} from "../models/switch.model";
 import {PushButton} from "../models/push-button.model";
 import {Contact} from "../models/contact.model";
 import {Unknown} from "../models/unknown.model";
+import {Selector} from "../models/selector.model";
 
 @Injectable({
   providedIn: 'root'
@@ -29,6 +30,8 @@ export class DeviceMappingService {
           return this.mapToBlind(jsonElement)
         case "Contact":
           return this.mapToContact(jsonElement)
+        case "Selector":
+          return this.mapToSelector(jsonElement)
         default:
           if (['Temp + Humidity', 'Temp'].includes(jsonElement.Type)) {
             return this.mapToTemp(jsonElement)
@@ -41,7 +44,7 @@ export class DeviceMappingService {
 
   private mapToSwitch = (json: any): DomoticzItem => {
     return new Switch(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.Description,
       json.PlanID,
@@ -56,7 +59,7 @@ export class DeviceMappingService {
 
   private mapToMotionSensor = (json: any): DomoticzItem => {
     return new MotionSensor(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.Description,
       json.PlanID,
@@ -69,7 +72,7 @@ export class DeviceMappingService {
 
   private mapToPushButton = (json: any): DomoticzItem => {
     return new PushButton(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.Description,
       json.PlanID,
@@ -81,7 +84,7 @@ export class DeviceMappingService {
 
   private mapToBlind = (json: any): DomoticzItem => {
     return new Blind(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.Description,
       json.PlanID,
@@ -95,7 +98,7 @@ export class DeviceMappingService {
 
   private mapToContact = (json: any): DomoticzItem => {
     return new Contact(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.Description,
       json.PlanID,
@@ -107,7 +110,7 @@ export class DeviceMappingService {
 
   private mapToTemp = (json: any): DomoticzItem => {
     return new TemperatureElement(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.Description,
       json.PlanID,
@@ -120,9 +123,35 @@ export class DeviceMappingService {
     )
   }
 
+  private mapToSelector = (json: any): DomoticzItem => {
+    return new Selector(
+      String(json.idx),
+      json.Name,
+      json.Description,
+      json.PlanID,
+      json.LastUpdate,
+      json.Type,
+      json.Level,
+      this.decodeLevelNames(json.LevelNames),
+      json.LevelOffHidden,
+      json.Favorite,
+      json.Data ?? '',
+      json.Status ?? ''
+    )
+  }
+
+  private decodeLevelNames = (levelNames: string): string => {
+    if (!levelNames) return ''
+    try {
+      return atob(levelNames)
+    } catch {
+      return levelNames
+    }
+  }
+
   private mapToUnknown = (json: any): DomoticzItem => {
     return new Unknown(
-      json.idx,
+      String(json.idx),
       json.Name,
       json.SwitchType,
       json.PlanID,

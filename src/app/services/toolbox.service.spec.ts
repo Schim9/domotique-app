@@ -31,6 +31,19 @@ describe('ToolboxService', () => {
     expect(result).toContain('yest.');
   });
 
+  it('formatLastSeen: returns "yest." when yesterday evening but less than 24h ago', () => {
+    // Simule : hier 22h37, aujourd'hui 01h00 → diff < 24h mais jour calendaire différent
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(22, 37, 0, 0);
+    const today = new Date();
+    today.setHours(1, 0, 0, 0);
+    // On ne peut pas mocker new Date(), mais on vérifie que setDate(-1) donne bien "yest."
+    // même si l'heure hier était plus tardive qu'aujourd'hui
+    const result = service.formatLastSeen(yesterday.toISOString().replace('T', ' ').substring(0, 19));
+    expect(result).toContain('yest.');
+  });
+
   it('formatLastSeen: returns dd MMM for older dates', () => {
     const old = new Date();
     old.setDate(old.getDate() - 5);

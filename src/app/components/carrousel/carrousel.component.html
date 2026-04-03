@@ -25,6 +25,12 @@
             (triggerAction)="onCLick($event)"
             />
         }
+        @case ('SELECTOR') {
+          <app-selector-button
+            [element]="element"
+            (triggerAction)="onCLick($event)"
+            />
+        }
         @case ('MOTION_SENSOR') {
           <app-sensor-button
             [element]="element"

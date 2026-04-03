@@ -4,6 +4,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { provideServiceWorker } from '@angular/service-worker';
 import { DatePipe } from '@angular/common';
+import { MAT_ICON_DEFAULT_OPTIONS } from '@angular/material/icon';
 import { routes } from './app.routes';
 
 export const appConfig: ApplicationConfig = {
@@ -17,5 +18,6 @@ export const appConfig: ApplicationConfig = {
       registrationStrategy: 'registerWhenStable:30000',
     }),
     DatePipe,
+    { provide: MAT_ICON_DEFAULT_OPTIONS, useValue: { fontSet: 'material-symbols-outlined' } },
   ],
 };

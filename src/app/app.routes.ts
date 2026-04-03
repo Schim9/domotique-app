@@ -7,5 +7,6 @@ export const routes: Routes = [
   { path: 'switches',  loadComponent: () => import('./pages/switches/switches.component').then(m => m.SwitchesComponent) },
   { path: 'config',    loadComponent: () => import('./pages/config/config.component').then(m => m.ConfigComponent) },
   { path: 'sensors',   loadComponent: () => import('./pages/sensors/sensors.component').then(m => m.SensorsComponent) },
+  { path: 'selectors', loadComponent: () => import('./pages/selectors/selectors.component').then(m => m.SelectorsComponent) },
   { path: '', redirectTo: '/temp', pathMatch: 'full' },
 ];
