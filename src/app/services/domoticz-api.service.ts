@@ -66,7 +66,7 @@ export class DomoticzApiService {
   }
 
   fetchPlans = (): Observable<any> => {
-    return this.callApi.call(HTTP_COMMAND.GET, 'type=plans&order=name&used=true').pipe(
+    return this.callApi.call(HTTP_COMMAND.GET, 'type=command&param=getplans&order=name').pipe(
       map(result => (result.result ?? []).map((p: any) => ({ id: String(p.idx), name: p.Name }))),
       tap(plans => this.deviceStore.setPlans(plans)),
       catchError(error => {
