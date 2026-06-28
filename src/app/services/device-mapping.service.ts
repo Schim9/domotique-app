@@ -27,6 +27,7 @@ export class DeviceMappingService {
           return this.mapToMotionSensor(jsonElement)
         case "Blinds":
         case "Blinds + Stop":
+        case "Blinds % + Stop":
           return this.mapToBlind(jsonElement)
         case "Contact":
           return this.mapToContact(jsonElement)
