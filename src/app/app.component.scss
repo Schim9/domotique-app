@@ -4,6 +4,13 @@
   min-height: 100vh;
   box-sizing: border-box;
   padding: 25px;
+  padding-top: calc(25px + env(safe-area-inset-top, 0px));
+}
+
+@media (display-mode: standalone) {
+  .content-container {
+    padding-top: calc(25px + max(env(safe-area-inset-top, 0px), 28px));
+  }
 }
 
 .mat-sidenav-container {

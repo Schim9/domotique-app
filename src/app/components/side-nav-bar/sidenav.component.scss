@@ -1,5 +1,15 @@
 @use '../../../vars' as *;
 
+section {
+  padding-top: env(safe-area-inset-top, 0px);
+}
+
+@media (display-mode: standalone) {
+  section {
+    padding-top: max(env(safe-area-inset-top, 0px), 28px);
+  }
+}
+
 .sidenav {
   width: 250px;
 }
