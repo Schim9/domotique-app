@@ -61,6 +61,7 @@ export class CarrouselComponent implements AfterViewInit, OnDestroy {
 
   @HostListener('window:resize', ['$event'])
   onWindowResize() {
+    if (this.slider) this.slider.destroy()
     let perViewValue = window.innerWidth >= this.isMobileIfLargerThan ? 5 : 2;
     this.slider = new KeenSlider(this.sliderRef?.nativeElement, {
       initial: 0,

@@ -42,3 +42,4 @@ testem.log
 Thumbs.db
 /CLAUDE.md
 /.claude/settings.local.json
+/src/proxy.conf.json

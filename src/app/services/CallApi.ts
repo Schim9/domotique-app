@@ -22,7 +22,7 @@ export class CallApi {
 
     if (!this.urlRegEx.test(serverAddress)) {
       this.router.navigate(['/config'])
-        .then(() => throwError(() => `${serverAddress} is not a valid url`))
+      return EMPTY
     }
 
     const authenticatedHeader: HttpHeaders = new HttpHeaders()

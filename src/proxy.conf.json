@@ -1,6 +1,6 @@
 {
     "/json*": {
-        "target": "http://192.168.0.97:8084",
+        "target": "http://DOMOTICZ_HOST:DOMOTICZ_PORT",
         "secure": false,
         "logLevel": "debug"
     }

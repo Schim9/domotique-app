@@ -67,10 +67,8 @@ export class DeviceStoreService {
           break
         case "SELECTOR": {
           const sel = element as Selector
-          console.log(`[SELECTOR] searching id=${sel.id}(${typeof sel.id}) level=${sel.level} | stored:`, this.selectors().map(s => `${s.id}(${typeof s.id})`))
           this.selectors.update(list => list.map(s => {
             if (s.id === sel.id) {
-              console.log(`[SELECTOR] MATCH → level ${(s as Selector).level} → ${sel.level}`)
               return Object.assign(Object.create(Object.getPrototypeOf(s)), s, { level: sel.level, levelNames: sel.levelNames, levelOffHidden: sel.levelOffHidden, lastUpdate: sel.lastUpdate, status: sel.status, data: sel.data })
             }
             return s
